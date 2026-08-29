@@ -58,43 +58,58 @@ export default function MaintenancePage() {
       { x: 0.42, y: 0.72, id: 'TGT-GCS-09', type: 'DATA-LINK-UAV', lock: false },
     ];
 
-    // Live Action Supersonic Fighter Jet Sorties
+    // Load Real Thermal Fighter Sprites (Su-30MKI & Rafale)
+    const su30Img = new Image();
+    su30Img.src = '/su30_flir.png';
+    const rafaleImg = new Image();
+    rafaleImg.src = '/rafale_flir.png';
+
+    // Live Action Supersonic Combat Fighter Sorties (IAF War Condition Flight Package)
     const jets = [
       {
-        callsign: 'GARUDA-01 [SU-30MKI]',
-        x: -100,
-        y: 260,
-        speed: 3.2,
-        angle: 0.32,
-        altitude: '18,500 FT',
-        mach: 'M 1.4',
+        callsign: 'GARUDA-01 [SU-30MKI SUPER FLANKER]',
+        img: su30Img,
+        x: -200,
+        y: 220,
+        speed: 2.8,
+        angle: 0.28,
+        altitude: '18,500 FT AGL',
+        mach: 'MACH 1.45',
+        weapons: 'ASTRA-MK2 / BRAHMOS-A',
         trail: [],
         color: '#38bdf8',
         locked: true,
+        size: 96,
       },
       {
-        callsign: 'TEJAS-FLK-03',
-        x: 100,
-        y: -80,
-        speed: 2.7,
-        angle: 0.95,
-        altitude: '22,100 FT',
-        mach: 'M 1.2',
-        trail: [],
-        color: '#f59e0b',
-        locked: false,
-      },
-      {
-        callsign: 'RAFALE-LEAD-07',
-        x: -150,
-        y: 650,
-        speed: 3.6,
-        angle: -0.22,
-        altitude: '15,800 FT',
-        mach: 'M 1.6',
+        callsign: 'GOLDEN-ARROWS-03 [RAFALE DH]',
+        img: rafaleImg,
+        x: -120,
+        y: 580,
+        speed: 3.4,
+        angle: -0.18,
+        altitude: '24,000 FT AGL',
+        mach: 'MACH 1.62',
+        weapons: 'METEOR / SCALP-EG',
         trail: [],
         color: '#10b981',
         locked: true,
+        size: 88,
+      },
+      {
+        callsign: 'THUNDERBOLT-02 [SU-30MKI AIR DOMINANCE]',
+        img: su30Img,
+        x: 180,
+        y: -180,
+        speed: 2.5,
+        angle: 0.88,
+        altitude: '21,200 FT AGL',
+        mach: 'MACH 1.30',
+        weapons: 'R-77 / R-73 WVR',
+        trail: [],
+        color: '#f59e0b',
+        locked: false,
+        size: 96,
       }
     ];
 
@@ -105,60 +120,44 @@ export default function MaintenancePage() {
     resize();
     window.addEventListener('resize', resize);
 
-    const drawFighterJet = (ctx, x, y, angle, color, mach, afterburner) => {
+    const drawFighterJet = (ctx, jet) => {
       ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(angle);
+      ctx.translate(jet.x, jet.y);
+      // Sprite orientation adjustment (facing up by default -> rotate + 90deg)
+      ctx.rotate(jet.angle + Math.PI / 2);
 
-      // Jet Thermal / Afterburner Glow
-      const flameLen = afterburner ? 24 + Math.random() * 8 : 14 + Math.random() * 4;
-      const flameGrad = ctx.createRadialGradient(-18, 0, 1, -18 - flameLen, 0, 8);
+      // 1. Thermal Afterburner Thrust Plume Glow
+      const flameLen = 30 + Math.random() * 12;
+      const flameWidth = jet.size * 0.18;
+      
+      const flameGrad = ctx.createLinearGradient(0, jet.size * 0.45, 0, jet.size * 0.45 + flameLen);
       flameGrad.addColorStop(0, '#ffffff');
-      flameGrad.addColorStop(0.3, '#f59e0b');
-      flameGrad.addColorStop(0.8, '#ef4444');
+      flameGrad.addColorStop(0.2, '#f59e0b');
+      flameGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.8)');
       flameGrad.addColorStop(1, 'transparent');
 
       ctx.fillStyle = flameGrad;
+      // Twin-engine thermal exhaust plumes
       ctx.beginPath();
-      ctx.ellipse(-18 - flameLen / 2, 0, flameLen / 2, 4.5, 0, 0, Math.PI * 2);
+      ctx.ellipse(-jet.size * 0.09, jet.size * 0.45 + flameLen / 2, flameWidth / 2, flameLen / 2, 0, 0, Math.PI * 2);
+      ctx.ellipse(jet.size * 0.09, jet.size * 0.45 + flameLen / 2, flameWidth / 2, flameLen / 2, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Delta Wing Fighter Jet Hull Silhouette (Military Stealth / Canard Spec)
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 1.8;
-      ctx.fillStyle = 'rgba(10, 25, 45, 0.85)';
-
-      ctx.beginPath();
-      // Nose cone
-      ctx.moveTo(22, 0);
-      // Right fuselage & canard
-      ctx.lineTo(8, 4);
-      ctx.lineTo(6, 10);
-      ctx.lineTo(2, 4);
-      // Right delta wing
-      ctx.lineTo(-4, 6);
-      ctx.lineTo(-14, 22);
-      ctx.lineTo(-12, 6);
-      // Right twin-tail / engine
-      ctx.lineTo(-18, 5);
-      ctx.lineTo(-18, -5);
-      // Left twin-tail / engine
-      ctx.lineTo(-12, -6);
-      ctx.lineTo(-14, -22);
-      // Left delta wing
-      ctx.lineTo(-4, -6);
-      ctx.lineTo(2, -4);
-      ctx.lineTo(6, -10);
-      ctx.lineTo(8, -4);
-      ctx.closePath();
-      ctx.fill();
-      ctx.stroke();
-
-      // Cockpit Glow
-      ctx.fillStyle = 'rgba(56, 189, 248, 0.9)';
-      ctx.beginPath();
-      ctx.ellipse(6, 0, 5, 2, 0, 0, Math.PI * 2);
-      ctx.fill();
+      // 2. Real Thermal FLIR Fighter Aircraft Image Sprite
+      if (jet.img && jet.img.complete && jet.img.naturalWidth > 0) {
+        ctx.drawImage(
+          jet.img,
+          -jet.size / 2,
+          -jet.size / 2,
+          jet.size,
+          jet.size
+        );
+      } else {
+        // Fallback vector outline if image still loading
+        ctx.strokeStyle = jet.color;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(-jet.size / 3, -jet.size / 2, (jet.size * 2) / 3, jet.size);
+      }
 
       ctx.restore();
     };
@@ -299,27 +298,29 @@ export default function MaintenancePage() {
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Draw Jet Silhouette & Afterburner
-        drawFighterJet(ctx, jet.x, jet.y, jet.angle, jet.color, jet.mach, true);
+        // Draw Real Thermal FLIR Fighter Aircraft & Thrust Plume
+        drawFighterJet(ctx, jet);
 
         // Fighter Radar HUD Reticle & Tactical Callout
-        const rSize = 22;
+        const rSize = jet.size * 0.38;
         ctx.strokeStyle = jet.locked ? '#38bdf8' : 'rgba(245, 158, 11, 0.7)';
         ctx.lineWidth = 1.2;
         
-        // Target diamond / box
+        // Target diamond / box around the jet
         ctx.beginPath();
         ctx.strokeRect(jet.x - rSize, jet.y - rSize, rSize * 2, rSize * 2);
 
-        // Tactical Data Tag
+        // Tactical Data Tag (Real Military Callout)
         ctx.fillStyle = jet.locked ? '#38bdf8' : '#f59e0b';
-        ctx.font = 'bold 9px "Roboto Mono", monospace';
-        ctx.fillText(`▲ ${jet.callsign}`, jet.x + rSize + 8, jet.y - 6);
-        ctx.fillStyle = 'rgba(226, 232, 240, 0.85)';
+        ctx.font = 'bold 9.5px "Roboto Mono", monospace';
+        ctx.fillText(`▲ ${jet.callsign}`, jet.x + rSize + 8, jet.y - 10);
+        ctx.fillStyle = 'rgba(226, 232, 240, 0.9)';
         ctx.font = '8.5px "Roboto Mono", monospace';
-        ctx.fillText(`ALT: ${jet.altitude} | SPD: ${jet.mach}`, jet.x + rSize + 8, jet.y + 7);
-        ctx.fillStyle = 'rgba(16, 185, 129, 0.9)';
-        ctx.fillText(`IFF: FRIENDLY // AIR-DOMINANCE`, jet.x + rSize + 8, jet.y + 19);
+        ctx.fillText(`ALT: ${jet.altitude} | SPD: ${jet.mach}`, jet.x + rSize + 8, jet.y + 3);
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.85)';
+        ctx.fillText(`ORDNANCE: ${jet.weapons}`, jet.x + rSize + 8, jet.y + 15);
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.95)';
+        ctx.fillText(`IFF: HOSTILE AIR PURGE ACTIVE`, jet.x + rSize + 8, jet.y + 27);
       });
 
       // 4. Technical Ground Drone Target Tracking Boxes
