@@ -382,6 +382,7 @@ export default function MaintenancePage() {
       position: 'relative',
       minHeight: '100vh',
       width: '100vw',
+      backgroundColor: '#03070d',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
