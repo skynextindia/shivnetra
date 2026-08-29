@@ -29,8 +29,8 @@ export default function MaintenancePage() {
         alt: `${(1415 + Math.floor(Math.random() * 12)).toLocaleString()} m`,
         lat: `28°36'${(40 + Math.floor(Math.random() * 8))}."N`,
         lon: `77°12'${(20 + Math.floor(Math.random() * 8))}."E`,
-        pitch: `${(Math.random() > 0.5 ? '+' : '-')}${Math.abs((Math.random() * 3).toFixed(1)).padStart(4, '0')}°`,
-        roll: `${(Math.random() > 0.5 ? '+' : '-')}${Math.abs((Math.random() * 2).toFixed(1)).padStart(4, '0')}°`,
+        pitch: `${(Math.random() > 0.5 ? '+' : '-')}${String((Math.random() * 3).toFixed(1)).padStart(4, '0')}°`,
+        roll: `${(Math.random() > 0.5 ? '+' : '-')}${String((Math.random() * 2).toFixed(1)).padStart(4, '0')}°`,
         targetsLocked: 3 + (Math.random() > 0.7 ? 1 : 0),
         signal: `${(98.5 + Math.random() * 1.4).toFixed(1)}%`,
       });
