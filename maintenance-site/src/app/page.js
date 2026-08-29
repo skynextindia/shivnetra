@@ -214,8 +214,9 @@ export default function MaintenancePage() {
       padding: '24px',
       overflow: 'hidden',
     }}>
-      {/* ── Dynamic Defense Drone POV Background HUD ── */}
+      {/* ── Dynamic Defense Drone POV Background HUD & Real 2000ft Thermal Terrain ── */}
       <div className="drone-hud-bg">
+        <div className="warground-terrain-layer" />
         <canvas ref={canvasRef} className="hud-canvas" />
         <div className="hud-vignette" />
         <div className="hud-scanline" />
