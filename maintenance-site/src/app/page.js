@@ -123,10 +123,8 @@ export default function MaintenancePage() {
     ];
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      ctx.scale(dpr, dpr);
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
     resize();
     window.addEventListener('resize', resize);
@@ -136,14 +134,26 @@ export default function MaintenancePage() {
       ctx.translate(jet.x, jet.y);
       ctx.rotate(jet.angle);
 
-      // 1. Realistic Supersonic Afterburner Shock Diamond Exhaust Flame
-      const flameLen = 28 + Math.random() * 10;
-      const flameWidth = jet.size * 0.2;
+      // A. Ground Altitude Projection Shadow (Parallax depth beneath fighter at 1,400ft AGL)
+      ctx.save();
+      ctx.translate(14, 18);
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
+      ctx.beginPath();
+      ctx.moveTo(jet.size * 0.45, 0);
+      ctx.lineTo(-jet.size * 0.35, jet.size * 0.42);
+      ctx.lineTo(-jet.size * 0.35, -jet.size * 0.42);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+
+      // B. Realistic Supersonic Afterburner Shock Diamond Exhaust Flame
+      const flameLen = 32 + Math.random() * 12;
+      const flameWidth = jet.size * 0.22;
       
       const flameGrad = ctx.createLinearGradient(-jet.size * 0.42, 0, -jet.size * 0.42 - flameLen, 0);
       flameGrad.addColorStop(0, '#ffffff');
       flameGrad.addColorStop(0.2, '#f59e0b');
-      flameGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.9)');
+      flameGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.95)');
       flameGrad.addColorStop(1, 'transparent');
 
       ctx.fillStyle = flameGrad;
@@ -153,34 +163,34 @@ export default function MaintenancePage() {
       ctx.ellipse(-jet.size * 0.42 - flameLen / 2, jet.size * 0.12, flameLen / 2, flameWidth / 2, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // 2. High-Precision Airframe Vector & Thermal Core
+      // C. High-Precision Airframe Vector & Thermal Core
       ctx.save();
-      ctx.fillStyle = 'rgba(15, 25, 45, 0.95)';
+      ctx.fillStyle = 'rgba(10, 22, 40, 0.98)';
       ctx.strokeStyle = jet.color;
-      ctx.lineWidth = 2.0;
+      ctx.lineWidth = 2.2;
 
       ctx.beginPath();
-      ctx.moveTo(jet.size * 0.5, 0); // nose
-      ctx.lineTo(jet.size * 0.14, jet.size * 0.14); // canards
-      ctx.lineTo(-jet.size * 0.35, jet.size * 0.46); // right delta wingtip
+      ctx.moveTo(jet.size * 0.52, 0); // nose
+      ctx.lineTo(jet.size * 0.16, jet.size * 0.14); // canards
+      ctx.lineTo(-jet.size * 0.35, jet.size * 0.48); // right delta wingtip
       ctx.lineTo(-jet.size * 0.28, jet.size * 0.16);
-      ctx.lineTo(-jet.size * 0.44, jet.size * 0.14); // right engine nozzle
-      ctx.lineTo(-jet.size * 0.44, -jet.size * 0.14); // left engine nozzle
+      ctx.lineTo(-jet.size * 0.45, jet.size * 0.14); // right engine nozzle
+      ctx.lineTo(-jet.size * 0.45, -jet.size * 0.14); // left engine nozzle
       ctx.lineTo(-jet.size * 0.28, -jet.size * 0.16);
-      ctx.lineTo(-jet.size * 0.35, -jet.size * 0.46); // left delta wingtip
-      ctx.lineTo(jet.size * 0.14, -jet.size * 0.14); // left canards
+      ctx.lineTo(-jet.size * 0.35, -jet.size * 0.48); // left delta wingtip
+      ctx.lineTo(jet.size * 0.16, -jet.size * 0.14); // left canards
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
 
       // Thermal engine heat core
-      const coreGrad = ctx.createRadialGradient(-jet.size * 0.2, 0, 2, -jet.size * 0.2, 0, jet.size * 0.3);
+      const coreGrad = ctx.createRadialGradient(-jet.size * 0.2, 0, 2, -jet.size * 0.2, 0, jet.size * 0.35);
       coreGrad.addColorStop(0, '#f59e0b');
-      coreGrad.addColorStop(0.5, 'rgba(239, 68, 68, 0.6)');
+      coreGrad.addColorStop(0.5, 'rgba(239, 68, 68, 0.7)');
       coreGrad.addColorStop(1, 'transparent');
       ctx.fillStyle = coreGrad;
       ctx.beginPath();
-      ctx.arc(-jet.size * 0.2, 0, jet.size * 0.24, 0, Math.PI * 2);
+      ctx.arc(-jet.size * 0.2, 0, jet.size * 0.26, 0, Math.PI * 2);
       ctx.fill();
 
       // Cockpit canopy HUD glow
@@ -189,7 +199,7 @@ export default function MaintenancePage() {
       ctx.ellipse(jet.size * 0.18, 0, jet.size * 0.12, jet.size * 0.05, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Sprite overlay if ready
+      // High-res sprite texture overlay if available
       if (jet.img && jet.img.complete && jet.img.naturalWidth > 0) {
         ctx.rotate(Math.PI / 2);
         ctx.drawImage(
@@ -206,8 +216,8 @@ export default function MaintenancePage() {
     };
 
     const render = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
+      const w = canvas.width;
+      const h = canvas.height;
 
       ctx.clearRect(0, 0, w, h);
 
