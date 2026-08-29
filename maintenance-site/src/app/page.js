@@ -123,11 +123,22 @@ export default function MaintenancePage() {
     ];
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      if (!canvas) return;
+      canvas.width = canvas.clientWidth || window.innerWidth;
+      canvas.height = canvas.clientHeight || window.innerHeight;
     };
     resize();
     window.addEventListener('resize', resize);
+
+    // Ensure immediate centered positions on user screen
+    const screenW = typeof window !== 'undefined' ? window.innerWidth : 1200;
+    const screenH = typeof window !== 'undefined' ? window.innerHeight : 800;
+    jets[0].x = screenW * 0.25;
+    jets[0].y = screenH * 0.35;
+    jets[1].x = screenW * 0.75;
+    jets[1].y = screenH * 0.65;
+    jets[2].x = screenW * 0.50;
+    jets[2].y = screenH * 0.20;
 
     const drawFighterJet = (ctx, jet) => {
       ctx.save();
