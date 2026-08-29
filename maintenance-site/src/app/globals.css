@@ -1,10 +1,14 @@
 :root {
-  --bg-color: #080e18;
-  --card-bg: #0d1726;
-  --border-color: rgba(56, 189, 248, 0.2);
+  --bg-color: #03070d;
+  --card-bg: rgba(9, 18, 33, 0.78);
+  --border-color: rgba(56, 189, 248, 0.28);
   --text-white: #ffffff;
+  --text-silver: #e2e8f0;
   --text-muted: #94a3b8;
+  --text-dim: #64748b;
   --cyan: #38bdf8;
+  --teal: #14b8a6;
+  --emerald: #10b981;
 }
 
 * {
@@ -18,7 +22,110 @@ html, body {
   background-color: var(--bg-color);
   color: var(--text-white);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+}
+
+/* Defense Drone POV HUD Crosshair & Scanlines */
+.drone-hud-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hud-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hud-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(3, 7, 13, 0.85) 90%);
+  pointer-events: none;
+}
+
+.hud-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.3) 51%);
+  background-size: 100% 4px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Glass Card */
+.military-glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(56, 189, 248, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Corner Reticle Brackets */
+.corner-bracket {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--cyan);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.top-left { top: 8px; left: 8px; border-top: 2px solid; border-left: 2px solid; }
+.top-right { top: 8px; right: 8px; border-top: 2px solid; border-right: 2px solid; }
+.bottom-left { bottom: 8px; left: 8px; border-bottom: 2px solid; border-left: 2px solid; }
+.bottom-right { bottom: 8px; right: 8px; border-bottom: 2px solid; border-right: 2px solid; }
+
+/* Dynamic Shimmer for Active Progress */
+.progress-bar-glow {
+  background: linear-gradient(90deg, #0284c7, #38bdf8, #14b8a6);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.6);
+  position: relative;
+  overflow: hidden;
+  transition: width 0.4s ease-out;
+}
+
+.progress-bar-glow::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: hudShimmer 2s infinite linear;
+}
+
+@keyframes hudShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.pulsing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10b981;
+  position: relative;
+}
+
+.pulsing-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background-color: #10b981;
+  opacity: 0.6;
+  animation: dotPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(2.4); opacity: 0; }
 }
