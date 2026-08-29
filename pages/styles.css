@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ═══ Indian Defence Authentic Palette ═══ */
+  /* Derived from IAF equipment livery, DRDO presentations, and military-grade document standards */
+  
+  /* Base Backgrounds — Deep olive-charcoal (IAF aircraft cockpit instrument tones) */
+  --bg-base: #0b100d;
+  --bg-surface: #111a14;
+  --bg-card: #162018;
+  --bg-elevated: #1d2b21;
+  --bg-hover: #243527;
+
+  /* Military Olive & Equipment Greens */
+  --olive-dark: #253929;
+  --olive: #3a5240;
+  --olive-mid: #517059;
+  --olive-light: #6d8e76;
+  --sage: #8aad94;
+
+  /* Indian National Defence Accents */
+  --saffron: #e07a17;       /* IAF roundel saffron */
+  --saffron-bright: #f5a623;
+  --defence-green: #1b7a3a; /* India green (flag) */
+  --defence-green-bright: #2ba84a;
+  --navy-blue: #1a3a5c;     /* Indian Navy reference */
+
+  /* Military Sand & Khaki (equipment labeling) */
+  --sand: #c9bc9b;
+  --sand-muted: #a09575;
+  --khaki: #8c7e5e;
+
+  /* Typography — Maximum Legibility */
+  --text-primary: #f0f2f0;
+  --text-secondary: #c2cdc6;
+  --text-muted: #7e9284;
+  --text-dim: #566e5d;
+
+  /* Borders */
+  --border-fine: rgba(109, 142, 118, 0.18);
+  --border-medium: rgba(109, 142, 118, 0.28);
+  --border-strong: rgba(109, 142, 118, 0.42);
+  --border-saffron: rgba(224, 122, 23, 0.45);
+
+  /* Typography Families */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-subheading: 'Barlow', 'Inter', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+
+  /* Backward compatibility */
+  --camo-bg-base: var(--bg-base);
+  --camo-bg-surface: var(--bg-surface);
+  --camo-bg-card: var(--bg-card);
+  --camo-bg-elevated: var(--bg-elevated);
+  --camo-olive-dark: var(--olive-dark);
+  --camo-olive: var(--olive);
+  --camo-olive-mid: var(--olive-mid);
+  --camo-olive-light: var(--olive-light);
+  --camo-sage: var(--sage);
+  --military-saffron: var(--saffron);
+  --military-saffron-light: var(--saffron-bright);
+  --military-green: var(--defence-green);
+  --military-green-bright: var(--defence-green-bright);
+  --military-sand: var(--sand);
+  --military-sand-muted: var(--sand-muted);
+  --border-tactical: var(--border-medium);
+  --border-subtle: var(--border-fine);
+
+  /* Legacy tokens */
+  --iaf-blue: var(--olive);
+  --iaf-blue-light: var(--olive-light);
+  --iaf-cyan: var(--olive-mid);
+  --saffron-orange: var(--saffron);
+  --saffron-bright: var(--saffron-bright);
+  --india-green: var(--defence-green);
+  --india-green-bright: var(--defence-green-bright);
+  --card-bg: var(--bg-card);
+  --card-bg-elevated: var(--bg-elevated);
+  --slate-100: var(--text-primary);
+  --slate-200: #e0e5e1;
+  --slate-300: var(--text-secondary);
+  --slate-400: var(--text-muted);
+  --slate-500: var(--text-dim);
+  --border-bright: var(--border-strong);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: #070a08;
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══ 16:9 Defence Brochure Canvas (1920×1080) ═══ */
+.slide-canvas {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  background-color: var(--bg-base);
+  background-image: 
+    radial-gradient(circle at 75% 25%, rgba(58, 82, 64, 0.08) 0%, transparent 60%),
+    linear-gradient(rgba(109, 142, 118, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109, 142, 118, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+  overflow: hidden;
+  padding: 40px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--border-fine);
+}
+
+/* Document Registration Corner Marks */
+.slide-canvas::before,
+.slide-canvas::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  z-index: 10;
+}
+.slide-canvas::before {
+  top: 16px;
+  left: 16px;
+  border-top: 2px solid var(--olive-light);
+  border-left: 2px solid var(--olive-light);
+}
+.slide-canvas::after {
+  bottom: 16px;
+  right: 16px;
+  border-bottom: 2px solid var(--saffron);
+  border-right: 2px solid var(--saffron);
+}
+
+.corner-tr {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid var(--border-strong);
+  border-right: 2px solid var(--border-strong);
+  pointer-events: none;
+}
+.corner-bl {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid var(--border-strong);
+  border-left: 2px solid var(--border-strong);
+  pointer-events: none;
+}
+
+/* ═══ Header Bar ═══ */
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-medium);
+  padding-bottom: 14px;
+  position: relative;
+  z-index: 5;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand-logo-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-divider {
+  width: 1px;
+  height: 26px;
+  background-color: var(--border-strong);
+}
+
+.brand-subtitle {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-subtitle-main {
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.brand-subtitle-sub {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.4px;
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.meta-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  color: var(--text-secondary);
+  padding: 5px 12px;
+  border: 1px solid var(--border-medium);
+  background: var(--bg-surface);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meta-tag.classified {
+  color: var(--saffron-bright);
+  border-color: var(--border-saffron);
+  background: rgba(224, 122, 23, 0.08);
+}
+
+.tricolor-indicator {
+  display: flex;
+  height: 6px;
+  width: 42px;
+  border-radius: 1px;
+  overflow: hidden;
+}
+.tricolor-saffron { flex: 1; background-color: var(--saffron); }
+.tricolor-white { flex: 1; background-color: #ffffff; }
+.tricolor-green { flex: 1; background-color: var(--defence-green); }
+
+/* ═══ Slide Body ═══ */
+.slide-body {
+  flex: 1;
+  min-height: 0;
+  padding: 18px 0;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+/* Page Title Row */
+.page-title-row {
+  margin-bottom: 16px;
+}
+
+.page-category {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sage);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-category::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--saffron);
+}
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: 34px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-family: var(--font-subheading);
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* ═══ Footer Bar ═══ */
+.slide-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-medium);
+  padding-top: 12px;
+  position: relative;
+  z-index: 5;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.footer-bullet {
+  color: var(--saffron);
+}
+
+.footer-center {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.slide-number {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  padding: 4px 14px;
+  border: 1px solid var(--border-medium);
+  border-radius: 2px;
+}
+
+/* ═══ Image Containers ═══ */
+.brochure-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.brochure-contain-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ═══ Military Lists ═══ */
+.mil-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mil-list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.mil-list li::before {
+  content: '▪';
+  position: absolute;
+  left: 0;
+  color: var(--olive-light);
+  font-size: 14px;
+}
+
+.mil-list.saffron li::before {
+  color: var(--saffron);
+}
+
+@page {
+  size: 1920px 1080px;
+  margin: 0;
+}

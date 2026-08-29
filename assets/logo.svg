@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 70" width="420" height="70" fill="none">
+  <!-- Stealth Delta Arrowhead Insignia -->
+  <path d="M 12 35 L 76 8 L 52 35 L 76 62 Z" fill="#FFFFFF" />
+  <path d="M 76 8 L 52 35 L 76 62 L 92 35 Z" fill="#94A3B8" opacity="0.3" />
+
+  <!-- Typography: SHIVNETRA 47 -->
+  <text x="105" y="44" font-family="'Rajdhani', 'Barlow', 'Segoe UI', sans-serif" font-weight="700" font-size="34" fill="#FFFFFF" letter-spacing="3.5">
+    SHIVNETRA <tspan font-weight="800" fill="#FFFFFF">47</tspan>
+  </text>
+
+  <!-- Tricolor Accent Bar under 47 -->
+  <!-- Saffron -->
+  <rect x="330" y="52" width="22" height="4" rx="1" fill="#FF7700" />
+  <!-- White -->
+  <rect x="355" y="52" width="22" height="4" rx="1" fill="#FFFFFF" />
+  <!-- India Green -->
+  <rect x="380" y="52" width="22" height="4" rx="1" fill="#138808" />
+</svg>

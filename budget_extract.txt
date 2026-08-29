@@ -1,0 +1,471 @@
+
+
+Created At: 2026-08-28T19:57:06+05:30
+Completed At: 2026-08-28T19:57:06+05:30
+File Path: `file:///C:/Users/rohan/.gemini/antigravity-ide/scratch/shivnetra47_presentation/pages/page_13.html`
+Total Lines: 334
+Total Bytes: 12361
+Showing lines 1 to 334
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:   <meta charset="UTF-8">
+5:   <title>Page 13 - Reference Commercial Budget Framework | SHIVNETRA47</title>
+6:   <link rel="stylesheet" href="styles.css">
+7:   <style>
+8:     .budget-layout {
+9:       display: grid;
+10:       grid-template-columns: 1.35fr 0.65fr;
+11:       gap: 28px;
+12:       height: 100%;
+13:       align-items: stretch;
+14:     }
+15: 
+16:     /* Left: 14-Item Commercial Table */
+17:     .table-container {
+18:       background: var(--camo-bg-card);
+19:       border: 1px solid var(--border-tactical);
+20:       border-radius: 3px;
+21:       padding: 16px 20px;
+22:       display: flex;
+23:       flex-direction: column;
+24:       justify-content: space-between;
+25:     }
+26: 
+27:     .table-header-title {
+28:       font-family: var(--font-heading);
+29:       font-size: 15px;
+30:       font-weight: 700;
+31:       color: #ffffff;
+32:       letter-spacing: 0.8px;
+33:       text-transform: uppercase;
+34:       padding-bottom: 6px;
+35:       border-bottom: 1px solid var(--border-subtle);
+36:       display: flex;
+37:       justify-content: space-between;
+38:       align-items: center;
+39:       margin-bottom: 10px;
+40:     }
+41: 
+42:     .cost-table {
+43:       width: 100%;
+44:       border-collapse: collapse;
+45:       font-family: var(--font-mono);
+46:       font-size: 11px;
+47:     }
+48: 
+49:     .cost-table th {
+50:       background: var(--camo-bg-surface);
+51:       color: var(--camo-sage);
+52:       padding: 6px 10px;
+53:       text-align: left;
+54:       font-weight: 600;
+55:       border-bottom: 1px solid var(--border-tactical);
+56:       font-size: 10px;
+57:       letter-spacing: 0.5px;
+58:     }
+59: 
+60:     .cost-table th.num, .cost-table td.num {
+61:       text-align: right;
+62:     }
+63: 
+64:     .cost-table td {
+65:       padding: 4.5px 10px;
+66:       border-bottom: 1px solid rgba(122, 151, 129, 0.08);
+67:       color: var(--text-secondary);
+68:     }
+69: 
+70:     .cost-table tr:hover td {
+71:       background: rgba(255, 255, 255, 0.02);
+72:       color: #ffffff;
+73:     }
+74: 
+75:     .cost-table td.component-name {
+76:       color: #ffffff;
+77:       font-weight: 500;
+78:     }
+79: 
+80:     .cost-table tr.total-row td {
+81:       border-top: 2px solid var(--military-saffron);
+82:       border-bottom: none;
+83:       background: var(--camo-bg-elevated);
+84:       color: #ffffff;
+85:       font-weight: 700;
+86:       font-size: 11.5px;
+87:       padding: 8px 10px;
+88:     }
+89: 
+90:     /* Right: Executive Summary & Rationale */
+91:     .summary-container {
+92:       display: flex;
+93:       flex-direction: column;
+94:       gap: 16px;
+95:       height: 100%;
+96:     }
+97: 
+98:     .grand-total-card {
+99:       background: var(--camo-bg-card);
+100:       border: 1px solid var(--border-saffron);
+101:       border-radius: 3px;
+102:       padding: 20px;
+103:       text-align: center;
+104:       position: relative;
+105:     }
+106: 
+107:     .grand-total-card::before {
+108:       content: '';
+109:       position: absolute;
+110:       top: 0;
+111:       left: 0;
+112:       width: 100%;
+113:       height: 3px;
+114:       background: var(--military-saffron);
+115:     }
+116: 
+117:     .gt-label {
+118:       font-family: var(--font-mono);
+119:       font-size: 11px;
+120:       color: var(--camo-sage);
+121:       letter-spacing: 1.5px;
+122:       text-transform: uppercase;
+123:       margin-bottom: 6px;
+124:     }
+125: 
+126:     .gt-amount {
+127:       font-family: var(--font-heading);
+128:       font-size: 42px;
+129:       font-weight: 700;
+130:       color: #ffffff;
+131:       line-height: 1.1;
+132:     }
+133: 
+134:     .gt-words {
+135:       font-family: var(--font-mono);
+136:       font-size: 12px;
+137:       color: var(--military-saffron-light);
+138:       margin-top: 4px;
+139:       font-weight: 600;
+140:     }
+141: 
+142:     .sub-breakdown-box {
+143:       background: var(--camo-bg-card);
+144:       border: 1px solid var(--border-tactical);
+145:       border-radius: 3px;
+146:       padding: 16px;
+147:       flex: 1;
+148:       display: flex;
+149:       flex-direction: column;
+150:       justify-content: space-between;
+151:     }
+152: 
+153:     .sb-title {
+154:       font-family: var(--font-heading);
+155:       font-size: 13.5px;
+156:       font-weight: 700;
+157:       color: #ffffff;
+158:       letter-spacing: 0.5px;
+159:       text-transform: uppercase;
+160:       margin-bottom: 10px;
+161:       padding-bottom: 6px;
+162:       border-bottom: 1px solid var(--border-subtle);
+163:     }
+164: 
+165:     .sb-list {
+166:       display: flex;
+167:       flex-direction: column;
+168:       gap: 8px;
+169:     }
+170: 
+171:     .sb-row {
+172:       display: flex;
+173:       justify-content: space-between;
+174:       align-items: center;
+175:       font-family: var(--font-mono);
+176:       font-size: 11.5px;
+177:       padding: 6px 10px;
+178:       background: var(--camo-bg-surface);
+179:       border-radius: 2px;
+180:       border: 1px solid var(--border-subtle);
+181:     }
+182: 
+183:     .sb-row-lbl {
+184:       color: var(--text-secondary);
+185:     }
+186: 
+187:     .sb-row-val {
+188:       color: #ffffff;
+189:       font-weight: 700;
+190:     }
+191: 
+192:     .rationale-note {
+193:       font-family: var(--font-mono);
+194:       font-size: 10.5px;
+195:       color: var(--text-muted);
+196:       line-height: 1.45;
+197:       padding-top: 8px;
+198:       border-top: 1px solid var(--border-subtle);
+199:     }
+200:   </style>
+201: </head>
+202: <body>
+203:   <div class="slide-canvas">
+204:     <div class="corner-tr"></div>
+205:     <div class="corner-bl"></div>
+206: 
+207:     <!-- Header -->
+208:     <header class="slide-header">
+209:       <div class="header-brand">
+210:         <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="brand-logo-img">
+211:         <div class="brand-divider"></div>
+212:         <div class="brand-subtitle">
+213:           <span class="brand-subtitle-main">Reference Commercial Budget Framework</span>
+214:           <span class="brand-subtitle-sub">Capital Expenditure &bull; Two UAV Systems Full-Scale Program</span>
+215:         </div>
+216:       </div>
+217:       <div class="header-meta">
+218:         <div class="meta-tag classified">COMMERCIAL PROPOSAL</div>
+219:         <div class="meta-tag">FINANCIAL BASELINE</div>
+220:         <div class="tricolor-indicator">
+221:           <div class="tricolor-saffron"></div>
+222:           <div class="tricolor-white"></div>
+223:           <div class="tricolor-green"></div>
+224:         </div>
+225:       </div>
+226:     </header>
+227: 
+228:     <!-- Slide Body -->
+229:     <main class="slide-body">
+230:       <div class="page-title-row" style="margin-bottom: 14px;">
+231:         <div class="page-category">Program Financial Structure</div>
+232:         <h1 class="page-title" style="font-size: 32px;">Proposal — Design, Development &amp; Construction of Two UAV Systems</h1>
+233:       </div>
+234: 
+235:       <div class="budget-layout">
+236:         <!-- Left: 14-Item Commercial Table -->
+237:         <div class="table-container">
+238:           <div class="table-header-title">
+239:             <span>Work Package Breakdown</span>
+240:             <span style="font-family: var(--font-mono); font-size: 11px; color: var(--camo-sage);">CURRENCY: INR (₹)</span>
+241:           </div>
+242: 
+243:           <table class="cost-table">
+244:             <thead>
+245:               <tr>
+246:                 <th style="width: 30px;">No.</th>
+247:                 <th>Cost Component</th>
+248:                 <th class="num">VTOL (₹)</th>
+249:                 <th class="num">Multirotor (₹)</th>
+250:                 <th class="num">Common / Program (₹)</th>
+251:                 <th class="num">Total (₹)</th>
+252:               </tr>
+253:             </thead>
+254:             <tbody>
+255:               <tr><td>1</td><td class="component-name">UAV system design &amp; engineering</td><td class="num">45,00,000</td><td class="num">25,00,000</td><td class="num">—</td><td class="num">70,00,000</td></tr>
+256:               <tr><td>2</td><td class="component-name">Airframe / mechanical structure development</td><td class="num">55,00,000</td><td class="num">30,00,000</td><td class="num">—</td><td class="num">85,00,000</td></tr>
+257:               <tr><td>3</td><td class="component-name">Propulsion system &amp; power electronics</td><td class="num">45,00,000</td><td class="num">30,00,000</td><td class="num">—</td><td class="num">75,00,000</td></tr>
+258:               <tr><td>4</td><td class="component-name">Flight controller, navigation &amp; autonomous flight</td><td class="num">40,00,000</td><td class="num">30,00,000</td><td class="num">—</td><td class="num">70,00,000</td></tr>
+259:               <tr><td>5</td><td class="component-name">Communication / telemetry system integration</td><td class="num">45,00,000</td><td class="num">15,00,000</td><td class="num">—</td><td class="num">60,00,000</td></tr>
+260:               <tr><td>6</td><td class="component-name">RGB / LiDAR payload integration &amp; interfaces</td><td class="num">35,00,000</td><td class="num">45,00,000</td><td class="num">—</td><td class="num">80,00,000</td></tr>
+261:               <tr><td>7</td><td class="component-name">Ground Control Station &amp; software integration</td><td class="num">25,00,000</td><td class="num">20,00,000</td><td class="num">—</td><td class="num">45,00,000</td></tr>
+262:               <tr><td>8</td><td class="component-name">Batteries, charging &amp; power-management systems</td><td class="num">20,00,000</td><td class="num">15,00,000</td><td class="num">—</td><td class="num">35,00,000</td></tr>
+263:               <tr><td>9</td><td class="component-name">Prototype manufacturing, assembly &amp; tooling</td><td class="num">35,00,000</td><td class="num">25,00,000</td><td class="num">—</td><td class="num">60,00,000</td></tr>
+264:               <tr><td>10</td><td class="component-name">Testing, calibration &amp; flight validation</td><td class="num">20,00,000</td><td class="num">15,00,000</td><td class="num">25,00,000</td><td class="num">60,00,000</td></tr>
+265:               <tr><td>11</td><td class="component-name">Engineering R&amp;D / customization</td><td class="num">25,00,000</td><td class="num">15,00,000</td><td class="num">40,00,000</td><td class="num">80,00,000</td></tr>
+266:               <tr><td>12</td><td class="component-name">Technical training &amp; handover (4 weeks)</td><td class="num">—</td><td class="num">—</td><td class="num">60,00,000</td><td class="num">60,00,000</td></tr>
+267:               <tr><td>13</td><td class="component-name">Documentation, manuals &amp; technical handover</td><td class="num">—</td><td class="num">—</td><td class="num">20,00,000</td><td class="num">20,00,000</td></tr>
+268:               <tr><td>14</td><td class="component-name">Project management &amp; technical support</td><td class="num">—</td><td class="num">—</td><td class="num">35,00,000</td><td class="num">35,00,000</td></tr>
+269:               <tr class="total-row">
+270:                 <td colspan="2">TOTAL PROPOSED PROJECT COST</td>
+271:                 <td class="num">₹3,90,00,000</td>
+272:                 <td class="num">₹2,65,00,000</td>
+273:                 <td class="num">₹1,80,00,000</td>
+274:                 <td class="num">₹8,35,00,000</td>
+275:               </tr>
+276:             </tbody>
+277:           </table>
+278:         </div>
+279: 
+280:         <!-- Right: Executive Totals & Logistics -->
+281:         <div class="summary-container">
+282:           <div class="grand-total-card">
+283:             <div class="gt-label">Total Outlay (Inc. Logistics)</div>
+284:             <div class="gt-amount">₹8.50 Cr</div>
+285:             <div class="gt-words">₹85,000,000 INR</div>
+286:           </div>
+287: 
+288:           <div class="sub-breakdown-box">
+289:             <div>
+290:               <div class="sb-title">Executive Cost Summary</div>
+291:               <div class="sb-list">
+292:                 <div class="sb-row">
+293:                   <span class="sb-row-lbl">VTOL UAV System</span>
+294:                   <span class="sb-row-val">₹3,90,00,000</span>
+295:                 </div>
+296:                 <div class="sb-row">
+297:                   <span class="sb-row-lbl">Multirotor UAV System</span>
+298:                   <span class="sb-row-val">₹2,65,00,000</span>
+299:                 </div>
+300:                 <div class="sb-row">
+301:                   <span class="sb-row-lbl">Common / Program Tier</span>
+302:                   <span class="sb-row-val">₹1,80,00,000</span>
+303:                 </div>
+304:                 <div class="sb-row" style="border-left: 2px solid var(--military-saffron);">
+305:                   <span class="sb-row-lbl">Logistics &amp; Field Support</span>
+306:                   <span class="sb-row-val">₹15,00,000</span>
+307:                 </div>
+308:               </div>
+309:             </div>
+310: 
+311:             <div class="rationale-note">
+312:               Comprehensive turnkey development covering airframes, encrypted telemetry, GCS consoles, flight validation, and full sovereign technical handover.
+313:             </div>
+314:           </div>
+315:         </div>
+316:       </div>
+317:     </main>
+318: 
+319:     <!-- Footer -->
+320:     <footer class="slide-footer">
+321:       <div class="footer-left">
+322:         <span>SHIVNETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</span>
+323:         <span class="footer-bullet">■</span>
+324:         <span>COMMERCIAL REFERENCE BUDGET &bull; CONFIDENTIAL</span>
+325:       </div>
+326:       <div class="footer-center">Section 11 : Commercial Framework</div>
+327:       <div class="footer-right">
+328:         <div class="slide-number">13 / 13</div>
+329:       </div>
+330:     </footer>
+331:   </div>
+332: </body>
+333: </html>
+334: 
+The above content shows the entire, complete file contents of the requested file.
+
+Now fix page_13 with exact budget figures from the source PDF:
+Created At: 2026-08-28T21:29:00+05:30
+Completed At: 2026-08-28T21:29:00+05:30
+File Path: `file:///C:/Users/rohan/.gemini/antigravity-ide/scratch/shivnetra47_presentation/pages/page_13.html`
+Total Lines: 333
+Total Bytes: 12692
+Showing lines 250 to 333
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+250:                 <th class="num">Common / Program (₹)</th>
+251:                 <th class="num">Total (₹)</th>
+252:               </tr>
+253:             </thead>
+254:             <tbody>
+255:               <tr><td>1</td><td class="component-name">UAV system design &amp; engineering</td><td class="num">45,00,000</td><td class="num">25,00,000</td><td class="num">—</td><td class="num">70,00,000</td></tr>
+256:               <tr><td>2</td><td class="component-name">Airframe / mechanical structure development</td><td class="num">55,00,000</td><td class="num">30,00,000</td><td class="num">—</td><td class="num">85,00,000</td></tr>
+257:               <tr><td>3</td><td class="component-name">Propulsion system &amp; power electronics</td><td class="num">45,00,000</td><td class="num">30,00,000</td><td class="num">—</td><td class="num">75,00,000</td></tr>
+258:               <tr><td>4</td><td class="component-name">Flight controller, navigation &amp; autonomous flight</td><td class="num">40,00,000</td><td class="num">30,00,000</td><td class="num">—</td><td class="num">70,00,000</td></tr>
+259:               <tr><td>5</td><td class="component-name">Communication / telemetry system integration</td><td class="num">45,00,000</td><td class="num">15,00,000</td><td class="num">—</td><td class="num">60,00,000</td></tr>
+260:               <tr><td>6</td><td class="component-name">RGB / LiDAR payload integration &amp; interfaces</td><td class="num">35,00,000</td><td class="num">45,00,000</td><td class="num">—</td><td class="num">80,00,000</td></tr>
+261:               <tr><td>7</td><td class="component-name">Ground Control Station &amp; software integration</td><td class="num">25,00,000</td><td class="num">20,00,000</td><td class="num">—</td><td class="num">45,00,000</td></tr>
+262:               <tr><td>8</td><td class="component-name">Batteries, charging &amp; power-management systems</td><td class="num">20,00,000</td><td class="num">15,00,000</td><td class="num">—</td><td class="num">35,00,000</td></tr>
+263:               <tr><td>9</td><td class="component-name">Prototype manufacturing, assembly &amp; tooling</td><td class="num">35,00,000</td><td class="num">25,00,000</td><td class="num">—</td><td class="num">60,00,000</td></tr>
+264:               <tr><td>10</td><td class="component-name">Testing, calibration &amp; flight validation</td><td class="num">20,00,000</td><td class="num">15,00,000</td><td class="num">25,00,000</td><td class="num">60,00,000</td></tr>
+265:               <tr><td>11</td><td class="component-name">Engineering R&amp;D / customization</td><td class="num">25,00,000</td><td class="num">15,00,000</td><td class="num">40,00,000</td><td class="num">80,00,000</td></tr>
+266:               <tr><td>12</td><td class="component-name">Technical training &amp; handover (4 weeks)</td><td class="num">—</td><td class="num">—</td><td class="num">60,00,000</td><td class="num">60,00,000</td></tr>
+267:               <tr><td>13</td><td class="component-name">Documentation, manuals &amp; technical handover</td><td class="num">—</td><td class="num">—</td><td class="num">20,00,000</td><td class="num">20,00,000</td></tr>
+268:               <tr><td>14</td><td class="component-name">Project management &amp; technical support</td><td class="num">—</td><td class="num">—</td><td class="num">35,00,000</td><td class="num">35,00,000</td></tr>
+269:               <tr class="total-row">
+270:                 <td colspan="2">TOTAL PROPOSED PROJECT COST</td>
+271:                 <td class="num">₹3,90,00,000</td>
+272:                 <td class="num">₹2,65,00,000</td>
+273:                 <td class="num">₹1,80,00,000</td>
+274:                 <td class="num">₹8,35,00,000</td>
+275:               </tr>
+276:             </tbody>
+277:           </table>
+278:         </div>
+279: 
+280:         <!-- Right: Executive Totals & Logistics -->
+281:         <div class="summary-container">
+282:           <div class="grand-total-card">
+283:             <div class="gt-label">Total Outlay (Inc. Logistics)</div>
+284:             <div class="gt-amount">₹8.50 Cr</div>
+285:             <div class="gt-words">₹85,000,000 INR</div>
+286:           </div>
+287: 
+288:           <div class="sub-breakdown-box">
+289:             <div>
+290:               <div class="sb-title">Executive Cost Summary</div>
+291:               <div class="sb-list">
+292:                 <div class="sb-row">
+293:                   <span class="sb-row-lbl">VTOL UAV System</span>
+294:                   <span class="sb-row-val">₹3,90,00,000</span>
+295:                 </div>
+296:                 <div class="sb-row">
+297:                   <span class="sb-row-lbl">Multirotor UAV System</span>
+298:                   <span class="sb-row-val">₹2,65,00,000</span>
+299:                 </div>
+300:                 <div class="sb-row">
+301:                   <span class="sb-row-lbl">Common / Program Tier</span>
+302:                   <span class="sb-row-val">₹1,80,00,000</span>
+303:                 </div>
+304:                 <div class="sb-row" style="border-left: 2px solid var(--military-saffron);">
+305:                   <span class="sb-row-lbl">Logistics &amp; Field Support</span>
+306:                   <span class="sb-row-val">₹15,00,000</span>
+307:                 </div>
+308:               </div>
+309:             </div>
+310: 
+311:             <div class="rationale-note">
+312:               Comprehensive turnkey development covering airframes, encrypted telemetry, GCS consoles, flight validation, and full sovereign technical handover.
+313:             </div>
+314:           </div>
+315:         </div>
+316:       </div>
+317:     </main>
+318: 
+319:     <!-- Footer -->
+320:     <footer class="slide-footer">
+321:       <div class="footer-left">
+322:         <span>SHIVNETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</span>
+323:         <span class="footer-bullet">■</span>
+324:         <span>COMMERCIAL REFERENCE BUDGET &bull; CONFIDENTIAL</span>
+325:       </div>
+326:       <div class="footer-center">Section 11 : Commercial Framework</div>
+327:       <div class="footer-right">
+328:         <div class="slide-number">13 / 13</div>
+329:       </div>
+330:     </footer>
+331:   </div>
+332: </body>
+333: </html>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
+
+Created At: 2026-08-28T21:33:14+05:30
+Completed At: 2026-08-28T21:33:15+05:30
+
+				The command exited with code 1.
+				Output:
+				Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json; [print(json.loads(line)['content']) for line in open(r'C:\Users\rohan\.gemini\antigravity-ide\brain\d1cf8b9e-1677-4e8e-a002-656648141668\.system_generated\logs\transcript_full.jsonl', encoding='utf-8') if 'REFERENCE COMMERCIAL BUDGET FRAMEWORK' in line]
+                        ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'content'
+
+
+
+Created At: 2026-08-28T21:33:20+05:30
+Completed At: 2026-08-28T21:33:21+05:30
+
+				The command exited with code 1.
+				Output:
+				Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json; [print(json.loads(line).get('content', '')) for line in open(r'C:\Users\rohan\.gemini\antigravity-ide\brain\d1cf8b9e-1677-4e8e-a002-656648141668\.system_generated\logs\transcript_full.jsonl', encoding='utf-8') if 'BUDGET' in line]
+                  ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 8048: character maps to <undefined>
+
+
+
+
+

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHIVNETRA47 - Indigenous Swarm UAV Development Program | Master Slide Deck</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Rajdhani:wght@600;700&display=swap">
+  <style>
+    :root {
+      --bg-dark: #080c09;
+      --panel-bg: #0f1612;
+      --card-bg: #1a271f;
+      --card-hover: #24342a;
+      --border-color: rgba(122, 151, 129, 0.22);
+      --camo-olive: #445b4a;
+      --camo-sage: #7a9781;
+      --saffron: #d97706;
+      --saffron-bright: #f59e0b;
+      --india-green: #15803d;
+      --slate-100: #f9fafb;
+      --slate-300: #cbd5ce;
+      --slate-400: #889b8d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--slate-100);
+      font-family: 'Inter', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Control Bar */
+    .top-bar {
+      height: 64px;
+      background-color: var(--panel-bg);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      height: 32px;
+      width: auto;
+    }
+
+    .brand-badge {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--slate-300);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-left: 1px solid var(--border-color);
+      padding-left: 14px;
+    }
+
+    .presentation-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      background: var(--card-bg);
+      color: var(--slate-100);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: var(--card-hover);
+      border-color: var(--saffron-bright);
+    }
+
+    .btn-primary {
+      background: rgba(217, 119, 6, 0.2);
+      border-color: var(--saffron);
+      color: #ffffff;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      padding: 6px 14px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 3px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Workspace */
+    .workspace {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Stage */
+    .stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background-color: #060907;
+      padding: 20px;
+    }
+
+    .slide-frame-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(122, 151, 129, 0.3);
+    }
+
+    .slide-iframe {
+      width: 1920px;
+      height: 1080px;
+      border: none;
+      transform-origin: top left;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    /* Thumbnail Sidebar */
+    .sidebar {
+      width: 320px;
+      background-color: var(--panel-bg);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .sidebar-header {
+      padding: 14px 18px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--slate-400);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .thumb-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .thumb-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .thumb-item:hover {
+      background: var(--card-hover);
+      border-color: var(--camo-sage);
+    }
+
+    .thumb-item.active {
+      background: rgba(217, 119, 6, 0.18);
+      border-color: var(--saffron-bright);
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+    }
+
+    .thumb-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .thumb-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--slate-400);
+    }
+
+    /* Floating navigation overlay buttons on stage */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(15, 22, 18, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s;
+      z-index: 50;
+      user-select: none;
+    }
+
+    .nav-arrow:hover {
+      background: var(--saffron);
+      border-color: var(--saffron-bright);
+    }
+
+    .nav-prev { left: 24px; }
+    .nav-next { right: 344px; }
+  </style>
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="top-bar">
+    <div class="brand-section">
+      <img src="assets/logo_white.png" alt="SHIVNETRA 47" class="brand-logo">
+      <div class="brand-badge">Official Slide Deck (13 Slides)</div>
+    </div>
+
+    <div class="presentation-controls">
+      <button class="btn" id="btnPrev" onclick="prevSlide()">◄ Prev</button>
+      <div class="slide-counter" id="slideCounter">PAGE 01 / 13</div>
+      <button class="btn" id="btnNext" onclick="nextSlide()">Next ►</button>
+      <button class="btn" onclick="openCurrentInNewTab()">⤢ Fullscreen Tab</button>
+      <a href="exports/page_01.png" id="btnDownloadPng" target="_blank" class="btn">⬇ Slide PNG</a>
+      <a href="SHIVNETRA47_Master_Slide_Deck.pptx" download="SHIVNETRA47_Master_Slide_Deck.pptx" class="btn">📊 Download PPTX</a>
+      <a href="SHIVNETRA47_Master_Slide_Deck.pdf" download="SHIVNETRA47_Master_Slide_Deck.pdf" class="btn btn-primary">📑 Download Master PDF</a>
+    </div>
+  </header>
+
+  <!-- Workspace -->
+  <div class="workspace">
+    <!-- Stage -->
+    <div class="stage" id="stage">
+      <div class="nav-arrow nav-prev" onclick="prevSlide()">◄</div>
+      <div class="slide-frame-wrapper" id="frameWrapper">
+        <iframe id="slideIframe" class="slide-iframe" src="pages/page_01.html"></iframe>
+      </div>
+      <div class="nav-arrow nav-next" onclick="nextSlide()">►</div>
+    </div>
+
+    <!-- Thumbnail Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span>Slide Index (14 Pages)</span>
+        <span style="color: var(--saffron-bright); font-size: 11px;">EXACT SOURCE</span>
+      </div>
+      <div class="thumb-list" id="thumbList">
+        <!-- Generated by JS -->
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const slides = [
+      { id: 1, file: 'pages/page_01.html', title: '01. Indigenous Swarm UAV Development Program', img: 'exports/page_01.png' },
+      { id: 2, file: 'pages/page_02.html', title: '02. Tactical Swarm UAV System (6 Units)', img: 'exports/page_02.png' },
+      { id: 3, file: 'pages/page_03.html', title: '03. Extended Range Swarm System (24+ Units)', img: 'exports/page_03.png' },
+      { id: 4, file: 'pages/page_04.html', title: '04. 1. Program Vision', img: 'exports/page_04.png' },
+      { id: 5, file: 'pages/page_05.html', title: '05. 2. Proposed System Architecture', img: 'exports/page_05.png' },
+      { id: 6, file: 'pages/page_06.html', title: '06. 3. Nano-UAV — Swarm Element', img: 'exports/page_06.png' },
+      { id: 7, file: 'pages/page_07.html', title: '07. 4. Overwatch UAV', img: 'exports/page_07.png' },
+      { id: 8, file: 'pages/page_08.html', title: '08. 5. In-House Development Model', img: 'exports/page_08.png' },
+      { id: 9, file: 'pages/page_09.html', title: '09. 6. Engineering Workstreams', img: 'exports/page_09.png' },
+      { id: 10, file: 'pages/page_10.html', title: '10. 7. Prototype & Flight-Test Program', img: 'exports/page_10.png' },
+      { id: 11, file: 'pages/page_11.html', title: '11. 8. Project Completion Deliverables', img: 'exports/page_11.png' },
+      { id: 12, file: 'pages/page_12.html', title: '12. 9. Execution Roadmap & Strategy', img: 'exports/page_12.png' },
+      { id: 13, file: 'pages/page_13.html', title: '13. 10. Reference Budget Framework (₹14.50 Cr)', img: 'exports/page_13.png' },
+      { id: 14, file: 'pages/ending_page_12x8.html', title: '14. Closing Page — 12x8 Landscape', img: 'assets/hero_vtol_cityscape.png' }
+    ];
+
+    let currentIdx = 0;
+    const iframe = document.getElementById('slideIframe');
+    const wrapper = document.getElementById('frameWrapper');
+    const counter = document.getElementById('slideCounter');
+    const downloadBtn = document.getElementById('btnDownloadPng');
+    const thumbList = document.getElementById('thumbList');
+
+    function updateScale() {
+      const rect = wrapper.getBoundingClientRect();
+      const scale = Math.min(rect.width / 1920, rect.height / 1080);
+      iframe.style.transform = `scale(${scale})`;
+      
+      // Center the iframe if the wrapper is wider/taller than the scaled iframe
+      const scaledWidth = 1920 * scale;
+      const scaledHeight = 1080 * scale;
+      const leftOffset = (rect.width - scaledWidth) / 2;
+      const topOffset = (rect.height - scaledHeight) / 2;
+      
+      iframe.style.left = `${leftOffset}px`;
+      iframe.style.top = `${topOffset}px`;
+    }
+
+    window.addEventListener('resize', updateScale);
+
+    function initThumbs() {
+      thumbList.innerHTML = '';
+      slides.forEach((s, idx) => {
+        const item = document.createElement('div');
+        item.className = `thumb-item ${idx === currentIdx ? 'active' : ''}`;
+        item.onclick = () => goToSlide(idx);
+        item.innerHTML = `
+          <div class="thumb-title">${s.title}</div>
+          <div class="thumb-meta">
+            <span>PAGE ${String(s.id).padStart(2, '0')}</span>
+            <span style="color: var(--saffron-bright);">1920×1080</span>
+          </div>
+        `;
+        thumbList.appendChild(item);
+      });
+    }
+
+    function goToSlide(idx) {
+      if (idx < 0 || idx >= slides.length) return;
+      currentIdx = idx;
+      const s = slides[currentIdx];
+      iframe.src = s.file;
+      counter.textContent = `PAGE ${String(s.id).padStart(2, '0')} / 14`;
+      downloadBtn.href = `exports/page_${String(s.id).padStart(2, '0')}.png`;
+      downloadBtn.textContent = `⬇ Download Page ${String(s.id).padStart(2, '0')} PNG`;
+
+      document.querySelectorAll('.thumb-item').forEach((el, i) => {
+        el.classList.toggle('active', i === currentIdx);
+      });
+    }
+
+    function nextSlide() {
+      if (currentIdx < slides.length - 1) goToSlide(currentIdx + 1);
+    }
+
+    function prevSlide() {
+      if (currentIdx > 0) goToSlide(currentIdx - 1);
+    }
+
+    function openCurrentInNewTab() {
+      window.open(slides[currentIdx].file, '_blank');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+    });
+
+    initThumbs();
+    setTimeout(updateScale, 100);
+  </script>
+</body>
+</html>
