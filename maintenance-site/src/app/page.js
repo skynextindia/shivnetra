@@ -67,55 +67,58 @@ export default function MaintenancePage() {
       { x: 0.61, y: 0.22, id: 'TGT-DELTA-11', type: 'SAM BATTERY', lock: true, w: 18, h: 20 },
     ];
 
-    // Real War-Condition Combat Fighter Sorties (True Physical Scale at 2000ft AGL Sensor Swath)
-    // Su-30MKI: Length ~21.9m, Wingspan ~14.7m (~42px screen scale)
-    // Rafale: Length ~15.3m, Wingspan ~10.9m (~34px screen scale)
-    // Supersonic intercept speed: ~8.5 to 13.5 px/frame relative speed
+    // Real War-Condition Combat Fighter Sorties (Flying directly beneath UAV sensor swath)
     const jets = [
       {
-        callsign: 'GARUDA-01 [SU-30MKI]',
+        callsign: 'GARUDA-01 [SU-30MKI SUPER FLANKER]',
         img: su30Img,
-        x: -300,
-        y: 200,
-        speed: 10.5,
-        angle: 0.24,
-        altitude: '2,000 FT AGL // LOW-LEVEL INTERCEPT',
-        mach: 'MACH 1.45 (1,110 KTS)',
+        x: 150,
+        y: 280,
+        speed: 4.8,
+        angle: 0.22,
+        turnRate: 0.003,
+        altitude: '1,400 FT AGL // FAST AIR INTERCEPT',
+        mach: 'MACH 1.35 (1,030 KTS)',
         weapons: 'ASTRA-MK2 / BRAHMOS-A',
         trail: [],
         color: '#38bdf8',
         locked: true,
-        size: 42,
+        size: 72,
+        type: 'SU-30',
       },
       {
         callsign: 'GOLDEN-ARROWS-03 [RAFALE DH]',
         img: rafaleImg,
-        x: -250,
-        y: 520,
-        speed: 12.8,
-        angle: -0.16,
-        altitude: '2,400 FT AGL // STRIKE SWEEP',
-        mach: 'MACH 1.62 (1,240 KTS)',
+        x: 480,
+        y: 620,
+        speed: 5.6,
+        angle: -0.28,
+        turnRate: -0.004,
+        altitude: '1,200 FT AGL // TACTICAL STRIKE SWEEP',
+        mach: 'MACH 1.55 (1,180 KTS)',
         weapons: 'METEOR / SCALP-EG',
         trail: [],
         color: '#10b981',
         locked: true,
-        size: 35,
+        size: 64,
+        type: 'RAFALE',
       },
       {
-        callsign: 'THUNDERBOLT-02 [SU-30MKI]',
+        callsign: 'THUNDERBOLT-02 [SU-30MKI AIR DOMINANCE]',
         img: su30Img,
-        x: 200,
-        y: -300,
-        speed: 9.2,
-        angle: 0.92,
-        altitude: '1,800 FT AGL // COMBAT AIR PATROL',
-        mach: 'MACH 1.30 (995 KTS)',
+        x: 820,
+        y: 180,
+        speed: 4.2,
+        angle: 0.75,
+        turnRate: 0.002,
+        altitude: '1,650 FT AGL // COMBAT AIR PATROL',
+        mach: 'MACH 1.20 (915 KTS)',
         weapons: 'R-77 / R-73 WVR',
         trail: [],
         color: '#f59e0b',
         locked: false,
-        size: 42,
+        size: 72,
+        type: 'SU-30',
       }
     ];
 
@@ -129,28 +132,30 @@ export default function MaintenancePage() {
     const drawFighterJet = (ctx, jet) => {
       ctx.save();
       ctx.translate(jet.x, jet.y);
-      // Sprite orientation adjustment (facing up by default -> rotate + 90deg)
-      ctx.rotate(jet.angle + Math.PI / 2);
+      ctx.rotate(jet.angle);
 
       // 1. Realistic Supersonic Afterburner Shock Diamond Exhaust Flame
-      const flameLen = 16 + Math.random() * 8;
-      const flameWidth = jet.size * 0.22;
+      const flameLen = 22 + Math.random() * 8;
+      const flameWidth = jet.size * 0.16;
       
-      const flameGrad = ctx.createLinearGradient(0, jet.size * 0.44, 0, jet.size * 0.44 + flameLen);
+      const flameGrad = ctx.createLinearGradient(-jet.size * 0.42, 0, -jet.size * 0.42 - flameLen, 0);
       flameGrad.addColorStop(0, '#ffffff');
-      flameGrad.addColorStop(0.2, '#f59e0b');
+      flameGrad.addColorStop(0.25, '#f59e0b');
       flameGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.85)');
       flameGrad.addColorStop(1, 'transparent');
 
       ctx.fillStyle = flameGrad;
-      // Twin-engine thermal exhaust plumes
+      // Twin-engine thermal exhaust plumes trailing backwards
       ctx.beginPath();
-      ctx.ellipse(-jet.size * 0.11, jet.size * 0.44 + flameLen / 2, flameWidth / 2, flameLen / 2, 0, 0, Math.PI * 2);
-      ctx.ellipse(jet.size * 0.11, jet.size * 0.44 + flameLen / 2, flameWidth / 2, flameLen / 2, 0, 0, Math.PI * 2);
+      ctx.ellipse(-jet.size * 0.42 - flameLen / 2, -jet.size * 0.1, flameLen / 2, flameWidth / 2, 0, 0, Math.PI * 2);
+      ctx.ellipse(-jet.size * 0.42 - flameLen / 2, jet.size * 0.1, flameLen / 2, flameWidth / 2, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // 2. Real Thermal FLIR Fighter Aircraft Image Sprite
+      // 2. High-Fidelity Silhouette / Sprite Rendering
       if (jet.img && jet.img.complete && jet.img.naturalWidth > 0) {
+        ctx.save();
+        // Adjust sprite heading to match velocity vector
+        ctx.rotate(Math.PI / 2);
         ctx.drawImage(
           jet.img,
           -jet.size / 2,
@@ -158,6 +163,32 @@ export default function MaintenancePage() {
           jet.size,
           jet.size
         );
+        ctx.restore();
+      } else {
+        // High-precision delta-wing vector airframe fallback
+        ctx.fillStyle = 'rgba(15, 30, 50, 0.92)';
+        ctx.strokeStyle = jet.color;
+        ctx.lineWidth = 1.8;
+
+        ctx.beginPath();
+        ctx.moveTo(jet.size * 0.48, 0); // nose
+        ctx.lineTo(jet.size * 0.12, jet.size * 0.12);
+        ctx.lineTo(-jet.size * 0.35, jet.size * 0.42); // right wingtip
+        ctx.lineTo(-jet.size * 0.28, jet.size * 0.14);
+        ctx.lineTo(-jet.size * 0.44, jet.size * 0.12); // right engine
+        ctx.lineTo(-jet.size * 0.44, -jet.size * 0.12); // left engine
+        ctx.lineTo(-jet.size * 0.28, -jet.size * 0.14);
+        ctx.lineTo(-jet.size * 0.35, -jet.size * 0.42); // left wingtip
+        ctx.lineTo(jet.size * 0.12, -jet.size * 0.12);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Cockpit canopy glow
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.ellipse(jet.size * 0.18, 0, jet.size * 0.1, jet.size * 0.04, 0, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       ctx.restore();
@@ -253,26 +284,37 @@ export default function MaintenancePage() {
 
       // 3. Live Action Supersonic Fighter Jet Sorties Rendering
       jets.forEach((jet) => {
-        // Flight dynamics
+        // Continuous aerial maneuvers (banking turns)
+        if (jet.turnRate) {
+          jet.angle += jet.turnRate;
+        }
+
+        // Flight vector dynamics
         jet.x += Math.cos(jet.angle) * jet.speed;
         jet.y += Math.sin(jet.angle) * jet.speed;
 
         // Store contrail history
         jet.trail.push({ x: jet.x, y: jet.y, alpha: 1.0 });
-        if (jet.trail.length > 28) jet.trail.shift();
+        if (jet.trail.length > 36) jet.trail.shift();
 
-        // Loop / wrap back on screen for continuous sortie patrol
-        if (jet.x > w + 200 || jet.y > h + 200 || jet.x < -250 || jet.y < -250) {
-          if (jet.angle >= 0 && jet.angle < Math.PI / 2) {
-            jet.x = -150;
-            jet.y = Math.random() * (h * 0.6);
-          } else if (jet.angle < 0) {
-            jet.x = -150;
-            jet.y = h * 0.5 + Math.random() * (h * 0.4);
-          } else {
-            jet.x = Math.random() * (w * 0.6);
-            jet.y = -100;
-          }
+        // Tactical combat patrol wrapping
+        const margin = 120;
+        if (jet.x > w + margin) {
+          jet.x = -margin;
+          jet.y = (jet.y + h * 0.3) % h;
+          jet.trail = [];
+        } else if (jet.x < -margin) {
+          jet.x = w + margin;
+          jet.y = (jet.y + h * 0.3) % h;
+          jet.trail = [];
+        }
+        if (jet.y > h + margin) {
+          jet.y = -margin;
+          jet.x = (jet.x + w * 0.3) % w;
+          jet.trail = [];
+        } else if (jet.y < -margin) {
+          jet.y = h + margin;
+          jet.x = (jet.x + w * 0.3) % w;
           jet.trail = [];
         }
 
