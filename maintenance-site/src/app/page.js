@@ -455,7 +455,18 @@ export default function MaintenancePage() {
       {/* ── Dynamic Defense Drone POV Background HUD & Real 2000ft Thermal Terrain ── */}
       <div className="drone-hud-bg">
         <div className="warground-terrain-layer" />
-        <canvas ref={canvasRef} className="hud-canvas" />
+        <canvas 
+          ref={canvasRef} 
+          className="hud-canvas" 
+          style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            width: '100vw', 
+            height: '100vh', 
+            zIndex: 2, 
+            display: 'block' 
+          }} 
+        />
         <div className="hud-vignette" />
         <div className="hud-scanline" />
       </div>
