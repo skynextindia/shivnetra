@@ -51,11 +51,51 @@ export default function MaintenancePage() {
     let scanAngle = 0;
     let gridOffset = 0;
 
-    // Simulated Target coordinates
+    // Simulated Ground Target coordinates
     const targets = [
       { x: 0.28, y: 0.35, id: 'TGT-ALPHA-01', type: 'RADAR-NODE', lock: true },
       { x: 0.74, y: 0.62, id: 'TGT-BRAVO-04', type: 'TELEMETRY-RELAY', lock: true },
       { x: 0.42, y: 0.72, id: 'TGT-GCS-09', type: 'DATA-LINK-UAV', lock: false },
+    ];
+
+    // Live Action Supersonic Fighter Jet Sorties
+    const jets = [
+      {
+        callsign: 'GARUDA-01 [SU-30MKI]',
+        x: -100,
+        y: 260,
+        speed: 3.2,
+        angle: 0.32,
+        altitude: '18,500 FT',
+        mach: 'M 1.4',
+        trail: [],
+        color: '#38bdf8',
+        locked: true,
+      },
+      {
+        callsign: 'TEJAS-FLK-03',
+        x: 100,
+        y: -80,
+        speed: 2.7,
+        angle: 0.95,
+        altitude: '22,100 FT',
+        mach: 'M 1.2',
+        trail: [],
+        color: '#f59e0b',
+        locked: false,
+      },
+      {
+        callsign: 'RAFALE-LEAD-07',
+        x: -150,
+        y: 650,
+        speed: 3.6,
+        angle: -0.22,
+        altitude: '15,800 FT',
+        mach: 'M 1.6',
+        trail: [],
+        color: '#10b981',
+        locked: true,
+      }
     ];
 
     const resize = () => {
@@ -64,6 +104,64 @@ export default function MaintenancePage() {
     };
     resize();
     window.addEventListener('resize', resize);
+
+    const drawFighterJet = (ctx, x, y, angle, color, mach, afterburner) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+
+      // Jet Thermal / Afterburner Glow
+      const flameLen = afterburner ? 24 + Math.random() * 8 : 14 + Math.random() * 4;
+      const flameGrad = ctx.createRadialGradient(-18, 0, 1, -18 - flameLen, 0, 8);
+      flameGrad.addColorStop(0, '#ffffff');
+      flameGrad.addColorStop(0.3, '#f59e0b');
+      flameGrad.addColorStop(0.8, '#ef4444');
+      flameGrad.addColorStop(1, 'transparent');
+
+      ctx.fillStyle = flameGrad;
+      ctx.beginPath();
+      ctx.ellipse(-18 - flameLen / 2, 0, flameLen / 2, 4.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Delta Wing Fighter Jet Hull Silhouette (Military Stealth / Canard Spec)
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.8;
+      ctx.fillStyle = 'rgba(10, 25, 45, 0.85)';
+
+      ctx.beginPath();
+      // Nose cone
+      ctx.moveTo(22, 0);
+      // Right fuselage & canard
+      ctx.lineTo(8, 4);
+      ctx.lineTo(6, 10);
+      ctx.lineTo(2, 4);
+      // Right delta wing
+      ctx.lineTo(-4, 6);
+      ctx.lineTo(-14, 22);
+      ctx.lineTo(-12, 6);
+      // Right twin-tail / engine
+      ctx.lineTo(-18, 5);
+      ctx.lineTo(-18, -5);
+      // Left twin-tail / engine
+      ctx.lineTo(-12, -6);
+      ctx.lineTo(-14, -22);
+      // Left delta wing
+      ctx.lineTo(-4, -6);
+      ctx.lineTo(2, -4);
+      ctx.lineTo(6, -10);
+      ctx.lineTo(8, -4);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Cockpit Glow
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.9)';
+      ctx.beginPath();
+      ctx.ellipse(6, 0, 5, 2, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    };
 
     const render = () => {
       const w = canvas.width;
@@ -153,7 +251,78 @@ export default function MaintenancePage() {
       ctx.lineTo(sweepX, sweepY);
       ctx.stroke();
 
-      // 3. Technical Drone Target Tracking Boxes
+      // 3. Live Action Supersonic Fighter Jet Sorties Rendering
+      jets.forEach((jet) => {
+        // Flight dynamics
+        jet.x += Math.cos(jet.angle) * jet.speed;
+        jet.y += Math.sin(jet.angle) * jet.speed;
+
+        // Store contrail history
+        jet.trail.push({ x: jet.x, y: jet.y, alpha: 1.0 });
+        if (jet.trail.length > 28) jet.trail.shift();
+
+        // Loop / wrap back on screen for continuous sortie patrol
+        if (jet.x > w + 200 || jet.y > h + 200 || jet.x < -250 || jet.y < -250) {
+          if (jet.angle >= 0 && jet.angle < Math.PI / 2) {
+            jet.x = -150;
+            jet.y = Math.random() * (h * 0.6);
+          } else if (jet.angle < 0) {
+            jet.x = -150;
+            jet.y = h * 0.5 + Math.random() * (h * 0.4);
+          } else {
+            jet.x = Math.random() * (w * 0.6);
+            jet.y = -100;
+          }
+          jet.trail = [];
+        }
+
+        // Draw Supersonic Thermal Contrail Ribbon
+        for (let i = 0; i < jet.trail.length - 1; i++) {
+          const p1 = jet.trail[i];
+          const p2 = jet.trail[i + 1];
+          const progress = i / jet.trail.length;
+          
+          ctx.strokeStyle = `rgba(56, 189, 248, ${progress * 0.35})`;
+          ctx.lineWidth = 1 + progress * 2.5;
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+
+        // Velocity vector leader line
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+        ctx.setLineDash([3, 4]);
+        ctx.beginPath();
+        ctx.moveTo(jet.x, jet.y);
+        ctx.lineTo(jet.x + Math.cos(jet.angle) * 70, jet.y + Math.sin(jet.angle) * 70);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Draw Jet Silhouette & Afterburner
+        drawFighterJet(ctx, jet.x, jet.y, jet.angle, jet.color, jet.mach, true);
+
+        // Fighter Radar HUD Reticle & Tactical Callout
+        const rSize = 22;
+        ctx.strokeStyle = jet.locked ? '#38bdf8' : 'rgba(245, 158, 11, 0.7)';
+        ctx.lineWidth = 1.2;
+        
+        // Target diamond / box
+        ctx.beginPath();
+        ctx.strokeRect(jet.x - rSize, jet.y - rSize, rSize * 2, rSize * 2);
+
+        // Tactical Data Tag
+        ctx.fillStyle = jet.locked ? '#38bdf8' : '#f59e0b';
+        ctx.font = 'bold 9px "Roboto Mono", monospace';
+        ctx.fillText(`▲ ${jet.callsign}`, jet.x + rSize + 8, jet.y - 6);
+        ctx.fillStyle = 'rgba(226, 232, 240, 0.85)';
+        ctx.font = '8.5px "Roboto Mono", monospace';
+        ctx.fillText(`ALT: ${jet.altitude} | SPD: ${jet.mach}`, jet.x + rSize + 8, jet.y + 7);
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.9)';
+        ctx.fillText(`IFF: FRIENDLY // AIR-DOMINANCE`, jet.x + rSize + 8, jet.y + 19);
+      });
+
+      // 4. Technical Ground Drone Target Tracking Boxes
       targets.forEach((tgt, index) => {
         const tx = w * tgt.x;
         const ty = h * tgt.y;
