@@ -47,9 +47,17 @@ export default function MaintenancePage() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
     let animationFrameId;
     let scanAngle = 0;
     let gridOffset = 0;
+
+    // Load Real Thermal Fighter Sprites (Su-30MKI & Rafale)
+    const su30Img = typeof window !== 'undefined' ? new Image() : null;
+    if (su30Img) su30Img.src = '/su30_flir.png';
+    const rafaleImg = typeof window !== 'undefined' ? new Image() : null;
+    if (rafaleImg) rafaleImg.src = '/rafale_flir.png';
 
     // Ground Armored & Tactical Vehicle Targets (Real Scale ~10-18m footprint at 2000ft altitude)
     const targets = [
