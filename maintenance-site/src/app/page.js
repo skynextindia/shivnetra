@@ -51,65 +51,63 @@ export default function MaintenancePage() {
     let scanAngle = 0;
     let gridOffset = 0;
 
-    // Simulated Ground Target coordinates
+    // Ground Armored & Tactical Vehicle Targets (Real Scale ~10-18m footprint at 2000ft altitude)
     const targets = [
-      { x: 0.28, y: 0.35, id: 'TGT-ALPHA-01', type: 'RADAR-NODE', lock: true },
-      { x: 0.74, y: 0.62, id: 'TGT-BRAVO-04', type: 'TELEMETRY-RELAY', lock: true },
-      { x: 0.42, y: 0.72, id: 'TGT-GCS-09', type: 'DATA-LINK-UAV', lock: false },
+      { x: 0.28, y: 0.35, id: 'TGT-ALPHA-01', type: 'BMP-2 / APC', lock: true, w: 14, h: 22 },
+      { x: 0.74, y: 0.62, id: 'TGT-BRAVO-04', type: 'RADAR-TELAR', lock: true, w: 16, h: 26 },
+      { x: 0.42, y: 0.72, id: 'TGT-GCS-09', type: 'T-90S BHISHMA', lock: false, w: 15, h: 24 },
+      { x: 0.61, y: 0.22, id: 'TGT-DELTA-11', type: 'SAM BATTERY', lock: true, w: 18, h: 20 },
     ];
 
-    // Load Real Thermal Fighter Sprites (Su-30MKI & Rafale)
-    const su30Img = new Image();
-    su30Img.src = '/su30_flir.png';
-    const rafaleImg = new Image();
-    rafaleImg.src = '/rafale_flir.png';
-
-    // Live Action Supersonic Combat Fighter Sorties (IAF War Condition Flight Package)
+    // Real War-Condition Combat Fighter Sorties (True Physical Scale at 2000ft AGL Sensor Swath)
+    // Su-30MKI: Length ~21.9m, Wingspan ~14.7m (~42px screen scale)
+    // Rafale: Length ~15.3m, Wingspan ~10.9m (~34px screen scale)
+    // Supersonic intercept speed: ~8.5 to 13.5 px/frame relative speed
     const jets = [
       {
-        callsign: 'GARUDA-01 [SU-30MKI SUPER FLANKER]',
+        callsign: 'GARUDA-01 [SU-30MKI]',
         img: su30Img,
-        x: -200,
-        y: 220,
-        speed: 2.8,
-        angle: 0.28,
-        altitude: '18,500 FT AGL',
-        mach: 'MACH 1.45',
+        x: -300,
+        y: 200,
+        speed: 10.5,
+        angle: 0.24,
+        altitude: '2,000 FT AGL // LOW-LEVEL INTERCEPT',
+        mach: 'MACH 1.45 (1,110 KTS)',
         weapons: 'ASTRA-MK2 / BRAHMOS-A',
         trail: [],
         color: '#38bdf8',
         locked: true,
-        size: 96,
+        size: 42,
       },
       {
         callsign: 'GOLDEN-ARROWS-03 [RAFALE DH]',
         img: rafaleImg,
-        x: -120,
-        y: 580,
-        speed: 3.4,
-        angle: -0.18,
-        altitude: '24,000 FT AGL',
-        mach: 'MACH 1.62',
+        x: -250,
+        y: 520,
+        speed: 12.8,
+        angle: -0.16,
+        altitude: '2,400 FT AGL // STRIKE SWEEP',
+        mach: 'MACH 1.62 (1,240 KTS)',
         weapons: 'METEOR / SCALP-EG',
         trail: [],
         color: '#10b981',
         locked: true,
-        size: 88,
+        size: 35,
       },
       {
-        callsign: 'THUNDERBOLT-02 [SU-30MKI AIR DOMINANCE]',
+        callsign: 'THUNDERBOLT-02 [SU-30MKI]',
         img: su30Img,
-        x: 180,
-        y: -180,
-        speed: 2.5,
-        angle: 0.88,
-        altitude: '21,200 FT AGL',
-        mach: 'MACH 1.30',
+        x: 200,
+        y: -300,
+        speed: 9.2,
+        angle: 0.92,
+        altitude: '1,800 FT AGL // COMBAT AIR PATROL',
+        mach: 'MACH 1.30 (995 KTS)',
         weapons: 'R-77 / R-73 WVR',
         trail: [],
         color: '#f59e0b',
         locked: false,
-        size: 96,
+        size: 42,
       }
     ];
 
@@ -126,21 +124,21 @@ export default function MaintenancePage() {
       // Sprite orientation adjustment (facing up by default -> rotate + 90deg)
       ctx.rotate(jet.angle + Math.PI / 2);
 
-      // 1. Thermal Afterburner Thrust Plume Glow
-      const flameLen = 30 + Math.random() * 12;
-      const flameWidth = jet.size * 0.18;
+      // 1. Realistic Supersonic Afterburner Shock Diamond Exhaust Flame
+      const flameLen = 16 + Math.random() * 8;
+      const flameWidth = jet.size * 0.22;
       
-      const flameGrad = ctx.createLinearGradient(0, jet.size * 0.45, 0, jet.size * 0.45 + flameLen);
+      const flameGrad = ctx.createLinearGradient(0, jet.size * 0.44, 0, jet.size * 0.44 + flameLen);
       flameGrad.addColorStop(0, '#ffffff');
       flameGrad.addColorStop(0.2, '#f59e0b');
-      flameGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.8)');
+      flameGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.85)');
       flameGrad.addColorStop(1, 'transparent');
 
       ctx.fillStyle = flameGrad;
       // Twin-engine thermal exhaust plumes
       ctx.beginPath();
-      ctx.ellipse(-jet.size * 0.09, jet.size * 0.45 + flameLen / 2, flameWidth / 2, flameLen / 2, 0, 0, Math.PI * 2);
-      ctx.ellipse(jet.size * 0.09, jet.size * 0.45 + flameLen / 2, flameWidth / 2, flameLen / 2, 0, 0, Math.PI * 2);
+      ctx.ellipse(-jet.size * 0.11, jet.size * 0.44 + flameLen / 2, flameWidth / 2, flameLen / 2, 0, 0, Math.PI * 2);
+      ctx.ellipse(jet.size * 0.11, jet.size * 0.44 + flameLen / 2, flameWidth / 2, flameLen / 2, 0, 0, Math.PI * 2);
       ctx.fill();
 
       // 2. Real Thermal FLIR Fighter Aircraft Image Sprite
@@ -152,11 +150,6 @@ export default function MaintenancePage() {
           jet.size,
           jet.size
         );
-      } else {
-        // Fallback vector outline if image still loading
-        ctx.strokeStyle = jet.color;
-        ctx.lineWidth = 2;
-        ctx.strokeRect(-jet.size / 3, -jet.size / 2, (jet.size * 2) / 3, jet.size);
       }
 
       ctx.restore();
@@ -323,43 +316,46 @@ export default function MaintenancePage() {
         ctx.fillText(`IFF: HOSTILE AIR PURGE ACTIVE`, jet.x + rSize + 8, jet.y + 27);
       });
 
-      // 4. Technical Ground Drone Target Tracking Boxes
+      // 4. Tactical Ground Target Tracking Boxes (BMP-2 / T-90 Armor Footprints)
       targets.forEach((tgt, index) => {
         const tx = w * tgt.x;
         const ty = h * tgt.y;
-        const boxSize = 34 + Math.sin(Date.now() * 0.003 + index) * 2;
+        const boxW = tgt.w || 16;
+        const boxH = tgt.h || 24;
 
         ctx.strokeStyle = tgt.lock ? 'rgba(56, 189, 248, 0.75)' : 'rgba(20, 184, 166, 0.6)';
-        ctx.lineWidth = 1.2;
+        ctx.lineWidth = 1.0;
 
         // Bounding Corners
-        const s = boxSize / 2;
-        const cLen = 7;
+        const hw = boxW / 2 + 3;
+        const hh = boxH / 2 + 3;
+        const cLen = 4;
+        
         // Top-left
         ctx.beginPath();
-        ctx.moveTo(tx - s, ty - s + cLen);
-        ctx.lineTo(tx - s, ty - s);
-        ctx.lineTo(tx - s + cLen, ty - s);
+        ctx.moveTo(tx - hw, ty - hh + cLen);
+        ctx.lineTo(tx - hw, ty - hh);
+        ctx.lineTo(tx - hw + cLen, ty - hh);
         // Top-right
-        ctx.moveTo(tx + s - cLen, ty - s);
-        ctx.lineTo(tx + s, ty - s);
-        ctx.lineTo(tx + s, ty - s + cLen);
+        ctx.moveTo(tx + hw - cLen, ty - hh);
+        ctx.lineTo(tx + hw, ty - hh);
+        ctx.lineTo(tx + hw, ty - hh + cLen);
         // Bottom-left
-        ctx.moveTo(tx - s, ty + s - cLen);
-        ctx.lineTo(tx - s, ty + s);
-        ctx.lineTo(tx - s + cLen, ty + s);
+        ctx.moveTo(tx - hw, ty + hh - cLen);
+        ctx.lineTo(tx - hw, ty + hh);
+        ctx.lineTo(tx - hw + cLen, ty + hh);
         // Bottom-right
-        ctx.moveTo(tx + s - cLen, ty + s);
-        ctx.lineTo(tx + s, ty + s);
-        ctx.lineTo(tx + s, ty + s - cLen);
+        ctx.moveTo(tx + hw - cLen, ty + hh);
+        ctx.lineTo(tx + hw, ty + hh);
+        ctx.lineTo(tx + hw, ty + hh - cLen);
         ctx.stroke();
 
         // Target Metadata Label
         ctx.fillStyle = tgt.lock ? '#38bdf8' : '#14b8a6';
-        ctx.font = '9px "Roboto Mono", monospace';
-        ctx.fillText(`[ ${tgt.id} ]`, tx - s, ty - s - 5);
-        ctx.fillStyle = 'rgba(148, 163, 184, 0.8)';
-        ctx.fillText(tgt.type, tx - s, ty + s + 12);
+        ctx.font = '8px "Roboto Mono", monospace';
+        ctx.fillText(`[ ${tgt.id} ]`, tx - hw, ty - hh - 4);
+        ctx.fillStyle = 'rgba(148, 163, 184, 0.75)';
+        ctx.fillText(tgt.type, tx - hw, ty + hh + 9);
       });
 
       animationFrameId = requestAnimationFrame(render);
