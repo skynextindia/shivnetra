@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHIVNETRA47 - Official Defence Capability Brochure | Page 01 (A4 Landscape)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070b08;
+      --panel-bg: #0e1511;
+      --card-bg: rgba(16, 25, 20, 0.95);
+      --card-border: rgba(122, 151, 129, 0.35);
+      --camo-dark: #1b261e;
+      --camo-olive: #3f5544;
+      --camo-sage: #7a9781;
+      --camo-accent: #9cbca4;
+      --saffron: #d97706;
+      --saffron-bright: #f59e0b;
+      --india-green: #15803d;
+      --slate-100: #f8fafc;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      background-color: #040605;
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--slate-100);
+      overflow-x: hidden;
+    }
+
+    @media print {
+      body, html { padding: 0; margin: 0; background: #000000; }
+      @page { size: A4 landscape; margin: 0; }
+    }
+
+    /* A4 Landscape: 3508px × 2480px @ 300 DPI (297mm × 210mm) */
+    .a4-landscape-page {
+      width: 3508px;
+      height: 2480px;
+      background: radial-gradient(circle at 85% 15%, #142318 0%, #080d0a 60%, #040705 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 85px 105px 75px 105px;
+      box-shadow: 0 0 120px rgba(0, 0, 0, 0.95);
+      margin: 0 auto;
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(122, 151, 129, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(122, 151, 129, 0.05) 1px, transparent 1px);
+      background-size: 70px 70px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .corner-bracket {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border: 3.5px solid var(--camo-sage);
+      pointer-events: none;
+      z-index: 10;
+    }
+    .corner-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
+    .corner-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+
+    .crosshair {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: var(--camo-sage);
+      opacity: 0.6;
+      pointer-events: none;
+      z-index: 10;
+      letter-spacing: 1px;
+    }
+    .crosshair-tl { top: 45px; left: 105px; }
+    .crosshair-tr { top: 45px; right: 105px; }
+    .crosshair-bl { bottom: 45px; left: 105px; }
+    .crosshair-br { bottom: 45px; right: 105px; }
+
+    /* Top Header Bar */
+    .header-bar {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      border-bottom: 2px solid rgba(122, 151, 129, 0.35);
+      padding-bottom: 22px;
+    }
+
+    .classification-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--slate-400);
+      text-transform: uppercase;
+    }
+
+    .status-badge {
+      background: rgba(217, 119, 6, 0.16);
+      border: 1.5px solid var(--saffron-bright);
+      color: var(--saffron-bright);
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .status-badge::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: var(--saffron-bright);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--saffron-bright);
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .main-logo-box {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .logo-img {
+      height: 75px;
+      width: auto;
+      filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.6));
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      border-left: 2px solid rgba(122, 151, 129, 0.4);
+      padding-left: 24px;
+    }
+
+    .company-legal-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--slate-100);
+      text-transform: uppercase;
+    }
+
+    .company-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--camo-sage);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .badges-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .sovereign-tag {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(17, 30, 21, 0.95);
+      border: 1.5px solid rgba(122, 151, 129, 0.5);
+      padding: 10px 22px;
+      border-radius: 6px;
+    }
+
+    .tricolor-flag {
+      display: flex;
+      flex-direction: column;
+      width: 24px;
+      height: 18px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .flag-saffron { flex: 1; background: #FF9933; }
+    .flag-white { flex: 1; background: #FFFFFF; }
+    .flag-green { flex: 1; background: #138808; }
+
+    .sovereign-tag-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .soft-tech-partner {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--slate-400);
+      letter-spacing: 1px;
+    }
+    .soft-tech-partner span {
+      color: var(--slate-200);
+      font-weight: 600;
+    }
+
+    /* Main Landscape Body Grid */
+    .landscape-body {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 55px;
+      margin: 20px 0;
+      flex: 1;
+    }
+
+    /* Left Column */
+    .left-overview-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .hero-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .eyebrow-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .eyebrow-tag::before {
+      content: '';
+      width: 40px;
+      height: 3.5px;
+      background: var(--saffron-bright);
+    }
+
+    .main-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 68px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .main-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 20%, var(--saffron-bright) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-description {
+      font-family: 'Barlow', sans-serif;
+      font-size: 24px;
+      line-height: 1.5;
+      color: var(--slate-300);
+      font-weight: 400;
+    }
+
+    /* Tactical Architecture Box */
+    .arch-summary-box {
+      background: rgba(14, 21, 17, 0.85);
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      border-radius: 10px;
+      padding: 26px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .arch-header {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--camo-sage);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .arch-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .arch-points li {
+      font-family: 'Inter', sans-serif;
+      font-size: 16.5px;
+      line-height: 1.4;
+      color: var(--slate-300);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .arch-points li::before {
+      content: '▸';
+      color: var(--saffron-bright);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    /* Metrics Grid in Left Column */
+    .metrics-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: rgba(14, 21, 17, 0.95);
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      border-radius: 10px;
+      padding: 26px 28px;
+    }
+
+    .metric-tile {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-left: 3.5px solid var(--saffron-bright);
+      padding-left: 18px;
+    }
+    .metric-tile:first-child { border-left-color: var(--camo-sage); }
+
+    .metric-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .metric-num span {
+      font-size: 24px;
+      color: var(--saffron-bright);
+      font-weight: 700;
+    }
+
+    .metric-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--camo-sage);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .metric-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.35;
+      color: var(--slate-400);
+    }
+
+    /* Right Column: Two Capability Cards */
+    .right-pillars-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+
+    .pillar-card {
+      background: var(--panel-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+      position: relative;
+    }
+
+    .pillar-tag-strip {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+    }
+
+    .badge-pillar {
+      background: rgba(8, 12, 9, 0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(122, 151, 129, 0.6);
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .badge-pillar.highlight {
+      border-color: var(--saffron-bright);
+      color: var(--saffron-bright);
+    }
+
+    .pillar-media-box {
+      width: 100%;
+      height: 900px;
+      background: #000000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .pillar-overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14, 21, 17, 1) 0%, rgba(14, 21, 17, 0.1) 60%, rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .pillar-content {
+      padding: 36px 40px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      flex: 1;
+      justify-content: space-between;
+      background: var(--panel-bg);
+      border-top: 1.5px solid rgba(122, 151, 129, 0.25);
+    }
+
+    .pillar-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .pillar-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 1.5px;
+    }
+
+    .pillar-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .pillar-role {
+      font-family: 'Barlow', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--camo-sage);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .pillar-summary {
+      font-family: 'Inter', sans-serif;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--slate-300);
+    }
+
+    .pillar-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pillar-features li {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--slate-300);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pillar-features li::before {
+      content: '■';
+      color: var(--camo-sage);
+      font-size: 10px;
+    }
+
+    .pillar-spec-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      background: rgba(8, 14, 10, 0.75);
+      border: 1px solid rgba(122, 151, 129, 0.25);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .spec-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-400);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .spec-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+    .spec-val span {
+      color: var(--saffron-bright);
+      font-size: 18px;
+    }
+
+    /* Footer Strip */
+    .footer-strip {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2px solid rgba(122, 151, 129, 0.35);
+      padding-top: 24px;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-corp {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--slate-100);
+      text-transform: uppercase;
+    }
+
+    .footer-reg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--slate-400);
+      letter-spacing: 1px;
+    }
+
+    .footer-center {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: var(--slate-300);
+    }
+    .footer-center a {
+      color: var(--slate-100);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .footer-center a:hover {
+      color: var(--saffron-bright);
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .tech-collab-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--slate-400);
+      letter-spacing: 1px;
+    }
+    .tech-collab-badge span {
+      color: var(--slate-200);
+      font-weight: 600;
+    }
+    .page-num-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 2px;
+    }
+
+    /* Desktop scaling helper */
+    @media screen and (max-width: 2800px) {
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 30px 0;
+      }
+      .a4-landscape-page {
+        transform: scale(0.48);
+        transform-origin: top center;
+        margin-bottom: -1250px;
+      }
+    }
+    @media screen and (min-width: 3400px), print {
+      body { padding: 0; }
+      .a4-landscape-page { transform: none !important; margin: 0 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="a4-landscape-page">
+    <div class="grid-overlay"></div>
+
+    <div class="corner-bracket corner-tl"></div>
+    <div class="corner-bracket corner-tr"></div>
+    <div class="corner-bracket corner-bl"></div>
+    <div class="corner-bracket corner-br"></div>
+    
+    <div class="crosshair crosshair-tl">+ 001/A4-L</div>
+    <div class="crosshair crosshair-tr">3508x2480 [297x210mm]</div>
+    <div class="crosshair crosshair-bl">LAT 28°36'N</div>
+    <div class="crosshair crosshair-br">IND-DEF-2026</div>
+
+    <!-- TOP HEADER BAR -->
+    <header class="header-bar">
+      <div class="classification-strip">
+        <div class="status-badge">SOVEREIGN AIR DEFENCE CAPABILITY BRIEF • 2026-2027</div>
+        <div>DOCUMENT REF: SN47-UAS-BR-01 • CONFIDENTIAL FOR DEFENCE USERS</div>
+      </div>
+
+      <div class="brand-row">
+        <div class="main-logo-box">
+          <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="logo-img">
+          <div class="brand-meta">
+            <div class="company-legal-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+            <div class="company-subtitle">Autonomous Air Systems • Swarm Intelligence • Tactical Logistics</div>
+          </div>
+        </div>
+
+        <div class="badges-right">
+          <div class="sovereign-tag">
+            <div class="tricolor-flag">
+              <div class="flag-saffron"></div>
+              <div class="flag-white"></div>
+              <div class="flag-green"></div>
+            </div>
+            <div class="sovereign-tag-text">MAKE IN INDIA • ATMANIRBHAR BHARAT</div>
+          </div>
+          <div class="soft-tech-partner">
+            Engineering Collaboration: <span>BCN In-House Technology Team</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- LANDSCAPE MAIN BODY -->
+    <main class="landscape-body">
+      
+      <!-- LEFT COLUMN: Program Overview & Metrics -->
+      <section class="left-overview-col">
+        <div class="hero-text-block">
+          <div class="eyebrow-tag">SOVEREIGN UNMANNED AERIAL SYSTEMS PROGRAM</div>
+          <h1 class="main-title">
+            INTEGRATED AUTONOMOUS <span class="gradient-text">SWARM & HYBRID LOGISTICS</span> VTOL
+          </h1>
+          <p class="title-description">
+            A dual-pillar indigenous aerial capability engineered for contested Indian forward operations—delivering continuous multi-tier ISR swarm reconnaissance paired with runway-independent, heavy-cargo tactical logistics for high-altitude border resupply.
+          </p>
+        </div>
+
+        <!-- Tactical Architecture Box -->
+        <div class="arch-summary-box">
+          <div class="arch-header">
+            <span>Operational Architecture</span>
+            <span style="color: var(--saffron-bright);">DUAL-SECTOR DEFENCE DOCTRINE</span>
+          </div>
+          <ul class="arch-points">
+            <li>Heterogeneous Swarm: Micro-Nano scouts + Overwatch C2 relay nodes</li>
+            <li>Hybrid Fixed-Wing VTOL: Runway-independent, long-range heavy cargo</li>
+            <li>NAVIC + Encrypted RF: Contested border spectrum survivability</li>
+            <li>Quick-Swap Payload Bays: Medical kits, ammo pods & EO/IR gimbals</li>
+          </ul>
+        </div>
+
+        <!-- 4 Metric Tiles -->
+        <div class="metrics-col-grid">
+          <div class="metric-tile">
+            <div class="metric-num">100% <span>Runway-Free</span></div>
+            <div class="metric-label">VTOL Envelope</div>
+            <div class="metric-desc">Autonomous vertical launch and landing from forward outposts, ships, or rugged clearings.</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-num">50–150 <span>km</span></div>
+            <div class="metric-label">Network Radius</div>
+            <div class="metric-desc">BVLOS encrypted telemetry with multi-hop swarm mesh routing in contested RF spectrum.</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-num">5 <span>to</span> 200 <span>kg</span></div>
+            <div class="metric-label">Payload Capacity</div>
+            <div class="metric-desc">Modular quick-swap bays for medical trauma boxes, tactical ammo pods, or stabilized EO/IR.</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-num">Make in India</div>
+            <div class="metric-label">Sovereign IPR</div>
+            <div class="metric-desc">Complete indigenous production roadmap aligned with iDEX and Ministry of Defence standards.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: Dual Capability Pillars -->
+      <section class="right-pillars-col">
+        
+        <!-- Pillar 01: Swarm ISTAR -->
+        <article class="pillar-card">
+          <div class="pillar-tag-strip">
+            <span class="badge-pillar highlight">PILLAR 01</span>
+            <span class="badge-pillar">SWARM & ISR</span>
+          </div>
+
+          <div class="pillar-media-box">
+            <img src="../assets/hero_vtol_cityscape.png" alt="Swarm & Overwatch Air Vehicle" class="pillar-img">
+            <div class="pillar-overlay-gradient"></div>
+          </div>
+
+          <div class="pillar-content">
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div class="pillar-header-row">
+                <div class="pillar-title">SWARM & OVERWATCH ISTAR</div>
+                <div class="pillar-number">[ SECT 01 ]</div>
+              </div>
+              <div class="pillar-role">Multi-Layer Surveillance & Mesh C2</div>
+              <p class="pillar-summary">
+                Heterogeneous swarm architecture linking disposable micro Nano-scouts (350–450g) and long-endurance Overwatch UAV relays (~20kg) via self-healing peer-to-peer data-links.
+              </p>
+              <ul class="pillar-features">
+                <li>Decentralized autonomous collision avoidance and patrol logic</li>
+                <li>Real-time EO/IR thermal target tracking streamed to tactical GCS</li>
+                <li>Attrition-tolerant multi-node coordination in contested airspace</li>
+              </ul>
+            </div>
+
+            <div class="pillar-spec-list">
+              <div class="spec-item">
+                <span class="spec-label">Swarm Fleet</span>
+                <span class="spec-val">6 to 24+ <span>Units</span></span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Overwatch MTOW</span>
+                <span class="spec-val">~20 <span>kg Class</span></span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Ceiling</span>
+                <span class="spec-val">8,000 <span>ft AMSL</span></span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Data-Link</span>
+                <span class="spec-val">Secure Mesh <span>RF</span></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pillar 02: Logistics VTOL -->
+        <article class="pillar-card">
+          <div class="pillar-tag-strip">
+            <span class="badge-pillar highlight">PILLAR 02</span>
+            <span class="badge-pillar">LOGISTICS VTOL</span>
+          </div>
+
+          <div class="pillar-media-box">
+            <img src="../assets/shivnetra_vtol_cover_hd.png" alt="Hybrid Logistics VTOL" class="pillar-img">
+            <div class="pillar-overlay-gradient"></div>
+          </div>
+
+          <div class="pillar-content">
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div class="pillar-header-row">
+                <div class="pillar-title">HYBRID LOGISTICS VTOL</div>
+                <div class="pillar-number">[ SECT 02 ]</div>
+              </div>
+              <div class="pillar-role">Runway-Free Tactical Resupply</div>
+              <p class="pillar-summary">
+                All-terrain hybrid VTOL + fixed-wing platform engineered for forward post resupply, trauma medical delivery, and ammo transport in rugged Himalayan sectors.
+              </p>
+              <ul class="pillar-features">
+                <li>Runway-free VTOL departure with efficient fixed-wing cruise</li>
+                <li>Quick-change modular cargo pod for field-swappable payloads</li>
+                <li>Emergency parachute failsafe and precision winch drop capability</li>
+              </ul>
+            </div>
+
+            <div class="pillar-spec-list">
+              <div class="spec-item">
+                <span class="spec-label">Payload Class</span>
+                <span class="spec-val">5–10 <span>to 200 kg</span></span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Transit Range</span>
+                <span class="spec-val">100+ <span>km</span></span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Flight Time</span>
+                <span class="spec-val">Up to 180 <span>Min</span></span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Navigation</span>
+                <span class="spec-val">NAVIC + <span>INS</span></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+    </main>
+
+    <!-- FOOTER STRIP -->
+    <footer class="footer-strip">
+      <div class="footer-left">
+        <div class="footer-corp">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+        <div class="footer-reg">CIN: U30309MH2024PTC428120 • Indigenous Drone & Air Defence Manufacturer</div>
+      </div>
+
+      <div class="footer-center">
+        <span>Web: <a href="https://shivnetra47.tech" target="_blank">shivnetra47.tech</a></span>
+        <span>•</span>
+        <span>Contact: <a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
+      </div>
+
+      <div class="footer-right">
+        <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
+        <div class="page-num-pill">A4 LANDSCAPE BROCHURE • PAGE 01 / 04</div>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

@@ -124,8 +124,8 @@ export default function MaintenancePage() {
 
     const resize = () => {
       if (!canvas) return;
-      canvas.width = canvas.clientWidth || window.innerWidth;
-      canvas.height = canvas.clientHeight || window.innerHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
     resize();
     window.addEventListener('resize', resize);
@@ -145,7 +145,7 @@ export default function MaintenancePage() {
       ctx.translate(jet.x, jet.y);
       ctx.rotate(jet.angle);
 
-      // A. Ground Altitude Projection Shadow (Parallax depth beneath fighter at 1,400ft AGL)
+      // Ground shadow
       ctx.save();
       ctx.translate(14, 18);
       ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
@@ -157,44 +157,39 @@ export default function MaintenancePage() {
       ctx.fill();
       ctx.restore();
 
-      // B. Realistic Supersonic Afterburner Shock Diamond Exhaust Flame
+      // Afterburner flames
       const flameLen = 32 + Math.random() * 12;
       const flameWidth = jet.size * 0.22;
-      
       const flameGrad = ctx.createLinearGradient(-jet.size * 0.42, 0, -jet.size * 0.42 - flameLen, 0);
       flameGrad.addColorStop(0, '#ffffff');
       flameGrad.addColorStop(0.2, '#f59e0b');
       flameGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.95)');
       flameGrad.addColorStop(1, 'transparent');
-
       ctx.fillStyle = flameGrad;
-      // Twin-engine thermal exhaust plumes trailing backwards
       ctx.beginPath();
       ctx.ellipse(-jet.size * 0.42 - flameLen / 2, -jet.size * 0.12, flameLen / 2, flameWidth / 2, 0, 0, Math.PI * 2);
       ctx.ellipse(-jet.size * 0.42 - flameLen / 2, jet.size * 0.12, flameLen / 2, flameWidth / 2, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // C. High-Precision Airframe Vector & Thermal Core
-      ctx.save();
+      // Airframe body
       ctx.fillStyle = 'rgba(10, 22, 40, 0.98)';
       ctx.strokeStyle = jet.color;
       ctx.lineWidth = 2.2;
-
       ctx.beginPath();
-      ctx.moveTo(jet.size * 0.52, 0); // nose
-      ctx.lineTo(jet.size * 0.16, jet.size * 0.14); // canards
-      ctx.lineTo(-jet.size * 0.35, jet.size * 0.48); // right delta wingtip
+      ctx.moveTo(jet.size * 0.52, 0);
+      ctx.lineTo(jet.size * 0.16, jet.size * 0.14);
+      ctx.lineTo(-jet.size * 0.35, jet.size * 0.48);
       ctx.lineTo(-jet.size * 0.28, jet.size * 0.16);
-      ctx.lineTo(-jet.size * 0.45, jet.size * 0.14); // right engine nozzle
-      ctx.lineTo(-jet.size * 0.45, -jet.size * 0.14); // left engine nozzle
+      ctx.lineTo(-jet.size * 0.45, jet.size * 0.14);
+      ctx.lineTo(-jet.size * 0.45, -jet.size * 0.14);
       ctx.lineTo(-jet.size * 0.28, -jet.size * 0.16);
-      ctx.lineTo(-jet.size * 0.35, -jet.size * 0.48); // left delta wingtip
-      ctx.lineTo(jet.size * 0.16, -jet.size * 0.14); // left canards
+      ctx.lineTo(-jet.size * 0.35, -jet.size * 0.48);
+      ctx.lineTo(jet.size * 0.16, -jet.size * 0.14);
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
 
-      // Thermal engine heat core
+      // Engine heat core
       const coreGrad = ctx.createRadialGradient(-jet.size * 0.2, 0, 2, -jet.size * 0.2, 0, jet.size * 0.35);
       coreGrad.addColorStop(0, '#f59e0b');
       coreGrad.addColorStop(0.5, 'rgba(239, 68, 68, 0.7)');
@@ -204,41 +199,33 @@ export default function MaintenancePage() {
       ctx.arc(-jet.size * 0.2, 0, jet.size * 0.26, 0, Math.PI * 2);
       ctx.fill();
 
-      // Cockpit canopy HUD glow
+      // Cockpit glow
       ctx.fillStyle = '#38bdf8';
       ctx.beginPath();
       ctx.ellipse(jet.size * 0.18, 0, jet.size * 0.12, jet.size * 0.05, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // High-res sprite texture overlay if available
-      if (jet.img && jet.img.complete && jet.img.naturalWidth > 0) {
-        ctx.rotate(Math.PI / 2);
-        ctx.drawImage(
-          jet.img,
-          -jet.size / 2,
-          -jet.size / 2,
-          jet.size,
-          jet.size
-        );
-      }
-      ctx.restore();
-
       ctx.restore();
     };
 
     const render = () => {
-      const w = canvas.width;
-      const h = canvas.height;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      // Only re-sync buffer if dimensions changed
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
 
       ctx.clearRect(0, 0, w, h);
 
-      // 1. Perspective Flight Grid (Defense UAV Terrain Mesh)
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.07)';
+      // 1. Perspective Flight Grid
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.12)';
       ctx.lineWidth = 1;
 
       gridOffset = (gridOffset + 0.4) % 40;
 
-      // Vertical perspective lines converging slightly
       const numLines = 24;
       for (let i = 0; i <= numLines; i++) {
         const x = (w / numLines) * i;
@@ -248,7 +235,6 @@ export default function MaintenancePage() {
         ctx.stroke();
       }
 
-      // Horizontal moving scan grid
       for (let y = gridOffset; y < h; y += 40) {
         ctx.beginPath();
         ctx.moveTo(0, y);
@@ -256,15 +242,12 @@ export default function MaintenancePage() {
         ctx.stroke();
       }
 
-      // 2. Center Drone Reticle / Crosshair HUD
+      // 2. Center Drone Reticle
       const cx = w / 2;
       const cy = h / 2;
 
-      // Center Artificial Horizon
       ctx.strokeStyle = 'rgba(56, 189, 248, 0.22)';
       ctx.lineWidth = 1.5;
-
-      // Pitch Ladders
       ctx.beginPath();
       ctx.moveTo(cx - 70, cy - 40);
       ctx.lineTo(cx - 30, cy - 40);
@@ -272,7 +255,6 @@ export default function MaintenancePage() {
       ctx.moveTo(cx + 70, cy - 40);
       ctx.lineTo(cx + 30, cy - 40);
       ctx.lineTo(cx + 30, cy - 35);
-
       ctx.moveTo(cx - 70, cy + 40);
       ctx.lineTo(cx - 30, cy + 40);
       ctx.lineTo(cx - 30, cy + 45);
@@ -281,18 +263,16 @@ export default function MaintenancePage() {
       ctx.lineTo(cx + 30, cy + 45);
       ctx.stroke();
 
-      // Outer Radar Sweep Ring
+      // Radar Sweep
       const radarRadius = Math.min(w, h) * 0.38;
       ctx.strokeStyle = 'rgba(56, 189, 248, 0.12)';
       ctx.beginPath();
       ctx.arc(cx, cy, radarRadius, 0, Math.PI * 2);
       ctx.stroke();
-
       ctx.beginPath();
       ctx.arc(cx, cy, radarRadius * 0.6, 0, Math.PI * 2);
       ctx.stroke();
 
-      // Sweeping radar beam
       scanAngle = (scanAngle + 0.015) % (Math.PI * 2);
       const sweepX = cx + Math.cos(scanAngle) * radarRadius;
       const sweepY = cy + Math.sin(scanAngle) * radarRadius;
@@ -300,7 +280,6 @@ export default function MaintenancePage() {
       const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radarRadius);
       grad.addColorStop(0, 'rgba(56, 189, 248, 0.08)');
       grad.addColorStop(1, 'transparent');
-      
       ctx.fillStyle = grad;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
@@ -314,48 +293,29 @@ export default function MaintenancePage() {
       ctx.lineTo(sweepX, sweepY);
       ctx.stroke();
 
-      // 3. Live Action Supersonic Fighter Jet Sorties Rendering
+      // 3. FIGHTER JET SORTIES
       jets.forEach((jet) => {
-        // Continuous aerial maneuvers (banking turns)
         if (jet.turnRate) {
           jet.angle += jet.turnRate;
         }
-
-        // Flight vector dynamics
         jet.x += Math.cos(jet.angle) * jet.speed;
         jet.y += Math.sin(jet.angle) * jet.speed;
 
-        // Store contrail history
-        jet.trail.push({ x: jet.x, y: jet.y, alpha: 1.0 });
+        jet.trail.push({ x: jet.x, y: jet.y });
         if (jet.trail.length > 36) jet.trail.shift();
 
-        // Tactical combat patrol wrapping
+        // Wrapping
         const margin = 120;
-        if (jet.x > w + margin) {
-          jet.x = -margin;
-          jet.y = (jet.y + h * 0.3) % h;
-          jet.trail = [];
-        } else if (jet.x < -margin) {
-          jet.x = w + margin;
-          jet.y = (jet.y + h * 0.3) % h;
-          jet.trail = [];
-        }
-        if (jet.y > h + margin) {
-          jet.y = -margin;
-          jet.x = (jet.x + w * 0.3) % w;
-          jet.trail = [];
-        } else if (jet.y < -margin) {
-          jet.y = h + margin;
-          jet.x = (jet.x + w * 0.3) % w;
-          jet.trail = [];
-        }
+        if (jet.x > w + margin) { jet.x = -margin; jet.trail = []; }
+        else if (jet.x < -margin) { jet.x = w + margin; jet.trail = []; }
+        if (jet.y > h + margin) { jet.y = -margin; jet.trail = []; }
+        else if (jet.y < -margin) { jet.y = h + margin; jet.trail = []; }
 
-        // Draw Supersonic Thermal Contrail Ribbon
+        // Contrail
         for (let i = 0; i < jet.trail.length - 1; i++) {
           const p1 = jet.trail[i];
           const p2 = jet.trail[i + 1];
           const progress = i / jet.trail.length;
-          
           ctx.strokeStyle = `rgba(56, 189, 248, ${progress * 0.35})`;
           ctx.lineWidth = 1 + progress * 2.5;
           ctx.beginPath();
@@ -364,7 +324,7 @@ export default function MaintenancePage() {
           ctx.stroke();
         }
 
-        // Velocity vector leader line
+        // Velocity vector
         ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
         ctx.setLineDash([3, 4]);
         ctx.beginPath();
@@ -373,19 +333,16 @@ export default function MaintenancePage() {
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Draw Real Thermal FLIR Fighter Aircraft & Thrust Plume
+        // Draw the full fighter
         drawFighterJet(ctx, jet);
 
-        // Fighter Radar HUD Reticle & Tactical Callout
+        // HUD reticle box
         const rSize = jet.size * 0.38;
         ctx.strokeStyle = jet.locked ? '#38bdf8' : 'rgba(245, 158, 11, 0.7)';
         ctx.lineWidth = 1.2;
-        
-        // Target diamond / box around the jet
-        ctx.beginPath();
         ctx.strokeRect(jet.x - rSize, jet.y - rSize, rSize * 2, rSize * 2);
 
-        // Tactical Data Tag (Real Military Callout)
+        // Tactical Data Tag
         ctx.fillStyle = jet.locked ? '#38bdf8' : '#f59e0b';
         ctx.font = 'bold 9.5px "Roboto Mono", monospace';
         ctx.fillText(`▲ ${jet.callsign}`, jet.x + rSize + 8, jet.y - 10);
@@ -398,8 +355,8 @@ export default function MaintenancePage() {
         ctx.fillText(`IFF: HOSTILE AIR PURGE ACTIVE`, jet.x + rSize + 8, jet.y + 27);
       });
 
-      // 4. Tactical Ground Target Tracking Boxes (BMP-2 / T-90 Armor Footprints)
-      targets.forEach((tgt, index) => {
+      // 4. Ground targets
+      targets.forEach((tgt) => {
         const tx = w * tgt.x;
         const ty = h * tgt.y;
         const boxW = tgt.w || 16;
@@ -408,31 +365,25 @@ export default function MaintenancePage() {
         ctx.strokeStyle = tgt.lock ? 'rgba(56, 189, 248, 0.75)' : 'rgba(20, 184, 166, 0.6)';
         ctx.lineWidth = 1.0;
 
-        // Bounding Corners
         const hw = boxW / 2 + 3;
         const hh = boxH / 2 + 3;
         const cLen = 4;
         
-        // Top-left
         ctx.beginPath();
         ctx.moveTo(tx - hw, ty - hh + cLen);
         ctx.lineTo(tx - hw, ty - hh);
         ctx.lineTo(tx - hw + cLen, ty - hh);
-        // Top-right
         ctx.moveTo(tx + hw - cLen, ty - hh);
         ctx.lineTo(tx + hw, ty - hh);
         ctx.lineTo(tx + hw, ty - hh + cLen);
-        // Bottom-left
         ctx.moveTo(tx - hw, ty + hh - cLen);
         ctx.lineTo(tx - hw, ty + hh);
         ctx.lineTo(tx - hw + cLen, ty + hh);
-        // Bottom-right
         ctx.moveTo(tx + hw - cLen, ty + hh);
         ctx.lineTo(tx + hw, ty + hh);
         ctx.lineTo(tx + hw, ty + hh - cLen);
         ctx.stroke();
 
-        // Target Metadata Label
         ctx.fillStyle = tgt.lock ? '#38bdf8' : '#14b8a6';
         ctx.font = '8px "Roboto Mono", monospace';
         ctx.fillText(`[ ${tgt.id} ]`, tx - hw, ty - hh - 4);
@@ -463,19 +414,40 @@ export default function MaintenancePage() {
       padding: '24px',
       overflow: 'hidden',
     }}>
-      {/* ── Dynamic Defense Drone POV Background HUD & Real 2000ft Thermal Terrain ── */}
+      {/* ── Live Drone Footage Background + HUD Canvas Overlay ── */}
       <div className="drone-hud-bg">
-        <div className="warground-terrain-layer" />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            minWidth: '100%',
+            minHeight: '100%',
+            width: 'auto',
+            height: 'auto',
+            transform: 'translate(-50%, -50%)',
+            objectFit: 'cover',
+            zIndex: 0,
+            filter: 'contrast(1.15) brightness(0.85) saturate(0.7) hue-rotate(160deg)',
+          }}
+        >
+          <source src="/footage.mp4" type="video/mp4" />
+        </video>
         <canvas 
           ref={canvasRef} 
-          className="hud-canvas" 
           style={{ 
             position: 'absolute', 
-            inset: 0, 
-            width: '100vw', 
-            height: '100vh', 
+            top: 0, 
+            left: 0, 
+            width: '100%', 
+            height: '100%', 
             zIndex: 2, 
-            display: 'block' 
+            display: 'block',
+            pointerEvents: 'none'
           }} 
         />
         <div className="hud-vignette" />
