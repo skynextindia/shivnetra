@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHIVNETRA 47 - Brochure Page 03 (Executive Vision & Border Doctrine)</title>
+  
+  <!-- Modern Tactical Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --camo-dark: #070c09;
+      --camo-base: #0f1812;
+      --camo-surface: #142118;
+      --camo-sage: #7a9781;
+      --camo-border: #233427;
+      --saffron: #d97706;
+      --saffron-bright: #f59e0b;
+      --saffron-glow: rgba(245, 158, 11, 0.3);
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --card-border: rgba(122, 151, 129, 0.35);
+      --panel-bg: rgba(14, 23, 17, 0.95);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #050806;
+      font-family: 'Inter', sans-serif;
+      color: var(--slate-200);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* In-Tab Screen Controls */
+    .view-controls {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      gap: 10px;
+      background: rgba(10, 16, 12, 0.9);
+      border: 1px solid rgba(122, 151, 129, 0.4);
+      padding: 6px 12px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
+    .view-btn {
+      background: #1a271f;
+      border: 1px solid rgba(122, 151, 129, 0.3);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .view-btn:hover {
+      background: var(--saffron);
+      border-color: var(--saffron-bright);
+    }
+    .view-btn.active {
+      background: var(--saffron);
+      color: #ffffff;
+    }
+
+    /* Outer stage for auto-fitting in browser tabs */
+    .page-stage {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 0;
+      overflow-y: auto;
+    }
+
+    /* A4 Portrait: 210mm × 297mm (2480px × 3508px @ 300 DPI) */
+    .a4-page {
+      width: 2480px;
+      height: 3508px;
+      background: radial-gradient(circle at 80% 12%, #132117 0%, #070c09 50%, #040705 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 105px 125px;
+      box-shadow: 0 0 100px rgba(0, 0, 0, 0.95);
+      margin: 0 auto;
+      transform-origin: top center;
+    }
+
+    /* Print and Export Capture settings */
+    @media print, screen and (min-width: 2400px) {
+      .view-controls { display: none !important; }
+      .page-stage { padding: 0 !important; }
+      body, html {
+        background: #000000 !important;
+      }
+      @page {
+        size: 210mm 297mm;
+        margin: 0;
+      }
+      .a4-page {
+        transform: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+    }
+
+    /* Technical grid overlay */
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(122, 151, 129, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(122, 151, 129, 0.05) 1px, transparent 1px);
+      background-size: 70px 70px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Outer tactical corner brackets */
+    .corner-bracket {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--camo-sage);
+      pointer-events: none;
+      z-index: 10;
+    }
+    .corner-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
+    .corner-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+
+    .crosshair {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      color: var(--camo-sage);
+      opacity: 0.85;
+      pointer-events: none;
+      z-index: 10;
+      letter-spacing: 1.5px;
+    }
+    .crosshair-tl { top: 46px; left: 105px; }
+    .crosshair-tr { top: 46px; right: 105px; }
+    .crosshair-bl { bottom: 46px; left: 105px; }
+    .crosshair-br { bottom: 46px; right: 105px; }
+
+    /* Top Header Bar */
+    .header-bar {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      border-bottom: 2.5px solid rgba(122, 151, 129, 0.35);
+      padding-bottom: 38px;
+    }
+
+    .classification-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      letter-spacing: 3.5px;
+      color: #b0c4b8;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      background: rgba(217, 119, 6, 0.16);
+      border: 1.5px solid var(--saffron-bright);
+      color: var(--saffron-bright);
+      padding: 11px 26px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+    }
+
+    .status-badge::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: var(--saffron-bright);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--saffron-bright);
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .main-logo-box {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo-img {
+      height: 112px;
+      width: auto;
+      filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.7));
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 3px solid rgba(122, 151, 129, 0.45);
+      padding-left: 28px;
+    }
+
+    .company-legal-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      color: var(--slate-100);
+      text-transform: uppercase;
+    }
+
+    .company-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--camo-sage);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .badges-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .sovereign-tag {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(17, 30, 21, 0.95);
+      border: 1.5px solid rgba(122, 151, 129, 0.5);
+      padding: 12px 28px;
+      border-radius: 6px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    .tricolor-flag {
+      display: flex;
+      flex-direction: column;
+      width: 28px;
+      height: 20px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .flag-saffron { flex: 1; background: #FF9933; }
+    .flag-white { flex: 1; background: #FFFFFF; }
+    .flag-green { flex: 1; background: #138808; }
+
+    .sovereign-tag-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .soft-tech-partner {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 17px;
+      color: #a6bcb0;
+      letter-spacing: 1px;
+    }
+    .soft-tech-partner span {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Hero Headline Section */
+    .hero-section {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 12px 0 8px 0;
+    }
+
+    .eyebrow-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 23px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 4.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .eyebrow-tag::before {
+      content: '';
+      width: 48px;
+      height: 4px;
+      background: var(--saffron-bright);
+    }
+
+    .main-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 86px;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .main-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 20%, var(--saffron-bright) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-description {
+      font-family: 'Barlow', sans-serif;
+      font-size: 29px;
+      line-height: 1.5;
+      color: #d6e2db;
+      max-width: 2200px;
+      font-weight: 400;
+    }
+
+    /* Strategic Imperative 2-Column Grid */
+    .doctrine-context-grid {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 10px 0;
+    }
+
+    .context-card {
+      background: var(--panel-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      padding: 34px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.65);
+    }
+    .context-card.threat {
+      border-left: 6px solid #ef4444;
+    }
+    .context-card.solution {
+      border-left: 6px solid var(--saffron-bright);
+    }
+
+    .context-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid rgba(122, 151, 129, 0.25);
+      padding-bottom: 14px;
+    }
+
+    .context-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+    .context-card.threat .context-label { color: #f87171; }
+    .context-card.solution .context-label { color: var(--saffron-bright); }
+
+    .context-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      background: rgba(10, 16, 12, 0.9);
+      border: 1px solid rgba(122, 151, 129, 0.4);
+      padding: 4px 12px;
+      border-radius: 4px;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    .context-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .context-bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .context-bullet-list li {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.48;
+      color: #cbd8d0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .context-bullet-list li strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .context-card.threat .context-bullet-list li::before {
+      content: '✖';
+      color: #f87171;
+      font-size: 14px;
+      margin-top: 3px;
+    }
+    .context-card.solution .context-bullet-list li::before {
+      content: '✔';
+      color: var(--saffron-bright);
+      font-size: 14px;
+      margin-top: 3px;
+    }
+
+    /* Central Multi-Tier Battlefield System Stage */
+    .system-diagram-stage {
+      position: relative;
+      z-index: 5;
+      background: rgba(11, 18, 13, 0.96);
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 24px 34px 28px 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+      margin: 10px 0;
+    }
+
+    .stage-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid rgba(122, 151, 129, 0.25);
+      padding-bottom: 12px;
+    }
+
+    .stage-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .stage-title::before {
+      content: '◈';
+      color: var(--saffron-bright);
+      font-size: 20px;
+    }
+
+    .stage-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      color: var(--camo-sage);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .diagram-display-box {
+      width: 100%;
+      height: 380px;
+      background: #000000;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(122, 151, 129, 0.3);
+    }
+
+    .diagram-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: contrast(1.1) brightness(0.95);
+    }
+
+    .diagram-hud-tag {
+      position: absolute;
+      bottom: 14px;
+      right: 18px;
+      background: rgba(10, 16, 12, 0.9);
+      border: 1px solid rgba(122, 151, 129, 0.5);
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: var(--saffron-bright);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    /* 3-Tier Tactical Capability Breakdown Columns */
+    .three-tier-grid {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 36px;
+      margin: 10px 0;
+    }
+
+    .tier-card {
+      background: var(--panel-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+      position: relative;
+    }
+    .tier-card:nth-child(1) { border-top: 5px solid var(--camo-sage); }
+    .tier-card:nth-child(2) { border-top: 5px solid var(--saffron-bright); }
+    .tier-card:nth-child(3) { border-top: 5px solid #38bdf8; }
+
+    .tier-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tier-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--saffron-bright);
+    }
+
+    .tier-class-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: var(--slate-400);
+      background: rgba(10, 16, 12, 0.85);
+      border: 1px solid rgba(122, 151, 129, 0.35);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .tier-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 27px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .tier-summary {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.48;
+      color: #cad8ce;
+    }
+
+    .tier-specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: rgba(8, 14, 10, 0.75);
+      border: 1px solid rgba(122, 151, 129, 0.25);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: auto;
+    }
+
+    .tier-spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .tier-spec-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--slate-400);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .tier-spec-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+    .tier-spec-val span {
+      color: var(--saffron-bright);
+      font-size: 16px;
+    }
+
+    /* Environmental & Operational Standards Bar */
+    .environmental-bar {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      background: rgba(14, 21, 17, 0.96);
+      border: 2px solid rgba(122, 151, 129, 0.4);
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.65);
+      margin: 8px 0;
+    }
+
+    .env-tile {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-left: 4px solid var(--saffron-bright);
+      padding-left: 20px;
+    }
+    .env-tile:first-child {
+      border-left-color: var(--camo-sage);
+    }
+
+    .env-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 46px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .env-num span {
+      font-size: 24px;
+      color: var(--saffron-bright);
+      font-weight: 700;
+    }
+
+    .env-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--camo-sage);
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .env-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 15.5px;
+      line-height: 1.4;
+      color: #b0c4b8;
+    }
+
+    /* Footer Strip */
+    .footer-strip {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2.5px solid rgba(122, 151, 129, 0.35);
+      padding-top: 28px;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-corp {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--slate-100);
+      text-transform: uppercase;
+    }
+
+    .footer-reg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: #9cb5a6;
+      letter-spacing: 1px;
+    }
+
+    .footer-center {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19.5px;
+      color: #c7d8ce;
+    }
+    .footer-center a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .footer-center a:hover {
+      color: var(--saffron-bright);
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .tech-collab-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16.5px;
+      color: #9cb5a6;
+      letter-spacing: 1px;
+    }
+    .tech-collab-badge span {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .page-num-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- In-Tab View Controls -->
+  <div class="view-controls">
+    <button class="view-btn active" id="btnFitScreen" onclick="setMode('fit')">⤢ Fit Screen</button>
+    <button class="view-btn" id="btnActualSize" onclick="setMode('actual')">100% Actual Size</button>
+    <button class="view-btn" onclick="window.print()">🖨️ Print / PDF</button>
+  </div>
+
+  <div class="page-stage" id="pageStage">
+    
+    <div class="a4-page" id="a4Page">
+      <!-- Background grid -->
+      <div class="grid-overlay"></div>
+
+      <!-- Outer corner reticles -->
+      <div class="corner-bracket corner-tl"></div>
+      <div class="corner-bracket corner-tr"></div>
+      <div class="corner-bracket corner-bl"></div>
+      <div class="corner-bracket corner-br"></div>
+      
+      <div class="crosshair crosshair-tl">+ 003/A4-P</div>
+      <div class="crosshair crosshair-tr">2480x3508 [210x297mm]</div>
+      <div class="crosshair crosshair-bl">LAT 28°36'N</div>
+      <div class="crosshair crosshair-br">IND-DEF-2026</div>
+
+      <!-- TOP HEADER BAR -->
+      <header class="header-bar">
+        <div class="classification-strip">
+          <div class="status-badge">SOVEREIGN AIR DEFENCE CAPABILITY BRIEF • 2026-2027</div>
+          <div>DOCUMENT REF: SN47-UAS-BR-03 • OPERATIONAL DOCTRINE & THEATRE ARCHITECTURE</div>
+        </div>
+
+        <div class="brand-row">
+          <div class="main-logo-box">
+            <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="logo-img">
+            <div class="brand-meta">
+              <div class="company-legal-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+              <div class="company-subtitle">Autonomous Air Systems • Swarm Intelligence • Tactical Logistics</div>
+            </div>
+          </div>
+
+          <div class="badges-right">
+            <div class="sovereign-tag">
+              <div class="tricolor-flag">
+                <div class="flag-saffron"></div>
+                <div class="flag-white"></div>
+                <div class="flag-green"></div>
+              </div>
+              <div class="sovereign-tag-text">MAKE IN INDIA • ATMANIRBHAR BHARAT</div>
+            </div>
+            <div class="soft-tech-partner">
+              Engineering Collaboration: <span>BCN In-House Technology Team</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- HERO HEADLINE SECTION -->
+      <section class="hero-section">
+        <div class="eyebrow-tag">PART I: TACTICAL SWARM & OVERWATCH ISTAR • SECTION 01</div>
+        <h1 class="main-title">
+          SOVEREIGN BORDER DOCTRINE<br>
+          <span class="gradient-text">& MULTI-TIER AERIAL ARCHITECTURE</span>
+        </h1>
+        <p class="title-description">
+          An indigenous operational framework engineered for the unforgiving geography of India's forward northern and western frontiers—unifying expendable frontline swarm intelligence, persistent overwatch relays, and runway-independent cargo VTOL resupply under contested electronic warfare conditions.
+        </p>
+      </section>
+
+      <!-- STRATEGIC IMPERATIVE 2-COLUMN GRID -->
+      <section class="doctrine-context-grid">
+        
+        <!-- CARD 1: THE FORWARD BORDER CHALLENGE -->
+        <article class="context-card threat">
+          <div class="context-header">
+            <span class="context-label">THE OPERATIONAL CHALLENGE</span>
+            <span class="context-badge">CONTESTED MOUNTAIN FRONTIER</span>
+          </div>
+          <div class="context-title">High-Altitude Himalayan Friction</div>
+          <ul class="context-bullet-list">
+            <li><strong>Severe Himalayan Environment:</strong> High-altitude terrain (8,000–16,000 ft AMSL), thin air reducing rotor efficiency, gale-force wind shears, and sub-zero temperatures down to -25°C.</li>
+            <li><strong>Contested Electronic Warfare:</strong> Adversary wideband RF jamming, satellite navigation (GNSS) spoofing, and severe communication attenuation through deep mountain valleys.</li>
+            <li><strong>Runway Infrastructure Deficit:</strong> Isolated frontline outposts, treacherous ridgelines, and glacial passes lack paved airstrips, making conventional fixed-wing UAVs entirely unviable.</li>
+            <li><strong>High-Risk Manned Sorties:</strong> Reliance on piloted helicopters incurs extreme financial expense, vulnerable flight paths to MANPADS threats, and weather grounding risks.</li>
+          </ul>
+        </article>
+
+        <!-- CARD 2: THE SHIVNETRA 47 RESPONSE -->
+        <article class="context-card solution">
+          <div class="context-header">
+            <span class="context-label">SOVEREIGN AIR ARCHITECTURE</span>
+            <span class="context-badge">MULTI-TIER INTEGRATION</span>
+          </div>
+          <div class="context-title">Autonomous Decentralized Teaming</div>
+          <ul class="context-bullet-list">
+            <li><strong>Zero Runway Dependence:</strong> 100% vertical takeoff and landing (VTOL) enables autonomous launch and recovery from small rocky outpost pads, trucks, or forward bases.</li>
+            <li><strong>Self-Healing Swarm Mesh:</strong> Decentralized peer-to-peer RF data routing ensures continuous telemetry and video streaming even if multiple nodes are jammed or destroyed.</li>
+            <li><strong>Anti-Jam NAVIC Navigation:</strong> Autonomous flight control coupled to indigenous NAVIC satellite synchronization with fallback optical visual-inertial odometry (VIO).</li>
+            <li><strong>Cross-Functional Payload Architecture:</strong> Swappable sensor bays and cargo modules allowing tactical transitions between ISR overwatch and urgent trauma resupply.</li>
+          </ul>
+        </article>
+
+      </section>
+
+      <!-- CENTRAL MULTI-TIER BATTLEFIELD SYSTEM STAGE -->
+      <section class="system-diagram-stage">
+        <div class="stage-header-row">
+          <div class="stage-title">Synchronized Multi-Tier Battlefield System Architecture</div>
+          <div class="stage-meta">TACTICAL SCHEMATIC • DISTRIBUTED C2 NETWORK</div>
+        </div>
+
+        <div class="diagram-display-box">
+          <img src="../assets/full_uncropped_sys24.png" alt="Multi-Tier Tactical System Architecture" class="diagram-img">
+          <div class="diagram-hud-tag">SECURE RF MESH • NAVIC TIME-SYNC • BVLOS READY</div>
+        </div>
+      </section>
+
+      <!-- 3-TIER TACTICAL CAPABILITY BREAKDOWN COLUMNS -->
+      <section class="three-tier-grid">
+        
+        <!-- TIER 1 -->
+        <article class="tier-card">
+          <div class="tier-badge-row">
+            <span class="tier-pill">TIER 01 • FRONTLINE SCOUT</span>
+            <span class="tier-class-tag">MICRO SWARM</span>
+          </div>
+          <div class="tier-title">Nano-Scout Swarm Node</div>
+          <p class="tier-summary">
+            Ultra-compact, low-acoustic micro UAVs deployed in 6 to 24+ unit swarms for immediate trench clearance, perimeter overwatch, and frontline target handoff without exposing operators.
+          </p>
+          <div class="tier-specs-grid">
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">AUW / Weight</span>
+              <span class="tier-spec-val">350–450 <span>g</span></span>
+            </div>
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Loiter Time</span>
+              <span class="tier-spec-val">25–35 <span>Min</span></span>
+            </div>
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Operating Band</span>
+              <span class="tier-spec-val">Mesh <span>ISM / UHF</span></span>
+            </div>
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Payload</span>
+              <span class="tier-spec-val">Micro <span>EO / IR</span></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- TIER 2 -->
+        <article class="tier-card">
+          <div class="tier-badge-row">
+            <span class="tier-pill">TIER 02 • ENDURANCE RELAY</span>
+            <span class="tier-class-tag">TACTICAL OVERWATCH</span>
+          </div>
+          <div class="tier-title">Overwatch ISTAR Relay</div>
+          <p class="tier-summary">
+            Medium-range, high-altitude tactical air vehicle acting as an airborne communication relay and persistent surveillance platform equipped with gyro-stabilized optical/thermal sensors.
+          </p>
+          <div class="tier-specs-grid">
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Platform MTOW</span>
+              <span class="tier-spec-val">~20 <span>kg Class</span></span>
+            </div>
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Service Ceiling</span>
+              <span class="tier-spec-val">16,000 <span>ft AMSL</span></span>
+            </div>
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Mission Radius</span>
+              <span class="tier-spec-val">50–80 <span>km Link</span></span>
+            </div>
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Sensor Gimbal</span>
+              <span class="tier-spec-val">EO/IR + <span>LRF</span></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- TIER 3 -->
+        <article class="tier-card">
+          <div class="tier-badge-row">
+            <span class="tier-pill">TIER 03 • TACTICAL LOGISTICS</span>
+            <span class="tier-class-tag">CARGO VTOL</span>
+          </div>
+          <div class="tier-title">Heavy Hybrid Logistics VTOL</div>
+          <p class="tier-summary">
+            Runway-free hybrid VTOL delivering vital blood plasma, emergency munitions, and critical spares to high-altitude outposts with precision winch drop and parachute recovery.
+          </p>
+          <div class="tier-specs-grid">
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Payload Capacity</span>
+              <span class="tier-spec-val">5–10 <span>to 200 kg</span></span>
+            </div>
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Transit Range</span>
+              <span class="tier-spec-val">100+ <span>km Transit</span></span>
+            </div>
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Cruise Speed</span>
+              <span class="tier-spec-val">120–180 <span>km/h</span></span>
+            </div>
+            <div class="tier-spec-item">
+              <span class="tier-spec-lbl">Power System</span>
+              <span class="tier-spec-val">Hybrid <span>Electric</span></span>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- ENVIRONMENTAL & OPERATIONAL STANDARDS BAR -->
+      <section class="environmental-bar">
+        <div class="env-tile">
+          <div class="env-num">16,000 <span>ft</span></div>
+          <div class="env-label">High-Altitude Operational Ceiling</div>
+          <div class="env-desc">Aerodynamically tailored high-aspect wings and optimized rotor profiles for thin-air mountain passes.</div>
+        </div>
+
+        <div class="env-tile">
+          <div class="env-num">-25°C <span>to +55°C</span></div>
+          <div class="env-label">Extreme Thermal Envelope</div>
+          <div class="env-desc">Sub-zero battery thermal management coupled with desert dust and monsoon water-ingress protection.</div>
+        </div>
+
+        <div class="env-tile">
+          <div class="env-num">45 <span>km/h</span></div>
+          <div class="env-label">Mountain Wind Shear Resistance</div>
+          <div class="env-desc">Autonomous dynamic rotor torque balancing resisting severe mountain valley updrafts and gusts.</div>
+        </div>
+
+        <div class="env-tile">
+          <div class="env-num">100% <span>Runway-Free</span></div>
+          <div class="env-label">Tactical VTOL Deployment</div>
+          <div class="env-desc">Independent vertical ascent and landing from isolated border posts, warship decks, or light vehicles.</div>
+        </div>
+      </section>
+
+      <!-- FOOTER STRIP -->
+      <footer class="footer-strip">
+        <div class="footer-left">
+          <div class="footer-corp">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+          <div class="footer-reg">CIN: U30309MH2024PTC428120 • Indigenous Drone & Air Defence Manufacturer</div>
+        </div>
+
+        <div class="footer-center">
+          <span>Web: <a href="https://shivnetra47.tech" target="_blank">shivnetra47.tech</a></span>
+          <span>•</span>
+          <span>Contact: <a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
+        </div>
+
+        <div class="footer-right">
+          <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
+          <div class="page-num-pill">A4 BROCHURE • PAGE 03 / 14</div>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
+  <script>
+    let currentMode = 'fit';
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById('btnFitScreen').classList.toggle('active', mode === 'fit');
+      document.getElementById('btnActualSize').classList.toggle('active', mode === 'actual');
+      updateA4Scale();
+    }
+
+    function updateA4Scale() {
+      const page = document.getElementById('a4Page');
+      const stage = document.getElementById('pageStage');
+      if (!page) return;
+
+      if (window.innerWidth >= 2400 && window.innerHeight >= 3400) {
+        page.style.transform = 'none';
+        page.style.margin = '0 auto';
+        stage.style.height = 'auto';
+        return;
+      }
+
+      if (currentMode === 'fit') {
+        const availW = window.innerWidth - 60;
+        const availH = window.innerHeight - 60;
+        const scale = Math.min(availW / 2480, availH / 3508);
+        page.style.transform = `scale(${scale})`;
+        page.style.transformOrigin = 'top center';
+        stage.style.height = `${3508 * scale + 60}px`;
+      } else {
+        page.style.transform = 'none';
+        page.style.margin = '30px auto';
+        stage.style.height = 'auto';
+      }
+    }
+
+    window.addEventListener('resize', updateA4Scale);
+    window.addEventListener('DOMContentLoaded', updateA4Scale);
+    setTimeout(updateA4Scale, 100);
+  </script>
+
+</body>
+</html>
