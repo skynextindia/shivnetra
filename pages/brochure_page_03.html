@@ -368,17 +368,17 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
-      margin: 10px 0;
+      margin: 18px 0;
     }
 
     .context-card {
       background: var(--panel-bg);
       border: 2px solid var(--card-border);
       border-radius: 12px;
-      padding: 34px 40px;
+      padding: 38px 44px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
       box-shadow: 0 20px 45px rgba(0,0,0,0.65);
     }
     .context-card.threat {
@@ -398,7 +398,7 @@
 
     .context-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
       letter-spacing: 1.8px;
       text-transform: uppercase;
@@ -408,7 +408,7 @@
 
     .context-badge {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
+      font-size: 14.5px;
       background: rgba(10, 16, 12, 0.9);
       border: 1px solid rgba(122, 151, 129, 0.4);
       padding: 4px 12px;
@@ -419,7 +419,7 @@
 
     .context-title {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 1.2px;
@@ -431,13 +431,13 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
 
     .context-bullet-list li {
       font-family: 'Inter', sans-serif;
-      font-size: 18px;
-      line-height: 1.48;
+      font-size: 19px;
+      line-height: 1.52;
       color: #cbd8d0;
       display: flex;
       align-items: flex-start;
@@ -481,12 +481,12 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1.5px solid rgba(122, 151, 129, 0.25);
-      padding-bottom: 12px;
+      padding-bottom: 14px;
     }
 
     .stage-title {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 1.4px;
@@ -498,12 +498,12 @@
     .stage-title::before {
       content: '◈';
       color: var(--saffron-bright);
-      font-size: 20px;
+      font-size: 22px;
     }
 
     .stage-meta {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
+      font-size: 16px;
       color: var(--camo-sage);
       letter-spacing: 1.5px;
       text-transform: uppercase;
@@ -512,37 +512,24 @@
 
     .diagram-display-box {
       width: 100%;
-      height: 380px;
+      height: 507px;
       background: #000000;
-      border-radius: 8px;
+      border-radius: 10px;
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(122, 151, 129, 0.3);
+      border: 2px solid rgba(122, 151, 129, 0.45);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
     }
 
     .diagram-img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: contrast(1.1) brightness(0.95);
-    }
-
-    .diagram-hud-tag {
-      position: absolute;
-      bottom: 14px;
-      right: 18px;
-      background: rgba(10, 16, 12, 0.9);
-      border: 1px solid rgba(122, 151, 129, 0.5);
-      padding: 6px 16px;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13.5px;
-      color: var(--saffron-bright);
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
+      object-position: center;
+      display: block;
     }
 
     /* 3-Tier Tactical Capability Breakdown Columns */
@@ -552,17 +539,17 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 36px;
-      margin: 10px 0;
+      margin: 18px 0;
     }
 
     .tier-card {
       background: var(--panel-bg);
       border: 2px solid var(--card-border);
       border-radius: 12px;
-      padding: 28px 32px;
+      padding: 36px 36px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
       position: relative;
     }
@@ -578,7 +565,7 @@
 
     .tier-pill {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 14.5px;
+      font-size: 15.5px;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
@@ -587,17 +574,17 @@
 
     .tier-class-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13.5px;
+      font-size: 14px;
       color: var(--slate-400);
       background: rgba(10, 16, 12, 0.85);
       border: 1px solid rgba(122, 151, 129, 0.35);
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 4px;
     }
 
     .tier-title {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 27px;
+      font-size: 32px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 1.2px;
@@ -607,31 +594,31 @@
 
     .tier-summary {
       font-family: 'Inter', sans-serif;
-      font-size: 17px;
-      line-height: 1.48;
+      font-size: 18.5px;
+      line-height: 1.52;
       color: #cad8ce;
     }
 
     .tier-specs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 16px;
       background: rgba(8, 14, 10, 0.75);
       border: 1px solid rgba(122, 151, 129, 0.25);
       border-radius: 8px;
-      padding: 16px;
+      padding: 20px 22px;
       margin-top: auto;
     }
 
     .tier-spec-item {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
     }
 
     .tier-spec-lbl {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--slate-400);
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -640,14 +627,14 @@
 
     .tier-spec-val {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 700;
       color: #ffffff;
       letter-spacing: 1px;
     }
     .tier-spec-val span {
       color: var(--saffron-bright);
-      font-size: 16px;
+      font-size: 18px;
     }
 
     /* Environmental & Operational Standards Bar */
@@ -660,17 +647,17 @@
       background: rgba(14, 21, 17, 0.96);
       border: 2px solid rgba(122, 151, 129, 0.4);
       border-radius: 12px;
-      padding: 30px 40px;
+      padding: 38px 44px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.65);
-      margin: 8px 0;
+      margin: 18px 0;
     }
 
     .env-tile {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       border-left: 4px solid var(--saffron-bright);
-      padding-left: 20px;
+      padding-left: 22px;
     }
     .env-tile:first-child {
       border-left-color: var(--camo-sage);
@@ -678,21 +665,21 @@
 
     .env-num {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 46px;
+      font-size: 54px;
       font-weight: 800;
       color: #ffffff;
       line-height: 1;
       letter-spacing: 1px;
     }
     .env-num span {
-      font-size: 24px;
+      font-size: 26px;
       color: var(--saffron-bright);
       font-weight: 700;
     }
 
     .env-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
+      font-size: 16.5px;
       font-weight: 700;
       color: var(--camo-sage);
       letter-spacing: 1.4px;
@@ -701,8 +688,8 @@
 
     .env-desc {
       font-family: 'Inter', sans-serif;
-      font-size: 15.5px;
-      line-height: 1.4;
+      font-size: 17px;
+      line-height: 1.48;
       color: #b0c4b8;
     }
 
@@ -821,7 +808,7 @@
             <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="logo-img">
             <div class="brand-meta">
               <div class="company-legal-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
-              <div class="company-subtitle">Autonomous Air Systems • Swarm Intelligence • Tactical Logistics</div>
+              <div class="company-subtitle">Autonomous Air Systems • Swarm Intelligence • Tactical Air Defence</div>
             </div>
           </div>
 
@@ -896,8 +883,7 @@
         </div>
 
         <div class="diagram-display-box">
-          <img src="../assets/full_uncropped_sys24.png" alt="Multi-Tier Tactical System Architecture" class="diagram-img">
-          <div class="diagram-hud-tag">SECURE RF MESH • NAVIC TIME-SYNC • BVLOS READY</div>
+          <img src="../assets/system_overview_military_camo_2x.png" alt="Synchronized Multi-Tier Battlefield System Architecture" class="diagram-img">
         </div>
       </section>
 
@@ -967,29 +953,29 @@
         <!-- TIER 3 -->
         <article class="tier-card">
           <div class="tier-badge-row">
-            <span class="tier-pill">TIER 03 • TACTICAL LOGISTICS</span>
-            <span class="tier-class-tag">CARGO VTOL</span>
+            <span class="tier-pill">TIER 03 • BATTLEFIELD C2</span>
+            <span class="tier-class-tag">TACTICAL GCS</span>
           </div>
-          <div class="tier-title">Heavy Hybrid Logistics VTOL</div>
+          <div class="tier-title">Tactical GCS & C2 Node</div>
           <p class="tier-summary">
-            Runway-free hybrid VTOL delivering vital blood plasma, emergency munitions, and critical spares to high-altitude outposts with precision winch drop and parachute recovery.
+            Ruggedized field command workstation synchronizing multi-UAV swarm sorties, real-time EO/IR thermal targeting feeds, and sovereign NAVIC encrypted data-links in contested GPS-denied environments.
           </p>
           <div class="tier-specs-grid">
             <div class="tier-spec-item">
-              <span class="tier-spec-lbl">Payload Capacity</span>
-              <span class="tier-spec-val">5–10 <span>to 200 kg</span></span>
+              <span class="tier-spec-lbl">C2 Console</span>
+              <span class="tier-spec-val">Dual 15.6" <span>Screen</span></span>
             </div>
             <div class="tier-spec-item">
-              <span class="tier-spec-lbl">Transit Range</span>
-              <span class="tier-spec-val">100+ <span>km Transit</span></span>
+              <span class="tier-spec-lbl">Mesh Datalink</span>
+              <span class="tier-spec-val">FHSS <span>32 dB Jam-Res</span></span>
             </div>
             <div class="tier-spec-item">
-              <span class="tier-spec-lbl">Cruise Speed</span>
-              <span class="tier-spec-val">120–180 <span>km/h</span></span>
+              <span class="tier-spec-lbl">Navigation</span>
+              <span class="tier-spec-val">NAVIC L5/S <span>+ VIO</span></span>
             </div>
             <div class="tier-spec-item">
-              <span class="tier-spec-lbl">Power System</span>
-              <span class="tier-spec-val">Hybrid <span>Electric</span></span>
+              <span class="tier-spec-lbl">Sortie Capacity</span>
+              <span class="tier-spec-val">24+ <span>Concurrent</span></span>
             </div>
           </div>
         </article>

@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHIVNETRA 47 - Brochure Page 04 (Swarm Architecture & Mesh Dynamics)</title>
+  
+  <!-- Modern Tactical Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --camo-dark: #070c09;
+      --camo-base: #0f1812;
+      --camo-surface: #142118;
+      --camo-sage: #7a9781;
+      --camo-border: #233427;
+      --saffron: #d97706;
+      --saffron-bright: #f59e0b;
+      --saffron-glow: rgba(245, 158, 11, 0.3);
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --card-border: rgba(122, 151, 129, 0.35);
+      --panel-bg: rgba(14, 23, 17, 0.95);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      background-color: #030504;
+      font-family: 'Inter', sans-serif;
+      color: var(--slate-100);
+      overflow-x: hidden;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Floating View Controls for browser tab */
+    .view-controls {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      gap: 10px;
+      background: rgba(10, 16, 12, 0.9);
+      border: 1px solid rgba(122, 151, 129, 0.4);
+      padding: 6px 12px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
+    .view-btn {
+      background: #1a271f;
+      border: 1px solid rgba(122, 151, 129, 0.3);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .view-btn:hover {
+      background: var(--saffron);
+      border-color: var(--saffron-bright);
+    }
+    .view-btn.active {
+      background: var(--saffron);
+      color: #ffffff;
+    }
+
+    /* Outer stage for auto-fitting in browser tabs */
+    .page-stage {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 0;
+      overflow-y: auto;
+    }
+
+    /* A4 Portrait: 210mm × 297mm (2480px × 3508px @ 300 DPI) */
+    .a4-page {
+      width: 2480px;
+      height: 3508px;
+      background: radial-gradient(circle at 80% 12%, #132117 0%, #070c09 50%, #040705 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 105px 125px;
+      box-shadow: 0 0 100px rgba(0, 0, 0, 0.95);
+      margin: 0 auto;
+      transform-origin: top center;
+    }
+
+    /* Print and Export Capture settings */
+    @media print, screen and (min-width: 2400px) {
+      .view-controls { display: none !important; }
+      .page-stage { padding: 0 !important; }
+      body, html {
+        background: #000000 !important;
+      }
+      @page {
+        size: 210mm 297mm;
+        margin: 0;
+      }
+      .a4-page {
+        transform: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+    }
+
+    /* Technical grid overlay */
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(122, 151, 129, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(122, 151, 129, 0.05) 1px, transparent 1px);
+      background-size: 70px 70px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Outer tactical corner brackets */
+    .corner-bracket {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--camo-sage);
+      pointer-events: none;
+      z-index: 10;
+    }
+    .corner-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
+    .corner-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+
+    .crosshair {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      color: var(--camo-sage);
+      opacity: 0.85;
+      pointer-events: none;
+      z-index: 10;
+      letter-spacing: 1.5px;
+    }
+    .crosshair-tl { top: 46px; left: 105px; }
+    .crosshair-tr { top: 46px; right: 105px; }
+    .crosshair-bl { bottom: 46px; left: 105px; }
+    .crosshair-br { bottom: 46px; right: 105px; }
+
+    /* Top Header Bar */
+    .header-bar {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      border-bottom: 2.5px solid rgba(122, 151, 129, 0.35);
+      padding-bottom: 34px;
+    }
+
+    .classification-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      letter-spacing: 3.5px;
+      color: #b0c4b8;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      background: rgba(217, 119, 6, 0.16);
+      border: 1.5px solid var(--saffron-bright);
+      color: var(--saffron-bright);
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 19px;
+    }
+    .status-badge::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: var(--saffron-bright);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--saffron-bright);
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .main-logo-box {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo-img {
+      height: 115px;
+      width: auto;
+      filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.7));
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 3px solid rgba(122, 151, 129, 0.45);
+      padding-left: 28px;
+    }
+
+    .company-legal-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      color: var(--slate-100);
+      text-transform: uppercase;
+    }
+
+    .company-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--camo-sage);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .badges-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .sovereign-tag {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(17, 30, 21, 0.95);
+      border: 1.5px solid rgba(122, 151, 129, 0.5);
+      padding: 13px 30px;
+      border-radius: 6px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    .tricolor-flag {
+      display: flex;
+      flex-direction: column;
+      width: 28px;
+      height: 20px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .flag-saffron { flex: 1; background: #FF9933; }
+    .flag-white { flex: 1; background: #FFFFFF; }
+    .flag-green { flex: 1; background: #138808; }
+
+    .sovereign-tag-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .soft-tech-partner {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px;
+      color: #a0b5a8;
+      letter-spacing: 1.5px;
+    }
+    .soft-tech-partner span {
+      color: var(--saffron-bright);
+      font-weight: 700;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+    }
+    .eyebrow-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--saffron-bright);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .eyebrow-tag::before {
+      content: '►';
+      font-size: 18px;
+    }
+    .main-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 80px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .title-description {
+      font-size: 27px;
+      line-height: 1.55;
+      color: var(--slate-300);
+      max-width: 98%;
+      font-weight: 400;
+    }
+
+    .hero-quick-meta-bar {
+      display: flex;
+      gap: 22px;
+      margin-top: 10px;
+    }
+    .meta-chip {
+      background: rgba(18, 28, 21, 0.9);
+      border: 1.5px solid rgba(122, 151, 129, 0.4);
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--slate-200);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .meta-chip span {
+      color: var(--saffron-bright);
+    }
+
+    /* DUAL SWARM ARCHITECTURE STAGE */
+    .dual-swarm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .swarm-card {
+      background: var(--panel-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.65);
+    }
+
+    .swarm-card-header {
+      padding: 24px 32px;
+      background: rgba(16, 26, 19, 0.95);
+      border-bottom: 2px solid rgba(122, 151, 129, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .swarm-header-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .swarm-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--saffron-bright);
+      border: 1.5px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .swarm-ref-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--camo-sage);
+      background: rgba(18, 28, 21, 0.9);
+      border: 1px solid rgba(122, 151, 129, 0.4);
+      padding: 6px 14px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    .swarm-diagram-box {
+      width: 100%;
+      aspect-ratio: 2048 / 480;
+      height: auto;
+      background: transparent;
+      border-bottom: 2px solid rgba(122, 151, 129, 0.25);
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      display: block;
+    }
+    .swarm-diagram-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .swarm-card-body {
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .swarm-role-strip {
+      font-family: 'Barlow', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--camo-sage);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .swarm-desc-text {
+      font-size: 24px;
+      line-height: 1.52;
+      color: var(--slate-300);
+    }
+
+    .swarm-specs-matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 28px;
+      background: rgba(11, 18, 13, 0.85);
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      border-radius: 8px;
+      padding: 20px 26px;
+      margin-top: 6px;
+    }
+    .spec-node {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .spec-node-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 17px;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .spec-node-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .spec-node-val span {
+      color: var(--saffron-bright);
+      font-size: 22px;
+    }
+
+    .swarm-capabilities-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .swarm-capabilities-list li {
+      font-size: 23px;
+      line-height: 1.48;
+      color: var(--slate-300);
+      position: relative;
+      padding-left: 30px;
+    }
+    .swarm-capabilities-list li::before {
+      content: '■';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      font-size: 16px;
+      color: var(--saffron-bright);
+    }
+
+    /* 4-CARD ALGORITHM & WORKFLOW GRID */
+    .workflow-features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-card {
+      background: rgba(14, 23, 17, 0.95);
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      border-radius: 8px;
+      padding: 26px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .feature-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .feature-icon-box {
+      width: 44px;
+      height: 44px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1.5px solid rgba(245, 158, 11, 0.5);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--saffron-bright);
+    }
+    .feature-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .feature-desc {
+      font-size: 21px;
+      line-height: 1.5;
+      color: var(--slate-300);
+    }
+
+    /* TACTICAL METRICS STRIP */
+    .tactical-metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      background: rgba(13, 22, 16, 0.95);
+      border: 2px solid rgba(122, 151, 129, 0.4);
+      border-radius: 10px;
+      padding: 30px 40px;
+      position: relative;
+      z-index: 2;
+    }
+    .t-metric-tile {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-right: 2px dashed rgba(122, 151, 129, 0.3);
+      padding-right: 24px;
+    }
+    .t-metric-tile:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+    .t-metric-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 46px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+    .t-metric-val span {
+      color: var(--saffron-bright);
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .t-metric-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--camo-sage);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .t-metric-sub {
+      font-size: 20px;
+      color: var(--slate-400);
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    /* Footer Strip */
+    .footer-strip {
+      border-top: 2px solid var(--camo-border);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      color: var(--slate-400);
+      position: relative;
+      z-index: 2;
+    }
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .footer-corp {
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .footer-reg {
+      color: var(--camo-sage);
+    }
+    .footer-center {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-center a {
+      color: var(--saffron-bright);
+      text-decoration: none;
+    }
+    .footer-center a:hover {
+      text-decoration: underline;
+    }
+    .footer-doc-code {
+      background: rgba(18, 28, 21, 0.9);
+      border: 1.5px solid rgba(122, 151, 129, 0.4);
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Screen View Controls -->
+  <div class="view-controls">
+    <button class="view-btn active" id="btnFit" onclick="setMode('fit')">⤢ Fit Screen</button>
+    <button class="view-btn" id="btnActual" onclick="setMode('actual')">100% Actual Size</button>
+    <button class="view-btn" onclick="window.print()">🖨️ Print / PDF</button>
+  </div>
+
+  <div class="page-stage" id="pageStage">
+    <div class="a4-page" id="a4Page">
+      <div class="grid-overlay"></div>
+      
+      <!-- Outer Corner Brackets -->
+      <div class="corner-bracket corner-tl"></div>
+      <div class="corner-bracket corner-tr"></div>
+      <div class="corner-bracket corner-bl"></div>
+      <div class="corner-bracket corner-br"></div>
+      
+      <div class="crosshair crosshair-tl">+ 004/A4-P</div>
+      <div class="crosshair crosshair-tr">2480x3508 [210x297mm]</div>
+      <div class="crosshair crosshair-bl">LAT 28°36'N</div>
+      <div class="crosshair crosshair-br">IND-DEF-2026</div>
+
+      <!-- TOP HEADER BAR -->
+      <header class="header-bar">
+        <div class="classification-strip">
+          <div class="status-badge">SOVEREIGN AIR DEFENCE CAPABILITY BRIEF • 2026-2027</div>
+          <div>DOCUMENT REF: SN47-UAS-BR-04 • SWARM ARCHITECTURE & MESH DYNAMICS</div>
+        </div>
+
+        <div class="brand-row">
+          <div class="main-logo-box">
+            <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="logo-img">
+            <div class="brand-meta">
+              <div class="company-legal-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+              <div class="company-subtitle">Autonomous Air Systems • Swarm Intelligence • Tactical Air Defence</div>
+            </div>
+          </div>
+
+          <div class="badges-right">
+            <div class="sovereign-tag">
+              <div class="tricolor-flag">
+                <div class="flag-saffron"></div>
+                <div class="flag-white"></div>
+                <div class="flag-green"></div>
+              </div>
+              <div class="sovereign-tag-text">MAKE IN INDIA • ATMANIRBHAR BHARAT</div>
+            </div>
+            <div class="soft-tech-partner">
+              Engineering Collaboration: <span>BCN In-House Technology Team</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- HERO HEADLINE SECTION -->
+      <section class="hero-section">
+        <div class="eyebrow-tag">DECENTRALIZED SWARM COMMAND & BATTLESPACE DYNAMICS</div>
+        <h1 class="main-title">
+          HETEROGENEOUS SWARM FLEET<br>
+          <span class="gradient-text">& AUTONOMOUS MESH C2</span>
+        </h1>
+        <p class="title-description">
+          A resilient, self-healing peer-to-peer RF mesh architecture coordinating disposable sub-500g Nano-scouts and long-endurance Overwatch VTOL relays—delivering continuous multi-vector border overwatch, collaborative targeting, and uncompromised survivability under electronic warfare denial.
+        </p>
+
+        <div class="hero-quick-meta-bar">
+          <div class="meta-chip"><span>●</span> SQUAD (6 UNITS) & THEATRE (24+ UNITS)</div>
+          <div class="meta-chip"><span>◆</span> PEER-TO-PEER ENCRYPTED RF MESH</div>
+          <div class="meta-chip"><span>▲</span> BVLOS 100+ KM COVERAGE</div>
+          <div class="meta-chip"><span>★</span> ATTRITION-TOLERANT SELF-HEALING</div>
+        </div>
+      </section>
+
+      <!-- DUAL SWARM DEPLOYMENT ARCHITECTURE (6-Node vs 24-Node) -->
+      <section class="dual-swarm-grid">
+        
+        <!-- CARD 1: 6-NODE TACTICAL SQUAD SPREAD -->
+        <article class="swarm-card">
+          <div class="swarm-card-header">
+            <div class="swarm-header-title">6-NODE TACTICAL SQUAD SPREAD</div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span class="swarm-ref-tag">SN47-SYS-06</span>
+              <span class="swarm-badge">SQUAD RECON • RAPID FORWARD POST</span>
+            </div>
+          </div>
+
+          <div class="swarm-diagram-box">
+            <img src="../assets/system_overview_military_camo_2x.png" alt="6-Node Swarm System Diagram" class="swarm-diagram-img">
+          </div>
+
+          <div class="swarm-card-body">
+            <div class="swarm-role-strip">Forward Border Patrol & Perimeter Breach Detection</div>
+            <p class="swarm-desc-text">
+              Lightweight tactical deployment engineered for company-level outposts and rapid reconnaissance. Couples four agile micro Nano-scouts with two high-altitude Overwatch relays for continuous localized overwatch.
+            </p>
+
+            <div class="swarm-specs-matrix">
+              <div class="spec-node">
+                <span class="spec-node-lbl">Fleet Composition</span>
+                <span class="spec-node-val">4x Nano + <span>2x Overwatch</span></span>
+              </div>
+              <div class="spec-node">
+                <span class="spec-node-lbl">Tactical Mesh Range</span>
+                <span class="spec-node-val">25–40 <span>km Line-of-Sight</span></span>
+              </div>
+              <div class="spec-node">
+                <span class="spec-node-lbl">Intra-Swarm Latency</span>
+                <span class="spec-node-val">&lt;85 <span>ms Real-time</span></span>
+              </div>
+              <div class="spec-node">
+                <span class="spec-node-lbl">Setup & Deployment</span>
+                <span class="spec-node-val">&lt;4 <span>Minutes</span></span>
+              </div>
+            </div>
+
+            <ul class="swarm-capabilities-list">
+              <li>Low-acoustic forward scout leapfrogging across steep mountain ridges</li>
+              <li>Dual airborne relay redundancy ensuring unbroken squad tablet video feed</li>
+              <li>Autonomous terrain-following avoiding forward radar cross-sections</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- CARD 2: 24+ NODE SATURATION THEATRE OVERWATCH -->
+        <article class="swarm-card">
+          <div class="swarm-card-header">
+            <div class="swarm-header-title">24+ NODE SATURATION THEATRE SCREEN</div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span class="swarm-ref-tag">SN47-SYS-24</span>
+              <span class="swarm-badge" style="background: rgba(21, 128, 61, 0.2); color: #4ade80; border-color: rgba(74, 222, 128, 0.4);">THEATRE OVERWATCH • HIGH DENSITY</span>
+            </div>
+          </div>
+
+          <div class="swarm-diagram-box">
+            <img src="../assets/system_overview_military_camo_24_2x.png" alt="24-Node Swarm System Diagram" class="swarm-diagram-img">
+          </div>
+
+          <div class="swarm-card-body">
+            <div class="swarm-role-strip">Wide-Area Contested Infiltration Curtain & C-UAS Screen</div>
+            <p class="swarm-desc-text">
+              Wide-area sovereign border curtain deploying 18+ Nano-scouts coordinated by 6 multi-spectral Overwatch relays. Delivers continuous perimeter sealing and collaborative target tracking across complex terrain.
+            </p>
+
+            <div class="swarm-specs-matrix">
+              <div class="spec-node">
+                <span class="spec-node-lbl">Fleet Composition</span>
+                <span class="spec-node-val">18x Nano + <span>6x Overwatch</span></span>
+              </div>
+              <div class="spec-node">
+                <span class="spec-node-lbl">Operational Coverage</span>
+                <span class="spec-node-val">100+ <span>km Sector Radius</span></span>
+              </div>
+              <div class="spec-node">
+                <span class="spec-node-lbl">Simultaneous Tracks</span>
+                <span class="spec-node-val">32+ <span>Target Vectors</span></span>
+              </div>
+              <div class="spec-node">
+                <span class="spec-node-lbl">Attrition Survivability</span>
+                <span class="spec-node-val">Up to <span>40% Node Loss</span></span>
+              </div>
+            </div>
+
+            <ul class="swarm-capabilities-list">
+              <li>Decentralized dynamic multi-hop packet routing without single point of failure</li>
+              <li>Collaborative bounding overwatch and automatic target handoff between nodes</li>
+              <li>Self-reconstituting mesh geometry filling coverage holes if nodes are engaged</li>
+            </ul>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- 4-CARD WORKFLOW & ALGORITHMS ARCHITECTURE -->
+      <section class="workflow-features-grid">
+        
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-icon-box">01</div>
+            <div class="feature-title">P2P Encrypted Mesh</div>
+          </div>
+          <p class="feature-desc">
+            Ad-hoc decentralized peer-to-peer data-links operating on frequency-hopping spread spectrum (FHSS). Every drone functions as an autonomous transceiver relay.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-icon-box">02</div>
+            <div class="feature-title">Bounding Overwatch</div>
+          </div>
+          <p class="feature-desc">
+            Automated leapfrogging logic: forward Nano-scouts advance while high-altitude Overwatch relays maintain elevated optical overwatch and RF line-of-sight.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-icon-box">03</div>
+            <div class="feature-title">Dynamic Target Handoff</div>
+          </div>
+          <p class="feature-desc">
+            Continuous kinematic track maintenance: when targets traverse boundaries, adjacent swarm nodes automatically reposition and slew optical gimbals to preserve lock.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-header">
+            <div class="feature-icon-box">04</div>
+            <div class="feature-title">GPS-Denied Autonomy</div>
+          </div>
+          <p class="feature-desc">
+            Under aggressive electronic jamming or GNSS denial, swarm units switch to visual inertial odometry (VIO) and NAVIC backup to maintain spatial precision.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- TACTICAL OPERATIONAL METRICS STRIP -->
+      <section class="tactical-metrics-bar">
+        <div class="t-metric-tile">
+          <div class="t-metric-val">6 to 64+ <span>Nodes</span></div>
+          <div class="t-metric-title">Swarm Mesh Scalability</div>
+          <div class="t-metric-sub">Modular protocol expansion from squad reconnaissance to brigade-level saturation.</div>
+        </div>
+
+        <div class="t-metric-tile">
+          <div class="t-metric-val">&lt;45 <span>ms</span></div>
+          <div class="t-metric-title">Intra-Swarm Routing Latency</div>
+          <div class="t-metric-sub">Low-latency tactical telemetry and telemetry relay across multi-hop peer nodes.</div>
+        </div>
+
+        <div class="t-metric-tile">
+          <div class="t-metric-val">32 <span>dB</span></div>
+          <div class="t-metric-title">Anti-Jam Processing Gain</div>
+          <div class="t-metric-sub">Frequency-hopping spread spectrum with robust immunity in dense electronic countermeasure zones.</div>
+        </div>
+
+        <div class="t-metric-tile">
+          <div class="t-metric-val">&lt;250 <span>ms</span></div>
+          <div class="t-metric-title">Dynamic Reconstitution</div>
+          <div class="t-metric-sub">Instantaneous network re-routing and autonomous sector coverage filling upon node attrition.</div>
+        </div>
+      </section>
+
+      <!-- FOOTER STRIP -->
+      <footer class="footer-strip">
+        <div class="footer-left">
+          <div class="footer-corp">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+          <div class="footer-reg">CIN: U30309MH2024PTC428120 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
+        </div>
+
+        <div class="footer-center">
+          <span>Web: <a href="https://shivnetra47.tech" target="_blank">shivnetra47.tech</a></span>
+          <span>•</span>
+          <span>Contact: <a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
+        </div>
+
+        <div class="footer-doc-code">
+          PAGE 04 / SN47-UAS-BR-04
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    let currentMode = 'fit';
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById('btnFit').classList.toggle('active', mode === 'fit');
+      document.getElementById('btnActual').classList.toggle('active', mode === 'actual');
+      updateA4Scale();
+    }
+
+    function updateA4Scale() {
+      const page = document.getElementById('a4Page');
+      const stage = document.getElementById('pageStage');
+      if (!page) return;
+
+      if (window.innerWidth >= 2400 && window.innerHeight >= 3400) {
+        page.style.transform = 'none';
+        page.style.margin = '0 auto';
+        stage.style.height = 'auto';
+        return;
+      }
+
+      if (currentMode === 'fit') {
+        const availW = window.innerWidth - 60;
+        const availH = window.innerHeight - 60;
+        const scale = Math.min(availW / 2480, availH / 3508);
+        page.style.transform = `scale(${scale})`;
+        page.style.transformOrigin = 'top center';
+        stage.style.height = `${3508 * scale + 60}px`;
+      } else {
+        page.style.transform = 'none';
+        page.style.margin = '30px auto';
+        stage.style.height = 'auto';
+      }
+    }
+
+    window.addEventListener('resize', updateA4Scale);
+    window.addEventListener('DOMContentLoaded', updateA4Scale);
+    setTimeout(updateA4Scale, 100);
+  </script>
+</body>
+</html>
