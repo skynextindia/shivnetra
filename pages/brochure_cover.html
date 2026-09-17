@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHIVNETRA 47 - Sovereign Defence & Swarm UAS Dossier | Front Cover (A4 Portrait)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #050906;
+      --panel-bg: rgba(9, 15, 11, 0.88);
+      --card-bg: rgba(14, 22, 16, 0.85);
+      --card-border: rgba(122, 151, 129, 0.4);
+      --camo-dark: #141e17;
+      --camo-olive: #344738;
+      --camo-sage: #7a9781;
+      --camo-accent: #a3c4ab;
+      --saffron: #d97706;
+      --saffron-bright: #ff9933;
+      --india-green: #138808;
+      --slate-100: #f8fafc;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      background-color: #020403;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--slate-100);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Floating View Controls */
+    .view-controls {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      gap: 10px;
+      background: rgba(10, 16, 12, 0.92);
+      border: 1px solid rgba(122, 151, 129, 0.4);
+      padding: 6px 14px;
+      border-radius: 8px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.75);
+    }
+    .view-btn {
+      background: #142017;
+      border: 1px solid rgba(122, 151, 129, 0.35);
+      color: #ffffff;
+      padding: 7px 16px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .view-btn:hover {
+      background: var(--saffron-bright);
+      color: #000000;
+      border-color: var(--saffron-bright);
+    }
+    .view-btn.active {
+      background: var(--saffron-bright);
+      color: #000000;
+      font-weight: 700;
+    }
+
+    /* Outer stage for browser view */
+    .page-stage {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 0;
+      overflow-y: auto;
+    }
+
+    /* A4 Portrait: 2480px × 3508px @ 300 DPI */
+    .a4-page {
+      width: 2480px;
+      height: 3508px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 100px 120px 90px 120px;
+      box-shadow: 0 0 120px rgba(0, 0, 0, 0.98);
+      margin: 0 auto;
+      transform-origin: top center;
+      background-color: #050906;
+    }
+
+    /* Full-Bleed High-Res Tactical Background Image */
+    .full-bleed-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      z-index: 0;
+      filter: contrast(1.08) brightness(0.92);
+    }
+
+    /* Cinematic Tactical Vignette & Gradient Overlays */
+    .bg-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        180deg,
+        rgba(3, 7, 4, 0.92) 0%,
+        rgba(5, 10, 6, 0.72) 18%,
+        rgba(4, 8, 5, 0.45) 42%,
+        rgba(3, 7, 4, 0.72) 68%,
+        rgba(2, 5, 3, 0.96) 90%,
+        #020403 100%
+      );
+      pointer-events: none;
+    }
+
+    .bg-radial-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(circle at 50% 28%, rgba(255, 153, 51, 0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Technical Grid Overlay */
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(122, 151, 129, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(122, 151, 129, 0.05) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Tactical HUD Corner Brackets */
+    .corner-bracket {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-color: rgba(255, 153, 51, 0.7);
+      border-style: solid;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .corner-tl { top: 55px; left: 65px; border-width: 4px 0 0 4px; }
+    .corner-tr { top: 55px; right: 65px; border-width: 4px 4px 0 0; }
+    .corner-bl { bottom: 55px; left: 65px; border-width: 0 0 4px 4px; }
+    .corner-br { bottom: 55px; right: 65px; border-width: 0 4px 4px 0; }
+
+    /* Crosshair Metadata Coordinates */
+    .crosshair {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      color: rgba(163, 196, 171, 0.75);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .crosshair-tl { top: 68px; left: 150px; }
+    .crosshair-tr { top: 68px; right: 150px; }
+    .crosshair-bl { bottom: 68px; left: 150px; }
+    .crosshair-br { bottom: 68px; right: 150px; }
+
+    /* Foreground Content Wrapper */
+    .content-layer {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    /* TOP HEADER STRIP */
+    .top-header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .classification-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8, 14, 10, 0.9);
+      border: 1.5px solid rgba(122, 151, 129, 0.45);
+      padding: 12px 30px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16.5px;
+      letter-spacing: 2px;
+      color: var(--slate-300);
+      backdrop-filter: blur(10px);
+    }
+
+    .class-tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 153, 51, 0.18);
+      border: 1px solid var(--saffron-bright);
+      padding: 5px 16px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+    }
+    .class-tag-pill::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--saffron-bright);
+      box-shadow: 0 0 10px var(--saffron-bright);
+    }
+
+    .top-national-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 6px;
+    }
+
+    .sovereign-national-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      background: rgba(12, 20, 14, 0.85);
+      border: 1.5px solid rgba(122, 151, 129, 0.4);
+      padding: 10px 24px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .tricolor-flag {
+      display: flex;
+      flex-direction: column;
+      width: 32px;
+      height: 22px;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .flag-saffron { flex: 1; background: #ff9933; }
+    .flag-white { flex: 1; background: #ffffff; }
+    .flag-green { flex: 1; background: #138808; }
+
+    .sovereign-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 2.2px;
+    }
+
+    .dossier-id-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: var(--camo-accent);
+      letter-spacing: 2px;
+      background: rgba(8, 14, 10, 0.85);
+      border: 1px solid rgba(122, 151, 129, 0.3);
+      padding: 8px 20px;
+      border-radius: 6px;
+    }
+
+    /* CENTER HERO SHOWCASE WITH PROMINENT LOGO */
+    .center-hero-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: auto 0;
+      padding: 40px 0;
+    }
+
+    /* Medallion / Center Logo Frame */
+    .logo-emblem-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 45px;
+    }
+
+    .logo-glow-ring {
+      position: absolute;
+      width: 440px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255, 153, 51, 0.28) 0%, rgba(122, 151, 129, 0.12) 50%, transparent 80%);
+      filter: blur(35px);
+      z-index: -1;
+    }
+
+    .logo-frame {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(8, 14, 10, 0.94);
+      border: 2.5px solid rgba(255, 153, 51, 0.6);
+      border-radius: 20px;
+      padding: 24px 60px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.9),
+        inset 0 0 30px rgba(255, 153, 51, 0.12);
+      backdrop-filter: blur(15px);
+    }
+
+    .logo-svg-main {
+      width: 520px;
+      height: auto;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.8));
+    }
+
+    .legal-name-strip {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      color: #e2e8f0;
+      text-transform: uppercase;
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .legal-name-strip::before,
+    .legal-name-strip::after {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background: var(--saffron-bright);
+    }
+
+    /* BROCHURE PURPOSE & MAIN HEADLINE */
+    .purpose-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: rgba(255, 153, 51, 0.12);
+      border: 1.5px solid rgba(255, 153, 51, 0.35);
+      padding: 8px 28px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+    }
+
+    .cover-main-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 88px;
+      font-weight: 800;
+      line-height: 1.04;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #ffffff;
+      margin-bottom: 24px;
+      text-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .gradient-gold {
+      background: linear-gradient(135deg, #ffffff 0%, #ffc078 40%, #ff9933 80%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 15px rgba(255, 153, 51, 0.35));
+    }
+
+    .cover-scope-summary {
+      font-family: 'Inter', sans-serif;
+      font-size: 26px;
+      line-height: 1.55;
+      font-weight: 400;
+      color: #cbd5e1;
+      max-width: 1950px;
+      margin: 0 auto 40px auto;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.85);
+    }
+
+    /* 4-PILLAR CAPABILITY MATRIX (Glassmorphism Cards) */
+    .capability-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .cap-card {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      padding: 32px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+    .cap-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--card-border);
+    }
+    .cap-card:nth-child(1)::before { background: var(--saffron-bright); }
+    .cap-card:nth-child(2)::before { background: var(--camo-sage); }
+    .cap-card:nth-child(3)::before { background: #38bdf8; }
+    .cap-card:nth-child(4)::before { background: var(--india-green); }
+
+    .cap-index-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 2px;
+    }
+
+    .cap-card-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 1px;
+      line-height: 1.15;
+    }
+
+    .cap-card-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.48;
+      color: #b8ccbf;
+    }
+
+    .cap-metric-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      color: var(--saffron-bright);
+      background: rgba(10, 16, 12, 0.9);
+      border: 1px solid rgba(122, 151, 129, 0.35);
+      padding: 5px 12px;
+      border-radius: 4px;
+      margin-top: auto;
+      width: fit-content;
+      letter-spacing: 1px;
+    }
+
+    /* BOTTOM FOOTER SECTION */
+    .bottom-footer {
+      border-top: 2.5px solid rgba(122, 151, 129, 0.4);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .footer-left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-corp-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--slate-100);
+      text-transform: uppercase;
+    }
+
+    .footer-corp-reg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: #9cb5a6;
+      letter-spacing: 1px;
+    }
+
+    .footer-center-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19.5px;
+      color: #c7d8ce;
+    }
+    .footer-center-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .footer-center-links a:hover {
+      color: var(--saffron-bright);
+    }
+
+    .footer-right-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .tech-collab-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16.5px;
+      color: #9cb5a6;
+      letter-spacing: 1px;
+    }
+    .tech-collab-badge span {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .page-num-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 2px;
+    }
+
+    /* Print & Export captured size */
+    @media print, screen and (min-width: 2400px) {
+      .view-controls { display: none !important; }
+      .page-stage { padding: 0 !important; }
+      body, html {
+        background: #000000 !important;
+      }
+      @page {
+        size: 210mm 297mm;
+        margin: 0;
+      }
+      .a4-page {
+        transform: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Screen View Controls -->
+  <div class="view-controls">
+    <button class="view-btn active" id="btnFitScreen" onclick="setMode('fit')">Fit Screen</button>
+    <button class="view-btn" id="btnActualSize" onclick="setMode('actual')">100% Actual A4</button>
+  </div>
+
+  <div class="page-stage" id="pageStage">
+    
+    <div class="a4-page" id="a4Page">
+      
+      <!-- Full-Bleed Tactical Background Image -->
+      <img src="../assets/defence_uav_cover_hero.jpg" alt="Autonomous UAV Swarm over Himalayas" class="full-bleed-bg">
+      <div class="bg-scrim"></div>
+      <div class="bg-radial-glow"></div>
+      <div class="grid-overlay"></div>
+
+      <!-- Tactical Corner Brackets -->
+      <div class="corner-bracket corner-tl"></div>
+      <div class="corner-bracket corner-tr"></div>
+      <div class="corner-bracket corner-bl"></div>
+      <div class="corner-bracket corner-br"></div>
+
+      <!-- Technical Crosshairs -->
+      <div class="crosshair crosshair-tl">DOC REF: SN47-UAS-BR-DOSSIER</div>
+      <div class="crosshair crosshair-tr">2480x3508 [210x297mm] • 300 DPI</div>
+      <div class="crosshair crosshair-bl">LAT 28°36'N • LONG 77°12'E</div>
+      <div class="crosshair crosshair-br">IND-DEF-2026 • OFFICIAL BRIEF</div>
+
+      <!-- FOREGROUND CONTENT -->
+      <div class="content-layer">
+
+        <!-- TOP HEADER -->
+        <header class="top-header">
+          <div class="classification-strip">
+            <div class="class-tag-pill">SOVEREIGN AIR DEFENCE PUBLICATION • 2026–2027</div>
+            <div>RESTRICTED CIRCULATION • INDIAN DEFENCE & STRATEGIC FORCES</div>
+          </div>
+
+          <div class="top-national-badge-row">
+            <div class="sovereign-national-tag">
+              <div class="tricolor-flag">
+                <div class="flag-saffron"></div>
+                <div class="flag-white"></div>
+                <div class="flag-green"></div>
+              </div>
+              <div class="sovereign-text">MAKE IN INDIA • ATMANIRBHAR BHARAT • iDEX REGISTERED</div>
+            </div>
+
+            <div class="dossier-id-code">
+              TACTICAL AIR DEFENCE DOSSIER • RELEASE 4.7
+            </div>
+          </div>
+        </header>
+
+        <!-- CENTER HERO WITH PROMINENT EMBLEM & BROCHURE SCOPE -->
+        <main class="center-hero-container">
+
+          <!-- Centered Glowing Insignia / Logo Box -->
+          <div class="logo-emblem-box">
+            <div class="logo-glow-ring"></div>
+            <div class="logo-frame">
+              <img src="../assets/logo.svg" alt="SHIVNETRA 47 Logo" class="logo-svg-main">
+            </div>
+            <div class="legal-name-strip">
+              SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED
+            </div>
+          </div>
+
+          <!-- What the Brochure is About: Eyebrow + Master Title + Scope -->
+          <div class="purpose-eyebrow">
+            SOVEREIGN DEFENCE & AUTONOMOUS SWARM UAS ARCHITECTURE
+          </div>
+
+          <h1 class="cover-main-title">
+            SOVEREIGN AUTONOMOUS SWARM<br>
+            <span class="gradient-gold">& AIR DEFENCE UAV CAPABILITY</span>
+          </h1>
+
+          <p class="cover-scope-summary">
+            A comprehensive sovereign defence publication detailing India’s dedicated autonomous unmanned aerial warfare architecture—engineered to Indian Armed Forces requirements to deliver multi-tier border overwatch, heterogeneous swarm mesh dynamics, sub-zero Himalayan operational endurance, and hardened battlespace command & control.
+          </p>
+
+          <!-- 4-Pillar Capability Glassmorphism Matrix -->
+          <section class="capability-matrix-grid">
+            
+            <article class="cap-card">
+              <span class="cap-index-num">PILLAR 01 • SWARM C2</span>
+              <h2 class="cap-card-title">Heterogeneous Swarm Intelligence</h2>
+              <p class="cap-card-desc">
+                Decentralized peer-to-peer RF mesh routing coordinating 6-unit squad patrols up to 24+ node border saturation screens with dynamic target handoff.
+              </p>
+              <div class="cap-metric-tag">BVLOS 100+ KM RANGE</div>
+            </article>
+
+            <article class="cap-card">
+              <span class="cap-index-num">PILLAR 02 • TACTICAL PLATFORMS</span>
+              <h2 class="cap-card-title">Dual-Tier Air Platforms</h2>
+              <p class="cap-card-desc">
+                Sub-500g Nano-Scout micro UAVs paired with 20kg high-altitude Overwatch VTOL mothership relays carrying stabilized daylight EO & FLIR thermal imagers.
+              </p>
+              <div class="cap-metric-tag">350g TO 20kg PAYLOADS</div>
+            </article>
+
+            <article class="cap-card">
+              <span class="cap-index-num">PILLAR 03 • ELECTRONIC WARFARE</span>
+              <h2 class="cap-card-title">Contested EW Hardening</h2>
+              <p class="cap-card-desc">
+                Frequency-hopping spread spectrum with 32 dB anti-jam processing gain, sovereign NAVIC L5/S synchronization, and optical dead reckoning.
+              </p>
+              <div class="cap-metric-tag">FHSS ANTI-JAM & NAVIC</div>
+            </article>
+
+            <article class="cap-card">
+              <span class="cap-index-num">PILLAR 04 • MAKE IN INDIA</span>
+              <h2 class="cap-card-title">Sovereign Defence Production</h2>
+              <p class="cap-card-desc">
+                100% indigenous Indian carbon-composite monocoque manufacturing, DGCA SORA SAIL II/III compliance, and Ministry of Defence procurement roadmap.
+              </p>
+              <div class="cap-metric-tag">AUTOCLAVE COMPOSITES</div>
+            </article>
+
+          </section>
+
+        </main>
+
+        <!-- BOTTOM FOOTER -->
+        <footer class="bottom-footer">
+          <div class="footer-left-col">
+            <div class="footer-corp-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+            <div class="footer-corp-reg">CIN: U30309MH2024PTC428120 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
+          </div>
+
+          <div class="footer-center-links">
+            <span>Web: <a href="https://shivnetra47.tech" target="_blank">shivnetra47.tech</a></span>
+            <span>•</span>
+            <span>Contact: <a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
+          </div>
+
+          <div class="footer-right-col">
+            <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
+            <div class="page-num-pill">A4 BROCHURE • COVER PAGE</div>
+          </div>
+        </footer>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    let currentMode = 'fit';
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById('btnFitScreen').classList.toggle('active', mode === 'fit');
+      document.getElementById('btnActualSize').classList.toggle('active', mode === 'actual');
+      updateA4Scale();
+    }
+
+    function updateA4Scale() {
+      const page = document.getElementById('a4Page');
+      const stage = document.getElementById('pageStage');
+      if (!page) return;
+
+      if (window.innerWidth >= 2400 && window.innerHeight >= 3400) {
+        page.style.transform = 'none';
+        page.style.margin = '0 auto';
+        stage.style.height = 'auto';
+        return;
+      }
+
+      if (currentMode === 'fit') {
+        const availW = window.innerWidth - 60;
+        const availH = window.innerHeight - 60;
+        const scale = Math.min(availW / 2480, availH / 3508);
+        page.style.transform = `scale(${scale})`;
+        page.style.transformOrigin = 'top center';
+        stage.style.height = `${3508 * scale + 60}px`;
+      } else {
+        page.style.transform = 'none';
+        page.style.margin = '30px auto';
+        stage.style.height = 'auto';
+      }
+    }
+
+    window.addEventListener('resize', updateA4Scale);
+    window.addEventListener('DOMContentLoaded', updateA4Scale);
+    setTimeout(updateA4Scale, 100);
+  </script>
+
+</body>
+</html>
