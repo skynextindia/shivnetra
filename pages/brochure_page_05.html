@@ -103,7 +103,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 105px 125px;
+      padding: 135px 140px;
       box-shadow: 0 0 100px rgba(0, 0, 0, 0.95);
       margin: 0 auto;
       transform-origin: top center;
@@ -139,34 +139,47 @@
       z-index: 1;
     }
 
-    /* Outer tactical corner brackets */
+    /* Precision Engineering Perimeter Frame */
+    .engineering-frame {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      right: 60px;
+      bottom: 60px;
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Outer tactical corner brackets - Seamlessly capping Engineering Frame */
     .corner-bracket {
       position: absolute;
       width: 50px;
       height: 50px;
-      border: 4px solid var(--camo-sage);
+      border: 3.5px solid var(--camo-sage);
       pointer-events: none;
       z-index: 10;
     }
-    .corner-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
-    .corner-tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
-    .corner-bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
-    .corner-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+    .corner-tl { top: 60px; left: 60px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 60px; right: 60px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 60px; left: 60px; border-right: none; border-top: none; }
+    .corner-br { bottom: 60px; right: 60px; border-left: none; border-top: none; }
 
     .crosshair {
       position: absolute;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 18px;
+      font-size: 15px;
       color: var(--camo-sage);
       opacity: 0.85;
       pointer-events: none;
       z-index: 10;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
-    .crosshair-tl { top: 46px; left: 105px; }
-    .crosshair-tr { top: 46px; right: 105px; }
-    .crosshair-bl { bottom: 46px; left: 105px; }
-    .crosshair-br { bottom: 46px; right: 105px; }
+    .crosshair-tl { top: 72px; left: 115px; }
+    .crosshair-tr { top: 72px; right: 115px; }
+    .crosshair-bl { bottom: 72px; left: 115px; }
+    .crosshair-br { bottom: 72px; right: 115px; }
 
     /* Top Header Bar */
     .header-bar {
@@ -348,7 +361,7 @@
       font-size: 27px;
       line-height: 1.55;
       color: var(--slate-300);
-      max-width: 98%;
+      width: 100%;
       font-weight: 400;
     }
 
@@ -764,6 +777,19 @@
       color: var(--saffron-bright);
       letter-spacing: 2px;
     }
+
+    .page-num-badge {
+      font-family: 'Rajdhani', 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--saffron-bright);
+      background: rgba(255, 153, 51, 0.12);
+      border: 1.5px solid rgba(255, 153, 51, 0.5);
+      padding: 6px 20px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
@@ -779,22 +805,18 @@
     <div class="a4-page" id="a4Page">
       <div class="grid-overlay"></div>
       
-      <!-- Outer Corner Brackets -->
+      <!-- Precision Engineering Frame & Corner Brackets -->
+      <div class="engineering-frame"></div>
       <div class="corner-bracket corner-tl"></div>
       <div class="corner-bracket corner-tr"></div>
       <div class="corner-bracket corner-bl"></div>
       <div class="corner-bracket corner-br"></div>
-      
-      <div class="crosshair crosshair-tl">+ 005/A4-P</div>
-      <div class="crosshair crosshair-tr">2480x3508 [210x297mm]</div>
-      <div class="crosshair crosshair-bl">LAT 28°36'N</div>
-      <div class="crosshair crosshair-br">IND-DEF-2026</div>
 
       <!-- TOP HEADER BAR -->
       <header class="header-bar">
         <div class="classification-strip">
           <div class="status-badge">SOVEREIGN AIR DEFENCE CAPABILITY BRIEF • 2026-2027</div>
-          <div>DOCUMENT REF: SN47-UAS-BR-05 • PLATFORM ENGINEERING & SENSOR SUITES</div>
+          <div>CONFIDENTIAL FOR DEFENCE USERS</div>
         </div>
 
         <div class="brand-row">
@@ -830,7 +852,7 @@
           <span class="gradient-text">AERIAL PLATFORM ENGINEERING</span>
         </h1>
         <p class="title-description">
-          A high-performance two-tier indigenous air vehicle family engineered to operate in tactical symbiosis—pairing soldier-deployable sub-500g micro Nano-scouts for immediate obstacle overflight with long-endurance high-altitude Overwatch relays delivering continuous multi-spectral overwatch and airborne mesh gateway routing.
+          Two-tier tactical UAV fleet for coordinated frontline operations. Combines soldier-carried 350g Nano-scouts for short-range reconnaissance with 20kg high-altitude VTOL aircraft for wide-area surveillance and airborne radio relay.
         </p>
 
         <div class="hero-quick-meta-bar">
@@ -863,21 +885,21 @@
           <div class="platform-card-body">
             <div class="platform-role-tag">Ultra-Low Acoustic Squad Scout & Perimeter Probe</div>
             <p class="platform-summary">
-              Frontline infantry recon asset hand-deployable in under 15 seconds. Designed for forward crest overflight, urban room entry, and silent perimeter breach verification with zero thermal reflection.
+              Infantry scout drone hand-launched in under 15 seconds. Designed for ridgeline reconnaissance, urban observation, and quiet perimeter patrol with minimal acoustic and radar signatures.
             </p>
 
             <table class="specs-table">
               <tr>
                 <td class="label-cell">All-Up Weight</td>
-                <td class="value-cell">350–450 <span>grams</span></td>
+                <td class="value-cell">350-450 <span>grams</span></td>
               </tr>
               <tr>
                 <td class="label-cell">Flight Endurance</td>
-                <td class="value-cell">18–22 <span>minutes</span></td>
+                <td class="value-cell">18-22 <span>minutes</span></td>
               </tr>
               <tr>
                 <td class="label-cell">Operational Radius</td>
-                <td class="value-cell">3–5 <span>km Line-of-Sight</span></td>
+                <td class="value-cell">3-5 <span>km Line-of-Sight</span></td>
               </tr>
               <tr>
                 <td class="label-cell">Dash Speed</td>
@@ -918,7 +940,7 @@
           <div class="platform-card-body">
             <div class="platform-role-tag">High-Altitude Airborne Relay & Persistent ISTAR Mothership</div>
             <p class="platform-summary">
-              Runway-free tactical VTOL operating as the airborne command-and-control node. Bridges micro-swarm video feeds to tactical headquarters while executing 24/7 high-magnification electro-optical reconnaissance.
+              Vertical takeoff and landing (VTOL) aircraft operating without runways. Relays scout drone telemetry and video to base stations while conducting long-range optical and thermal surveillance.
             </p>
 
             <table class="specs-table">
@@ -928,7 +950,7 @@
               </tr>
               <tr>
                 <td class="label-cell">Mission Endurance</td>
-                <td class="value-cell">120–180 <span>minutes</span></td>
+                <td class="value-cell">120-180 <span>minutes</span></td>
               </tr>
               <tr>
                 <td class="label-cell">Operational Radius</td>
@@ -1024,7 +1046,7 @@
       <footer class="footer-strip">
         <div class="footer-left">
           <div class="footer-corp">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
-          <div class="footer-reg">CIN: U30309MH2024PTC428120 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
+          <div class="footer-reg">CIN: U33121PN2026PTC259836 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
         </div>
 
         <div class="footer-center">
@@ -1035,7 +1057,7 @@
 
         <div class="footer-right">
           <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
-          <div class="page-num-pill">A4 BROCHURE • PAGE 05 / 06</div>
+          <div class="page-num-badge">PAGE 05</div>
         </div>
       </footer>
 

@@ -103,7 +103,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 105px 125px;
+      padding: 135px 140px;
       box-shadow: 0 0 100px rgba(0, 0, 0, 0.95);
       margin: 0 auto;
       transform-origin: top center;
@@ -139,34 +139,47 @@
       z-index: 1;
     }
 
-    /* Outer tactical corner brackets */
+    /* Precision Engineering Perimeter Frame */
+    .engineering-frame {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      right: 60px;
+      bottom: 60px;
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Outer tactical corner brackets - Seamlessly capping Engineering Frame */
     .corner-bracket {
       position: absolute;
       width: 50px;
       height: 50px;
-      border: 4px solid var(--camo-sage);
+      border: 3.5px solid var(--camo-sage);
       pointer-events: none;
       z-index: 10;
     }
-    .corner-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
-    .corner-tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
-    .corner-bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
-    .corner-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+    .corner-tl { top: 60px; left: 60px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 60px; right: 60px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 60px; left: 60px; border-right: none; border-top: none; }
+    .corner-br { bottom: 60px; right: 60px; border-left: none; border-top: none; }
 
     .crosshair {
       position: absolute;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 18px;
+      font-size: 15px;
       color: var(--camo-sage);
       opacity: 0.85;
       pointer-events: none;
       z-index: 10;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
-    .crosshair-tl { top: 46px; left: 105px; }
-    .crosshair-tr { top: 46px; right: 105px; }
-    .crosshair-bl { bottom: 46px; left: 105px; }
-    .crosshair-br { bottom: 46px; right: 105px; }
+    .crosshair-tl { top: 72px; left: 115px; }
+    .crosshair-tr { top: 72px; right: 115px; }
+    .crosshair-bl { bottom: 72px; left: 115px; }
+    .crosshair-br { bottom: 72px; right: 115px; }
 
     /* Top Header Bar */
     .header-bar {
@@ -357,7 +370,7 @@
       font-size: 29px;
       line-height: 1.5;
       color: #d6e2db;
-      max-width: 2200px;
+      width: 100%;
       font-weight: 400;
     }
 
@@ -768,6 +781,19 @@
       color: var(--saffron-bright);
       letter-spacing: 2px;
     }
+
+    .page-num-badge {
+      font-family: 'Rajdhani', 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--saffron-bright);
+      background: rgba(255, 153, 51, 0.12);
+      border: 1.5px solid rgba(255, 153, 51, 0.5);
+      padding: 6px 20px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
@@ -785,22 +811,18 @@
       <!-- Background grid -->
       <div class="grid-overlay"></div>
 
-      <!-- Outer corner reticles -->
+      <!-- Precision Engineering Frame & Corner Brackets -->
+      <div class="engineering-frame"></div>
       <div class="corner-bracket corner-tl"></div>
       <div class="corner-bracket corner-tr"></div>
       <div class="corner-bracket corner-bl"></div>
       <div class="corner-bracket corner-br"></div>
-      
-      <div class="crosshair crosshair-tl">+ 003/A4-P</div>
-      <div class="crosshair crosshair-tr">2480x3508 [210x297mm]</div>
-      <div class="crosshair crosshair-bl">LAT 28°36'N</div>
-      <div class="crosshair crosshair-br">IND-DEF-2026</div>
 
       <!-- TOP HEADER BAR -->
       <header class="header-bar">
         <div class="classification-strip">
           <div class="status-badge">SOVEREIGN AIR DEFENCE CAPABILITY BRIEF • 2026-2027</div>
-          <div>DOCUMENT REF: SN47-UAS-BR-03 • OPERATIONAL DOCTRINE & THEATRE ARCHITECTURE</div>
+          <div>CONFIDENTIAL FOR DEFENCE USERS</div>
         </div>
 
         <div class="brand-row">
@@ -836,7 +858,7 @@
           <span class="gradient-text">& MULTI-TIER AERIAL ARCHITECTURE</span>
         </h1>
         <p class="title-description">
-          An indigenous operational framework engineered for the unforgiving geography of India's forward northern and western frontiers—unifying expendable frontline swarm intelligence, persistent overwatch relays, and runway-independent cargo VTOL resupply under contested electronic warfare conditions.
+          Tactical UAV doctrine designed for high-altitude northern borders and forward sectors. Unifies frontline scout swarms, high-endurance surveillance aircraft, and runway-independent VTOL platforms under active electronic warfare conditions.
         </p>
       </section>
 
@@ -851,7 +873,7 @@
           </div>
           <div class="context-title">High-Altitude Himalayan Friction</div>
           <ul class="context-bullet-list">
-            <li><strong>Severe Himalayan Environment:</strong> High-altitude terrain (8,000–16,000 ft AMSL), thin air reducing rotor efficiency, gale-force wind shears, and sub-zero temperatures down to -25°C.</li>
+            <li><strong>Severe Himalayan Environment:</strong> High-altitude terrain (8,000-16,000 ft AMSL), thin air reducing rotor efficiency, gale-force wind shears, and sub-zero temperatures down to -25°C.</li>
             <li><strong>Contested Electronic Warfare:</strong> Adversary wideband RF jamming, satellite navigation (GNSS) spoofing, and severe communication attenuation through deep mountain valleys.</li>
             <li><strong>Runway Infrastructure Deficit:</strong> Isolated frontline outposts, treacherous ridgelines, and glacial passes lack paved airstrips, making conventional fixed-wing UAVs entirely unviable.</li>
             <li><strong>High-Risk Manned Sorties:</strong> Reliance on piloted helicopters incurs extreme financial expense, vulnerable flight paths to MANPADS threats, and weather grounding risks.</li>
@@ -903,11 +925,11 @@
           <div class="tier-specs-grid">
             <div class="tier-spec-item">
               <span class="tier-spec-lbl">AUW / Weight</span>
-              <span class="tier-spec-val">350–450 <span>g</span></span>
+              <span class="tier-spec-val">350-450 <span>g</span></span>
             </div>
             <div class="tier-spec-item">
               <span class="tier-spec-lbl">Loiter Time</span>
-              <span class="tier-spec-val">25–35 <span>Min</span></span>
+              <span class="tier-spec-val">25-35 <span>Min</span></span>
             </div>
             <div class="tier-spec-item">
               <span class="tier-spec-lbl">Operating Band</span>
@@ -941,7 +963,7 @@
             </div>
             <div class="tier-spec-item">
               <span class="tier-spec-lbl">Mission Radius</span>
-              <span class="tier-spec-val">50–80 <span>km Link</span></span>
+              <span class="tier-spec-val">50-80 <span>km Link</span></span>
             </div>
             <div class="tier-spec-item">
               <span class="tier-spec-lbl">Sensor Gimbal</span>
@@ -1013,7 +1035,7 @@
       <footer class="footer-strip">
         <div class="footer-left">
           <div class="footer-corp">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
-          <div class="footer-reg">CIN: U30309MH2024PTC428120 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
+          <div class="footer-reg">CIN: U33121PN2026PTC259836 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
         </div>
 
         <div class="footer-center">
@@ -1024,7 +1046,7 @@
 
         <div class="footer-right">
           <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
-          <div class="page-num-pill">A4 BROCHURE • PAGE 03 / 06</div>
+          <div class="page-num-badge">PAGE 03</div>
         </div>
       </footer>
 

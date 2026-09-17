@@ -102,14 +102,14 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 100px 120px 90px 120px;
+      padding: 135px 140px;
       box-shadow: 0 0 120px rgba(0, 0, 0, 0.98);
       margin: 0 auto;
       transform-origin: top center;
       background-color: #050906;
     }
 
-    /* Full-Bleed High-Res Tactical Background Image */
+    /* Full-Bleed High-Res Tactical Background Image - Faded */
     .full-bleed-bg {
       position: absolute;
       inset: 0;
@@ -118,7 +118,8 @@
       object-fit: cover;
       object-position: center bottom;
       z-index: 0;
-      filter: contrast(1.1) brightness(0.88);
+      opacity: 0.18;
+      filter: grayscale(40%) brightness(0.5) contrast(1.15);
     }
 
     /* Cinematic Tactical Vignette & Gradient Overlays */
@@ -129,48 +130,52 @@
       background: linear-gradient(
         180deg,
         rgba(3, 7, 4, 0.94) 0%,
-        rgba(4, 9, 6, 0.85) 25%,
-        rgba(5, 10, 7, 0.65) 52%,
-        rgba(4, 8, 5, 0.88) 78%,
+        rgba(4, 9, 6, 0.88) 25%,
+        rgba(5, 10, 7, 0.76) 52%,
+        rgba(4, 8, 5, 0.90) 78%,
         #020403 100%
       );
       pointer-events: none;
     }
 
-    .bg-radial-glow {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: radial-gradient(circle at 50% 18%, rgba(255, 153, 51, 0.12) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    /* Technical Grid Overlay */
+    /* Technical Green Grid Overlay - Plain & Subtle */
     .grid-overlay {
       position: absolute;
       inset: 0;
       background-image: 
-        linear-gradient(to right, rgba(122, 151, 129, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(122, 151, 129, 0.05) 1px, transparent 1px);
-      background-size: 80px 80px;
+        linear-gradient(to right, rgba(94, 186, 125, 0.12) 1.2px, transparent 1.2px),
+        linear-gradient(to bottom, rgba(94, 186, 125, 0.12) 1.2px, transparent 1.2px);
+      background-size: 70px 70px;
       pointer-events: none;
       z-index: 2;
     }
 
-    /* Tactical HUD Corner Brackets */
+    /* Precision Engineering Perimeter Frame */
+    .engineering-frame {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      right: 60px;
+      bottom: 60px;
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Tactical HUD Corner Brackets - Seamlessly capping Engineering Frame */
     .corner-bracket {
       position: absolute;
-      width: 70px;
-      height: 70px;
-      border-color: rgba(255, 153, 51, 0.7);
+      width: 50px;
+      height: 50px;
+      border-color: rgba(122, 151, 129, 0.7);
       border-style: solid;
       pointer-events: none;
       z-index: 3;
     }
-    .corner-tl { top: 55px; left: 65px; border-width: 4px 0 0 4px; }
-    .corner-tr { top: 55px; right: 65px; border-width: 4px 4px 0 0; }
-    .corner-bl { bottom: 55px; left: 65px; border-width: 0 0 4px 4px; }
-    .corner-br { bottom: 55px; right: 65px; border-width: 0 4px 4px 0; }
+    .corner-tl { top: 60px; left: 60px; border-width: 3.5px 0 0 3.5px; }
+    .corner-tr { top: 60px; right: 60px; border-width: 3.5px 3.5px 0 0; }
+    .corner-bl { bottom: 60px; left: 60px; border-width: 0 0 3.5px 3.5px; }
+    .corner-br { bottom: 60px; right: 60px; border-width: 0 3.5px 3.5px 0; }
 
     /* Crosshair Metadata Coordinates */
     .crosshair {
@@ -183,10 +188,10 @@
       pointer-events: none;
       z-index: 3;
     }
-    .crosshair-tl { top: 68px; left: 150px; }
-    .crosshair-tr { top: 68px; right: 150px; }
-    .crosshair-bl { bottom: 68px; left: 150px; }
-    .crosshair-br { bottom: 68px; right: 150px; }
+    .crosshair-tl { top: 72px; left: 115px; }
+    .crosshair-tr { top: 72px; right: 115px; }
+    .crosshair-bl { bottom: 72px; left: 115px; }
+    .crosshair-br { bottom: 72px; right: 115px; }
 
     /* Foreground Content Wrapper */
     .content-layer {
@@ -290,81 +295,143 @@
       border-radius: 6px;
     }
 
-    /* CENTER STRATEGIC CLOSING BODY */
+    /* CENTER STRATEGIC CLOSING BODY - 3 EQUAL-SPACED SECTIONS, GROUP CENTERED */
     .center-closing-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       margin: auto 0;
-      gap: 36px;
+      gap: 100px; /* Exact equal spacing between Section 1 (QR), Section 2 (Logo), and Section 3 (Content) */
+      width: 100%;
     }
 
-    /* Prominent Corporate Seal */
-    .closing-seal-box {
+    /* SECTION 1: Sovereign Portal Floating White QR Code Block (Expanded Scale) */
+    .qr-portal-section {
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
+      justify-content: center;
+      gap: 16px;
     }
 
-    .seal-glow {
-      position: absolute;
-      width: 500px;
-      height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255, 153, 51, 0.22) 0%, rgba(122, 151, 129, 0.1) 50%, transparent 80%);
-      filter: blur(40px);
-      z-index: -1;
-    }
-
-    .seal-frame {
+    .qr-frame-box {
+      width: 380px;
+      height: 380px;
+      background: transparent;
+      padding: 0;
+      border: none;
+      box-sizing: border-box;
+      box-shadow: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(8, 14, 10, 0.94);
-      border: 2.5px solid rgba(255, 153, 51, 0.6);
-      border-radius: 20px;
-      padding: 22px 64px;
-      box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.9),
-        inset 0 0 30px rgba(255, 153, 51, 0.12);
-      backdrop-filter: blur(15px);
+      filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.22));
     }
 
-    .seal-logo-svg {
-      width: 480px;
-      height: auto;
-      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.8));
+    .portal-qr-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
     }
 
-    .closing-legal-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 26px;
+    .qr-meta-labels {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qr-tag-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
       font-weight: 700;
-      letter-spacing: 3px;
-      color: #ffffff;
+      letter-spacing: 2.2px;
+      color: var(--camo-accent);
       text-transform: uppercase;
-      margin-top: 16px;
+      background: rgba(12, 22, 16, 0.85);
+      border: 1px solid rgba(122, 151, 129, 0.4);
+      padding: 7px 28px;
+      border-radius: 4px;
+    }
+
+    .qr-link-url {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 23px;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      color: #ffffff;
+      text-decoration: none;
+      line-height: 1.2;
+      transition: color 0.2s;
+    }
+    .qr-link-url:hover {
+      color: var(--camo-accent);
+    }
+
+    /* SECTION 2: Original White SHIVNETRA Logo Matching Content Pages */
+    .corporate-logo-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .original-logo-img {
+      height: 155px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.8));
+    }
+
+    .corporate-legal-strip {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 4.5px;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      margin-top: 18px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 24px;
+      line-height: 1.2;
     }
-    .closing-legal-name::before,
-    .closing-legal-name::after {
+    .corporate-legal-strip::before,
+    .corporate-legal-strip::after {
       content: '';
-      width: 36px;
+      width: 55px;
       height: 2px;
-      background: var(--saffron-bright);
+      background: var(--camo-sage);
+      opacity: 0.7;
+    }
+
+    .corporate-subtitle-strip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px;
+      color: var(--camo-sage);
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      margin-top: 8px;
+      line-height: 1.2;
+    }
+
+    /* SECTION 3: STRATEGIC CONTENT SECTION */
+    .strategic-content-section {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      width: 100%;
     }
 
     /* SOVEREIGN MISSION MANIFESTO QUOTE */
     .mission-manifesto-card {
-      background: rgba(12, 19, 14, 0.85);
-      border: 2px solid rgba(255, 153, 51, 0.4);
-      border-radius: 14px;
-      padding: 34px 50px;
-      max-width: 2050px;
+      background: rgba(12, 19, 14, 0.88);
+      border: 1.5px solid var(--card-border);
+      border-radius: 16px;
+      padding: 46px 64px;
+      width: 100%;
       backdrop-filter: blur(16px);
       box-shadow: 0 20px 50px rgba(0,0,0,0.7);
       position: relative;
@@ -372,37 +439,39 @@
     .mission-manifesto-card::before {
       content: '“';
       position: absolute;
-      top: -24px;
+      top: 14px;
       left: 36px;
       font-family: 'Barlow', sans-serif;
       font-size: 90px;
-      color: var(--saffron-bright);
+      color: var(--camo-sage);
       line-height: 1;
+      opacity: 0.35;
+      pointer-events: none;
     }
 
     .manifesto-quote {
       font-family: 'Barlow', sans-serif;
-      font-size: 34px;
-      font-weight: 700;
+      font-size: 46px;
+      font-weight: 800;
       color: #ffffff;
-      line-height: 1.35;
-      letter-spacing: 1px;
+      line-height: 1.34;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .manifesto-sub {
       font-family: 'Inter', sans-serif;
-      font-size: 20px;
-      line-height: 1.5;
-      color: #cad8ce;
+      font-size: 26.5px;
+      line-height: 1.55;
+      color: #e2e8f0;
     }
 
     /* 4-NODE DEFENCE INFRASTRUCTURE GRID */
     .infra-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 26px;
+      gap: 28px;
       width: 100%;
       text-align: left;
     }
@@ -411,10 +480,10 @@
       background: var(--card-bg);
       border: 2px solid var(--card-border);
       border-radius: 12px;
-      padding: 28px 26px;
+      padding: 38px 30px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 14px;
       backdrop-filter: blur(14px);
       box-shadow: 0 15px 35px rgba(0,0,0,0.65);
       position: relative;
@@ -435,8 +504,8 @@
 
     .infra-badge {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 14.5px;
-      font-weight: 700;
+      font-size: 16.5px;
+      font-weight: 800;
       letter-spacing: 1.5px;
       color: var(--saffron-bright);
       text-transform: uppercase;
@@ -444,7 +513,7 @@
 
     .infra-title {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 26px;
+      font-size: 34px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 1px;
@@ -453,23 +522,23 @@
 
     .infra-location {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
+      font-size: 18px;
       color: var(--camo-accent);
       letter-spacing: 1px;
     }
 
     .infra-desc {
       font-family: 'Inter', sans-serif;
-      font-size: 17px;
-      line-height: 1.48;
-      color: #b0c5b7;
+      font-size: 22.5px;
+      line-height: 1.5;
+      color: #cbd5e1;
     }
 
     /* 6-PILLARS COMPLIANCE & DEFENCE STANDARDS ROW */
     .compliance-strip {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
+      gap: 18px;
       width: 100%;
     }
 
@@ -477,18 +546,18 @@
       background: rgba(10, 16, 12, 0.88);
       border: 1.5px solid rgba(122, 151, 129, 0.35);
       border-radius: 8px;
-      padding: 18px 14px;
+      padding: 26px 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 10px;
       text-align: center;
       backdrop-filter: blur(10px);
     }
     .compliance-val {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 22px;
+      font-size: 34px;
       font-weight: 700;
       color: #ffffff;
       letter-spacing: 1px;
@@ -498,7 +567,7 @@
     }
     .compliance-lbl {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13.5px;
+      font-size: 17.5px;
       color: var(--camo-sage);
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -508,9 +577,9 @@
     .procurement-console-box {
       width: 100%;
       background: rgba(8, 14, 10, 0.95);
-      border: 2px solid rgba(255, 153, 51, 0.45);
+      border: 1.5px solid var(--card-border);
       border-radius: 12px;
-      padding: 30px 45px;
+      padding: 42px 58px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -521,54 +590,55 @@
     .proc-left {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       text-align: left;
     }
     .proc-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
+      font-size: 17.5px;
       font-weight: 700;
-      color: var(--saffron-bright);
+      color: var(--camo-accent);
       letter-spacing: 2px;
       text-transform: uppercase;
     }
     .proc-heading {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 32px;
+      font-size: 44px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 1.2px;
     }
     .proc-sub {
       font-family: 'Inter', sans-serif;
-      font-size: 17.5px;
+      font-size: 24px;
+      line-height: 1.48;
       color: #cad8ce;
     }
 
     .proc-contacts-cluster {
       display: flex;
-      gap: 40px;
+      gap: 44px;
       align-items: center;
     }
 
     .proc-contact-item {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
       text-align: left;
-      border-left: 3px solid var(--saffron-bright);
-      padding-left: 18px;
+      border-left: 3.5px solid var(--camo-sage);
+      padding-left: 20px;
     }
     .contact-type {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
+      font-size: 16px;
       color: var(--slate-400);
       letter-spacing: 1.2px;
       text-transform: uppercase;
     }
     .contact-val {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 21px;
+      font-size: 26px;
       font-weight: 700;
       color: #ffffff;
       letter-spacing: 1px;
@@ -600,7 +670,7 @@
 
     .footer-corp-title {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 25px;
+      font-size: 26px;
       font-weight: 700;
       letter-spacing: 1.5px;
       color: var(--slate-100);
@@ -609,7 +679,7 @@
 
     .footer-corp-reg {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 16px;
+      font-size: 17px;
       color: #9cb5a6;
       letter-spacing: 1px;
     }
@@ -619,7 +689,7 @@
       align-items: center;
       gap: 32px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 19.5px;
+      font-size: 20px;
       color: #c7d8ce;
     }
     .footer-center-links a {
@@ -634,7 +704,7 @@
 
     .tech-collab-badge {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 16.5px;
+      font-size: 17px;
       color: #9cb5a6;
       letter-spacing: 1px;
     }
@@ -649,6 +719,19 @@
       font-weight: 700;
       color: var(--saffron-bright);
       letter-spacing: 2px;
+    }
+
+    .page-num-badge {
+      font-family: 'Rajdhani', 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--saffron-bright);
+      background: rgba(255, 153, 51, 0.12);
+      border: 1.5px solid rgba(255, 153, 51, 0.5);
+      padding: 6px 20px;
+      border-radius: 4px;
+      text-transform: uppercase;
     }
 
     .legal-confidential-notice {
@@ -699,17 +782,12 @@
       <div class="bg-radial-glow"></div>
       <div class="grid-overlay"></div>
 
-      <!-- Tactical Corner Brackets -->
+      <!-- Precision Engineering Frame & Corner Brackets -->
+      <div class="engineering-frame"></div>
       <div class="corner-bracket corner-tl"></div>
       <div class="corner-bracket corner-tr"></div>
       <div class="corner-bracket corner-bl"></div>
       <div class="corner-bracket corner-br"></div>
-
-      <!-- Technical Crosshairs -->
-      <div class="crosshair crosshair-tl">DOC REF: SN47-UAS-BR-BACK</div>
-      <div class="crosshair crosshair-tr">2480x3508 [210x297mm] • 300 DPI</div>
-      <div class="crosshair crosshair-bl">LAT 28°36'N • LONG 77°12'E</div>
-      <div class="crosshair crosshair-br">IND-DEF-2026 • CLOSING RECORD</div>
 
       <!-- FOREGROUND CONTENT -->
       <div class="content-layer">
@@ -718,7 +796,7 @@
         <header class="top-header">
           <div class="classification-strip">
             <div class="class-tag-pill">SOVEREIGN AIR DEFENCE STRATEGIC DOSSIER • CLOSING RECORD</div>
-            <div>RESTRICTED CIRCULATION • INDIAN DEFENCE & STRATEGIC FORCES</div>
+            <div>CONFIDENTIAL FOR DEFENCE USERS</div>
           </div>
 
           <div class="top-national-badge-row">
@@ -737,121 +815,137 @@
           </div>
         </header>
 
-        <!-- CENTER STRATEGIC CLOSING BODY -->
+        <!-- CENTER STRATEGIC CLOSING BODY - 3 EQUAL-SPACED SECTIONS, GROUP CENTERED -->
         <main class="center-closing-container">
 
-          <!-- Prominent Corporate Seal -->
-          <div class="closing-seal-box">
-            <div class="seal-glow"></div>
-            <div class="seal-frame">
-              <img src="../assets/logo.svg" alt="SHIVNETRA 47 Logo" class="seal-logo-svg">
+          <!-- SECTION 1: Sovereign Portal QR Code (Expanded Scale) -->
+          <section class="qr-portal-section">
+            <div class="qr-frame-box">
+              <img src="../assets/qr_shivnetra47_white.svg" alt="QR Code - https://shivnetra47.tech" class="portal-qr-img">
             </div>
-            <div class="closing-legal-name">
+            <div class="qr-meta-labels">
+              <span class="qr-tag-label">SCAN FOR SOVEREIGN DEFENCE PORTAL</span>
+              <a href="https://shivnetra47.tech" target="_blank" class="qr-link-url">https://shivnetra47.tech</a>
+            </div>
+          </section>
+
+          <!-- SECTION 2: Corporate Logo & Credentials -->
+          <section class="corporate-logo-section">
+            <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="original-logo-img">
+            <div class="corporate-legal-strip">
               SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED
             </div>
-          </div>
-
-          <!-- Sovereign Mission Manifesto -->
-          <div class="mission-manifesto-card">
-            <h1 class="manifesto-quote">
-              SECURING SOVEREIGN AIRSPACE THROUGH INDIGENOUS SWARM AUTONOMY & HARDENED BATTLESPACE INTELLIGENCE
-            </h1>
-            <p class="manifesto-sub">
-              Engineering high-altitude border overwatch, attrition-tolerant RF mesh swarms, and sovereign electronic-warfare hardened UAV architectures to guarantee complete tactical superiority for the Indian Armed Forces.
-            </p>
-          </div>
-
-          <!-- 4-Node Strategic Defence Infrastructure Grid -->
-          <section class="infra-grid">
-            
-            <article class="infra-card">
-              <span class="infra-badge">NODE 01 • HEADQUARTERS</span>
-              <h2 class="infra-title">Corporate & Program Directorate</h2>
-              <div class="infra-location">Pune, Maharashtra, India</div>
-              <p class="infra-desc">
-                Executive governance, Tri-Services defence liaison, iDEX partnership management, and strategic MoD procurement facilitation.
-              </p>
-            </article>
-
-            <article class="infra-card">
-              <span class="infra-badge">NODE 02 • R&D LAB</span>
-              <h2 class="infra-title">Avionics & Swarm AI Complex</h2>
-              <div class="infra-location">Pune / Bengaluru Technology Corridor</div>
-              <p class="infra-desc">
-                Autonomous multi-agent algorithmic test benches, encrypted frequency-hopping mesh RF labs, and sovereign NAVIC integration cells.
-              </p>
-            </article>
-
-            <article class="infra-card">
-              <span class="infra-badge">NODE 03 • PRODUCTION</span>
-              <h2 class="infra-title">Composite Airframe Facility</h2>
-              <div class="infra-location">Advanced Aerostructures Plant</div>
-              <p class="infra-desc">
-                Cleanroom autoclave pre-preg carbon monocoque curing, high-precision CNC airframe tooling, and serial production for high-rate military deliveries.
-              </p>
-            </article>
-
-            <article class="infra-card">
-              <span class="infra-badge">NODE 04 • PROVING GROUND</span>
-              <h2 class="infra-title">High-Altitude Flight Corridor</h2>
-              <div class="infra-location">Himalayan Border Proving Corridors</div>
-              <p class="infra-desc">
-                Sub-zero (-30°C) cold-soak engine endurance, extreme mountain wind shear trials, and DGCA SORA SAIL II/III operational risk validation.
-              </p>
-            </article>
-
-          </section>
-
-          <!-- 6-Pillar Standards & Compliance Grid -->
-          <section class="compliance-strip">
-            <div class="compliance-tile">
-              <div class="compliance-val">100% <span>IND</span></div>
-              <div class="compliance-lbl">Make in India</div>
-            </div>
-            <div class="compliance-tile">
-              <div class="compliance-val">iDEX <span>MoD</span></div>
-              <div class="compliance-lbl">Procurement Aligned</div>
-            </div>
-            <div class="compliance-tile">
-              <div class="compliance-val">MIL-STD <span>810H</span></div>
-              <div class="compliance-lbl">Cold & Dust Proof</div>
-            </div>
-            <div class="compliance-tile">
-              <div class="compliance-val">MIL-STD <span>461G</span></div>
-              <div class="compliance-lbl">EMI / EMC Hardened</div>
-            </div>
-            <div class="compliance-tile">
-              <div class="compliance-val">NAVIC <span>L5 / S</span></div>
-              <div class="compliance-lbl">GPS-Denied Sync</div>
-            </div>
-            <div class="compliance-tile">
-              <div class="compliance-val">SORA <span>SAIL II/III</span></div>
-              <div class="compliance-lbl">Airspace Clearance</div>
+            <div class="corporate-subtitle-strip">
+              Autonomous Air Systems • Swarm Intelligence • Tactical Air Defence
             </div>
           </section>
 
-          <!-- Direct Defence Procurement & Contact Console -->
-          <section class="procurement-console-box">
-            <div class="proc-left">
-              <div class="proc-tag">OFFICIAL PROCUREMENT & DEFENCE LIAISON CHANNELS</div>
-              <div class="proc-heading">Direct Defence User Coordination Desk</div>
-              <div class="proc-sub">Dedicated confidential procurement channel for Tri-Services, Para-Military & Border Security Formations.</div>
+          <!-- SECTION 3: Strategic Capabilities, Infra & Procurement Content Block -->
+          <section class="strategic-content-section">
+
+            <!-- Sovereign Mission Manifesto -->
+            <div class="mission-manifesto-card">
+              <h1 class="manifesto-quote">
+                TACTICAL AIR SUPERIORITY THROUGH INDIGENOUS UNMANNED SYSTEMS
+              </h1>
+              <p class="manifesto-sub">
+                Building high-altitude border surveillance drones, encrypted mesh radio swarms, and electronic-warfare protected airframes for the Indian Armed Forces.
+              </p>
             </div>
 
-            <div class="proc-contacts-cluster">
-              <div class="proc-contact-item">
-                <span class="contact-type">Defence Operations Email</span>
-                <span class="contact-val"><a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
+            <!-- 4-Node Strategic Defence Infrastructure Grid -->
+            <div class="infra-grid">
+              
+              <article class="infra-card">
+                <span class="infra-badge">NODE 01 • HEADQUARTERS</span>
+                <h2 class="infra-title">Corporate & Program Directorate</h2>
+                <div class="infra-location">Pune, Maharashtra, India</div>
+                <p class="infra-desc">
+                  Executive operations, Tri-Services liaison, iDEX project management, and defence procurement coordination.
+                </p>
+              </article>
+
+              <article class="infra-card">
+                <span class="infra-badge">NODE 02 • R&D LAB</span>
+                <h2 class="infra-title">Avionics & Swarm AI Complex</h2>
+                <div class="infra-location">Pune / Bengaluru Technology Corridor</div>
+                <p class="infra-desc">
+                  Flight control software test beds, encrypted radio mesh labs, and NAVIC satellite positioning integration.
+                </p>
+              </article>
+
+              <article class="infra-card">
+                <span class="infra-badge">NODE 03 • PRODUCTION</span>
+                <h2 class="infra-title">Composite Airframe Facility</h2>
+                <div class="infra-location">Advanced Aerostructures Plant</div>
+                <p class="infra-desc">
+                  Carbon-composite airframe manufacturing, high-precision CNC tooling, and serial production for military supply.
+                </p>
+              </article>
+
+              <article class="infra-card">
+                <span class="infra-badge">NODE 04 • PROVING GROUND</span>
+                <h2 class="infra-title">High-Altitude Flight Corridor</h2>
+                <div class="infra-location">Himalayan Border Proving Corridors</div>
+                <p class="infra-desc">
+                  Cold-weather engine testing (-30°C), mountain wind shear trials, and military flight clearance validation.
+                </p>
+              </article>
+
+            </div>
+
+            <!-- 6-Pillar Standards & Compliance Grid -->
+            <div class="compliance-strip">
+              <div class="compliance-tile">
+                <div class="compliance-val">100% <span>IND</span></div>
+                <div class="compliance-lbl">Make in India</div>
               </div>
-              <div class="proc-contact-item">
-                <span class="contact-type">Corporate Directorate</span>
-                <span class="contact-val"><a href="mailto:contact@shivnetra47.tech">contact@shivnetra47.tech</a></span>
+              <div class="compliance-tile">
+                <div class="compliance-val">iDEX <span>MoD</span></div>
+                <div class="compliance-lbl">Procurement Aligned</div>
               </div>
-              <div class="proc-contact-item">
-                <span class="contact-type">Sovereign Portal</span>
-                <span class="contact-val"><a href="https://shivnetra47.tech" target="_blank">shivnetra47.tech</a></span>
+              <div class="compliance-tile">
+                <div class="compliance-val">MIL-STD <span>810H</span></div>
+                <div class="compliance-lbl">Cold & Dust Proof</div>
+              </div>
+              <div class="compliance-tile">
+                <div class="compliance-val">MIL-STD <span>461G</span></div>
+                <div class="compliance-lbl">EMI / EMC Hardened</div>
+              </div>
+              <div class="compliance-tile">
+                <div class="compliance-val">NAVIC <span>L5 / S</span></div>
+                <div class="compliance-lbl">GPS-Denied Sync</div>
+              </div>
+              <div class="compliance-tile">
+                <div class="compliance-val">SORA <span>SAIL II/III</span></div>
+                <div class="compliance-lbl">Airspace Clearance</div>
               </div>
             </div>
+
+            <!-- Direct Defence Procurement & Contact Console -->
+            <div class="procurement-console-box">
+              <div class="proc-left">
+                <div class="proc-tag">OFFICIAL PROCUREMENT & DEFENCE LIAISON CHANNELS</div>
+                <div class="proc-heading">Direct Defence User Coordination Desk</div>
+                <div class="proc-sub">Dedicated confidential procurement channel for Tri-Services, Para-Military & Border Security Formations.</div>
+              </div>
+
+              <div class="proc-contacts-cluster">
+                <div class="proc-contact-item">
+                  <span class="contact-type">Defence Operations Email</span>
+                  <span class="contact-val"><a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
+                </div>
+                <div class="proc-contact-item">
+                  <span class="contact-type">Corporate Directorate</span>
+                  <span class="contact-val"><a href="mailto:contact@shivnetra47.tech">contact@shivnetra47.tech</a></span>
+                </div>
+                <div class="proc-contact-item">
+                  <span class="contact-type">Sovereign Portal</span>
+                  <span class="contact-val"><a href="https://shivnetra47.tech" target="_blank">shivnetra47.tech</a></span>
+                </div>
+              </div>
+            </div>
+
           </section>
 
         </main>
@@ -861,7 +955,7 @@
           <div class="footer-content-row">
             <div class="footer-left-col">
               <div class="footer-corp-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
-              <div class="footer-corp-reg">CIN: U30309MH2024PTC428120 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
+              <div class="footer-corp-reg">CIN: U33121PN2026PTC259836 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
             </div>
 
             <div class="footer-center-links">
@@ -872,7 +966,7 @@
 
             <div class="footer-right-col" style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
               <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
-              <div class="page-num-pill">A4 BROCHURE • BACK COVER</div>
+              <div class="page-num-badge">BACK COVER</div>
             </div>
           </div>
 

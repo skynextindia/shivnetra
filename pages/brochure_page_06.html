@@ -103,7 +103,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 105px 125px;
+      padding: 135px 140px;
       box-shadow: 0 0 100px rgba(0, 0, 0, 0.95);
       margin: 0 auto;
       transform-origin: top center;
@@ -139,34 +139,47 @@
       z-index: 1;
     }
 
-    /* Outer tactical corner brackets */
+    /* Precision Engineering Perimeter Frame */
+    .engineering-frame {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      right: 60px;
+      bottom: 60px;
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Outer tactical corner brackets - Seamlessly capping Engineering Frame */
     .corner-bracket {
       position: absolute;
       width: 50px;
       height: 50px;
-      border: 4px solid var(--camo-sage);
+      border: 3.5px solid var(--camo-sage);
       pointer-events: none;
       z-index: 10;
     }
-    .corner-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
-    .corner-tr { top: 40px; right: 40px; border-left: none; border-bottom: none; }
-    .corner-bl { bottom: 40px; left: 40px; border-right: none; border-top: none; }
-    .corner-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+    .corner-tl { top: 60px; left: 60px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 60px; right: 60px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 60px; left: 60px; border-right: none; border-top: none; }
+    .corner-br { bottom: 60px; right: 60px; border-left: none; border-top: none; }
 
     .crosshair {
       position: absolute;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 18px;
+      font-size: 15px;
       color: var(--camo-sage);
       opacity: 0.85;
       pointer-events: none;
       z-index: 10;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
-    .crosshair-tl { top: 46px; left: 105px; }
-    .crosshair-tr { top: 46px; right: 105px; }
-    .crosshair-bl { bottom: 46px; left: 105px; }
-    .crosshair-br { bottom: 46px; right: 105px; }
+    .crosshair-tl { top: 72px; left: 115px; }
+    .crosshair-tr { top: 72px; right: 115px; }
+    .crosshair-bl { bottom: 72px; left: 115px; }
+    .crosshair-br { bottom: 72px; right: 115px; }
 
     /* Top Header Bar */
     .header-bar {
@@ -348,7 +361,7 @@
       font-size: 26px;
       line-height: 1.55;
       color: var(--slate-300);
-      max-width: 98%;
+      width: 100%;
       font-weight: 400;
     }
 
@@ -735,6 +748,19 @@
       color: var(--saffron-bright);
       letter-spacing: 2px;
     }
+
+    .page-num-badge {
+      font-family: 'Rajdhani', 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--saffron-bright);
+      background: rgba(255, 153, 51, 0.12);
+      border: 1.5px solid rgba(255, 153, 51, 0.5);
+      padding: 6px 20px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
@@ -750,22 +776,18 @@
     <div class="a4-page" id="a4Page">
       <div class="grid-overlay"></div>
       
-      <!-- Outer Corner Brackets -->
+      <!-- Precision Engineering Frame & Corner Brackets -->
+      <div class="engineering-frame"></div>
       <div class="corner-bracket corner-tl"></div>
       <div class="corner-bracket corner-tr"></div>
       <div class="corner-bracket corner-bl"></div>
       <div class="corner-bracket corner-br"></div>
-      
-      <div class="crosshair crosshair-tl">+ 006/A4-P</div>
-      <div class="crosshair crosshair-tr">2480x3508 [210x297mm]</div>
-      <div class="crosshair crosshair-bl">LAT 28°36'N</div>
-      <div class="crosshair crosshair-br">IND-DEF-2026</div>
 
       <!-- TOP HEADER BAR -->
       <header class="header-bar">
         <div class="classification-strip">
           <div class="status-badge">SOVEREIGN AIR DEFENCE CAPABILITY BRIEF • 2026-2027</div>
-          <div>DOCUMENT REF: SN47-UAS-BR-06 • BATTLESPACE C2 & SOVEREIGN PRODUCTION ROADMAP</div>
+          <div>CONFIDENTIAL FOR DEFENCE USERS</div>
         </div>
 
         <div class="brand-row">
@@ -801,7 +823,7 @@
           <span class="gradient-text">& SOVEREIGN DEFENCE ROADMAP</span>
         </h1>
         <p class="title-description">
-          Ruggedized military ground command consoles, anti-jam frequency-hopping RF datalinks, and sovereign NAVIC integration engineered for contested electronic warfare environments—backed by domestic composite autoclave manufacturing aligned with Make in India and iDEX Defence procurement.
+          Rugged ground control stations, frequency-hopping anti-jam radio datalinks, and NAVIC satellite integration designed for electronic warfare conditions. Supported by domestic carbon composite airframe manufacturing aligned with Make in India and iDEX procurement standards.
         </p>
 
         <div class="hero-quick-meta-bar">
@@ -834,7 +856,7 @@
           <div class="c2-card-body">
             <div class="c2-role-tag">Ruggedized Field Control for Heterogeneous Swarms</div>
             <p class="c2-summary">
-              All-weather military workstation capable of commanding simultaneous multi-UAV swarm sorties, real-time EO/IR thermal mosaics, and automated target handoff from a single tactical screen.
+              All-weather military workstation for commanding multi-UAV swarms, live daylight and thermal video feeds, and automated target tracking on a single tactical interface.
             </p>
 
             <ul class="c2-features-list">
@@ -864,7 +886,7 @@
           <div class="c2-card-body">
             <div class="c2-role-tag">Anti-Jam Communications & GPS-Denied Integrity</div>
             <p class="c2-summary">
-              Multi-band telemetry architecture engineered to defeat aggressive enemy electronic jamming, GPS spoofing, and electromagnetic pulses in frontline contested airspace.
+              Secure radio and telemetry architecture built to counter electronic jamming, GPS spoofing, and communications denial along contested border zones.
             </p>
 
             <ul class="c2-features-list">
@@ -921,7 +943,7 @@
         <div class="corp-meta-left">
           <div class="corp-title-large">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
           <div class="corp-details-grid">
-            <div class="corp-kv"><strong>CIN:</strong> <span>U30309MH2024PTC428120</span></div>
+            <div class="corp-kv"><strong>CIN:</strong> <span>U33121PN2026PTC259836</span></div>
             <div class="corp-kv"><strong>Incorporated:</strong> 04 July 2024</div>
             <div class="corp-kv"><strong>ROC:</strong> ROC Pune, Maharashtra</div>
             <div class="corp-kv"><strong>Class:</strong> Non-Govt Pvt Limited</div>
@@ -948,7 +970,7 @@
       <footer class="footer-strip">
         <div class="footer-left">
           <div class="footer-corp">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
-          <div class="footer-reg">CIN: U30309MH2024PTC428120 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
+          <div class="footer-reg">CIN: U33121PN2026PTC259836 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
         </div>
 
         <div class="footer-center">
@@ -959,7 +981,7 @@
 
         <div class="footer-right">
           <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
-          <div class="page-num-pill">A4 BROCHURE • PAGE 06 / 06</div>
+          <div class="page-num-badge">PAGE 06</div>
         </div>
       </footer>
 

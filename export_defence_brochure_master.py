@@ -94,6 +94,6 @@ if os.path.exists(brain_dir):
 
 print("\n" + "="*70)
 print("DEFENCE & SWARM UAS BROCHURE EXPORT COMPLETE")
-print(f"Master 6-Page PDF: {master_pdf_path}")
+print(f"Master 8-Page Publication: {master_pdf_path}")
 print(f"File Size: {os.path.getsize(master_pdf_path) / (1024*1024):.2f} MB")
 print("="*70)

@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHIVNETRA 47 - Brochure Page 05 (Platform Engineering & Sensor Suites)</title>
+  
+  <!-- Modern Tactical Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --camo-dark: #030712;
+      --camo-base: #081022;
+      --camo-surface: #0e1b36;
+      --camo-sage: #38bdf8;
+      --camo-border: #182e52;
+      --saffron: #d97706;
+      --saffron-bright: #f59e0b;
+      --saffron-glow: rgba(245, 158, 11, 0.3);
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --card-border: rgba(56, 189, 248, 0.35);
+      --panel-bg: rgba(10, 20, 42, 0.95);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      background-color: #02050e;
+      font-family: 'Inter', sans-serif;
+      color: var(--slate-100);
+      overflow-x: hidden;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Floating View Controls for browser tab */
+    .view-controls {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      gap: 10px;
+      background: rgba(8, 16, 32, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 6px 12px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
+    .view-btn {
+      background: #1a271f;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .view-btn:hover {
+      background: var(--saffron);
+      border-color: var(--saffron-bright);
+    }
+    .view-btn.active {
+      background: var(--saffron);
+      color: #ffffff;
+    }
+
+    /* Outer stage for auto-fitting in browser tabs */
+    .page-stage {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 0;
+      overflow-y: auto;
+    }
+
+    /* A4 Portrait: 210mm × 297mm (2480px × 3508px @ 300 DPI) */
+    .a4-page {
+      width: 2480px;
+      height: 3508px;
+      background: radial-gradient(circle at 80% 12%, #0e2752 0%, #030712 50%, #02050e 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 135px 140px;
+      box-shadow: 0 0 100px rgba(0, 0, 0, 0.95);
+      margin: 0 auto;
+      transform-origin: top center;
+    }
+
+    /* Print and Export Capture settings */
+    @media print, screen and (min-width: 2400px) {
+      .view-controls { display: none !important; }
+      .page-stage { padding: 0 !important; }
+      body, html {
+        background: #000000 !important;
+      }
+      @page {
+        size: 210mm 297mm;
+        margin: 0;
+      }
+      .a4-page {
+        transform: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+    }
+
+    /* Technical grid overlay */
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+      background-size: 70px 70px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Precision Engineering Perimeter Frame */
+    .engineering-frame {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      right: 60px;
+      bottom: 60px;
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Outer tactical corner brackets - Seamlessly capping Engineering Frame */
+    .corner-bracket {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border: 3.5px solid var(--camo-sage);
+      pointer-events: none;
+      z-index: 10;
+    }
+    .corner-tl { top: 60px; left: 60px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 60px; right: 60px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 60px; left: 60px; border-right: none; border-top: none; }
+    .corner-br { bottom: 60px; right: 60px; border-left: none; border-top: none; }
+
+    .crosshair {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      color: var(--camo-sage);
+      opacity: 0.85;
+      pointer-events: none;
+      z-index: 10;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .crosshair-tl { top: 72px; left: 115px; }
+    .crosshair-tr { top: 72px; right: 115px; }
+    .crosshair-bl { bottom: 72px; left: 115px; }
+    .crosshair-br { bottom: 72px; right: 115px; }
+
+    /* Top Header Bar */
+    .header-bar {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      border-bottom: 2.5px solid rgba(56, 189, 248, 0.35);
+      padding-bottom: 34px;
+    }
+
+    .classification-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      letter-spacing: 3.5px;
+      color: #b0c4b8;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      background: rgba(217, 119, 6, 0.16);
+      border: 1.5px solid var(--saffron-bright);
+      color: var(--saffron-bright);
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 19px;
+    }
+    .status-badge::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: var(--saffron-bright);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--saffron-bright);
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .main-logo-box {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo-img {
+      height: 115px;
+      width: auto;
+      filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.7));
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 3px solid rgba(56, 189, 248, 0.45);
+      padding-left: 28px;
+    }
+
+    .company-legal-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 2.2px;
+      color: var(--slate-100);
+      text-transform: uppercase;
+    }
+
+    .company-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--camo-sage);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .badges-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .sovereign-tag {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(17, 30, 21, 0.95);
+      border: 1.5px solid rgba(56, 189, 248, 0.5);
+      padding: 13px 30px;
+      border-radius: 6px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    .tricolor-flag {
+      display: flex;
+      flex-direction: column;
+      width: 28px;
+      height: 20px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .flag-saffron { flex: 1; background: #FF9933; }
+    .flag-white { flex: 1; background: #FFFFFF; }
+    .flag-green { flex: 1; background: #138808; }
+
+    .sovereign-tag-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .soft-tech-partner {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px;
+      color: #a0b5a8;
+      letter-spacing: 1.5px;
+    }
+    .soft-tech-partner span {
+      color: var(--saffron-bright);
+      font-weight: 700;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+    }
+    .eyebrow-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--saffron-bright);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .eyebrow-tag::before {
+      content: '►';
+      font-size: 18px;
+    }
+    .main-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 80px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .title-description {
+      font-size: 27px;
+      line-height: 1.55;
+      color: var(--slate-300);
+      width: 100%;
+      font-weight: 400;
+    }
+
+    .hero-quick-meta-bar {
+      display: flex;
+      gap: 22px;
+      margin-top: 10px;
+    }
+    .meta-chip {
+      background: rgba(18, 28, 21, 0.9);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--slate-200);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .meta-chip span {
+      color: var(--saffron-bright);
+    }
+
+    /* DUAL PLATFORM SPECIFICATION CARDS */
+    .dual-platform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .platform-card {
+      background: var(--panel-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.65);
+    }
+
+    .platform-header {
+      padding: 24px 32px;
+      background: rgba(16, 26, 19, 0.95);
+      border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .platform-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .platform-tier-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--saffron-bright);
+      border: 1.5px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .platform-photo-box {
+      width: 100%;
+      height: 380px;
+      background: #030712;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 2px solid rgba(56, 189, 248, 0.25);
+    }
+    .platform-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+    }
+    .platform-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(7, 12, 9, 0.65) 100%);
+    }
+    .platform-tagline-bar {
+      position: absolute;
+      bottom: 16px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      color: #ffffff;
+      z-index: 3;
+    }
+    .platform-tagline-bar span {
+      background: rgba(8, 16, 32, 0.9);
+      padding: 8px 18px;
+      border-radius: 4px;
+      border: 1.5px solid rgba(56, 189, 248, 0.45);
+    }
+
+    .platform-card-body {
+      padding: 30px 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex: 1;
+    }
+    .platform-role-tag {
+      font-family: 'Barlow', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      color: var(--camo-sage);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .platform-summary {
+      font-size: 23px;
+      line-height: 1.5;
+      color: var(--slate-300);
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(11, 18, 13, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .specs-table tr {
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    .specs-table tr:last-child {
+      border-bottom: none;
+    }
+    .specs-table td {
+      padding: 13px 20px;
+      font-size: 22px;
+    }
+    .specs-table td.label-cell {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      width: 42%;
+      background: rgba(16, 26, 19, 0.5);
+    }
+    .specs-table td.value-cell {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 27px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .specs-table td.value-cell span {
+      color: var(--saffron-bright);
+      font-size: 21px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    /* MIDDLE SECTION: SENSOR SUITES & THERMAL ISTAR */
+    .sensors-spread-card {
+      background: rgba(10, 20, 42, 0.95);
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      padding: 32px 36px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+    }
+
+    .sensors-left {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .sensors-sub-heading {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .sensors-main-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .sensors-desc {
+      font-size: 22px;
+      line-height: 1.5;
+      color: var(--slate-300);
+    }
+
+    .optronics-tri-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 8px;
+    }
+    .optronic-box {
+      background: rgba(8, 16, 32, 0.9);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      padding: 16px 18px;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .optronic-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 25px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .optronic-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: var(--saffron-bright);
+      font-weight: 600;
+    }
+    .optronic-detail {
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--slate-400);
+    }
+
+    .sensors-thermal-preview {
+      height: 300px;
+      background: #000000;
+      border: 2px solid rgba(56, 189, 248, 0.45);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sensors-thermal-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.15);
+    }
+    .thermal-reticle-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, transparent 45%, rgba(0,0,0,0.6) 100%);
+      pointer-events: none;
+    }
+    .thermal-meta-tag {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: #38bdf8;
+      background: rgba(0,0,0,0.8);
+      padding: 6px 14px;
+      border-radius: 4px;
+      border: 1px solid rgba(74, 222, 128, 0.4);
+    }
+
+    /* HIMALAYAN ENVELOPE STRIP */
+    .himalayan-envelope-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      background: rgba(13, 22, 16, 0.95);
+      border: 2px solid rgba(56, 189, 248, 0.4);
+      border-radius: 10px;
+      padding: 30px 40px;
+      position: relative;
+      z-index: 2;
+    }
+    .h-tile {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-right: 2px dashed rgba(56, 189, 248, 0.3);
+      padding-right: 24px;
+    }
+    .h-tile:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+    .h-val {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 46px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+    .h-val span {
+      color: var(--saffron-bright);
+      font-size: 26px;
+      font-weight: 700;
+    }
+    .h-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--camo-sage);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .h-sub {
+      font-size: 19px;
+      color: var(--slate-400);
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    /* Footer Strip */
+    .footer-strip {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2.5px solid rgba(56, 189, 248, 0.35);
+      padding-top: 30px;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-corp {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--slate-100);
+      text-transform: uppercase;
+    }
+
+    .footer-reg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: #9cb5a6;
+      letter-spacing: 1px;
+    }
+
+    .footer-center {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19.5px;
+      color: #c7d8ce;
+    }
+    .footer-center a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .footer-center a:hover {
+      color: var(--saffron-bright);
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .tech-collab-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16.5px;
+      color: #9cb5a6;
+      letter-spacing: 1px;
+    }
+    .tech-collab-badge span {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .page-num-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 2px;
+    }
+
+    .page-num-badge {
+      font-family: 'Rajdhani', 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--saffron-bright);
+      background: rgba(255, 153, 51, 0.12);
+      border: 1.5px solid rgba(255, 153, 51, 0.5);
+      padding: 6px 20px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Screen View Controls -->
+  <div class="view-controls">
+    <button class="view-btn active" id="btnFit" onclick="setMode('fit')">⤢ Fit Screen</button>
+    <button class="view-btn" id="btnActual" onclick="setMode('actual')">100% Actual Size</button>
+    <button class="view-btn" onclick="window.print()">🖨️ Print / PDF</button>
+  </div>
+
+  <div class="page-stage" id="pageStage">
+    <div class="a4-page" id="a4Page">
+      <div class="grid-overlay"></div>
+      
+      <!-- Precision Engineering Frame & Corner Brackets -->
+      <div class="engineering-frame"></div>
+      <div class="corner-bracket corner-tl"></div>
+      <div class="corner-bracket corner-tr"></div>
+      <div class="corner-bracket corner-bl"></div>
+      <div class="corner-bracket corner-br"></div>
+
+      <!-- TOP HEADER BAR -->
+      <header class="header-bar">
+        <div class="classification-strip">
+          <div class="status-badge">SOVEREIGN AIR DEFENCE CAPABILITY BRIEF • 2026-2027</div>
+          <div>CONFIDENTIAL FOR DEFENCE USERS</div>
+        </div>
+
+        <div class="brand-row">
+          <div class="main-logo-box">
+            <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="logo-img">
+            <div class="brand-meta">
+              <div class="company-legal-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+              <div class="company-subtitle">Autonomous Air Systems • Swarm Intelligence • Tactical Air Defence</div>
+            </div>
+          </div>
+
+          <div class="badges-right">
+            <div class="sovereign-tag">
+              <div class="tricolor-flag">
+                <div class="flag-saffron"></div>
+                <div class="flag-white"></div>
+                <div class="flag-green"></div>
+              </div>
+              <div class="sovereign-tag-text">MAKE IN INDIA • ATMANIRBHAR BHARAT</div>
+            </div>
+            <div class="soft-tech-partner">
+              Engineering Collaboration: <span>BCN In-House Technology Team</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- HERO HEADLINE SECTION -->
+      <section class="hero-section">
+        <div class="eyebrow-tag">TACTICAL AIR VEHICLE SPECIFICATIONS & OPTRONICS</div>
+        <h1 class="main-title">
+          NANO-SCOUT & OVERWATCH<br>
+          <span class="gradient-text">AERIAL PLATFORM ENGINEERING</span>
+        </h1>
+        <p class="title-description">
+          Two-tier tactical UAV fleet for coordinated frontline operations. Combines soldier-carried 350g Nano-scouts for short-range reconnaissance with 20kg high-altitude VTOL aircraft for wide-area surveillance and airborne radio relay.
+        </p>
+
+        <div class="hero-quick-meta-bar">
+          <div class="meta-chip"><span>●</span> NANO-SCOUT (350G CLASS)</div>
+          <div class="meta-chip"><span>◆</span> OVERWATCH VTOL (20KG CLASS)</div>
+          <div class="meta-chip"><span>▲</span> MULTI-SPECTRAL EO/IR & LRF</div>
+          <div class="meta-chip"><span>★</span> SUB-ZERO HIMALAYAN RATED</div>
+        </div>
+      </section>
+
+      <!-- DUAL PLATFORM SHOWCASE (Nano-Scout vs Overwatch) -->
+      <section class="dual-platform-grid">
+        
+        <!-- PLATFORM 1: NANO-SCOUT MICRO-UAS -->
+        <article class="platform-card">
+          <div class="platform-header">
+            <div class="platform-name">NANO-SCOUT MICRO-UAS</div>
+            <div class="platform-tier-badge">TIER 01 • FORWARD SCOUT</div>
+          </div>
+
+          <div class="platform-photo-box">
+            <img src="../assets/nano_uav_tactical.jpg" alt="Nano-Scout Micro Drone in Tactical Deployment" class="platform-img">
+            <div class="platform-photo-overlay"></div>
+            <div class="platform-tagline-bar">
+              <span>SUB-500G POCKET DEPLOYABLE</span>
+              <span>ACOUSTIC &lt;38 dB</span>
+            </div>
+          </div>
+
+          <div class="platform-card-body">
+            <div class="platform-role-tag">Ultra-Low Acoustic Squad Scout & Perimeter Probe</div>
+            <p class="platform-summary">
+              Infantry scout drone hand-launched in under 15 seconds. Designed for ridgeline reconnaissance, urban observation, and quiet perimeter patrol with minimal acoustic and radar signatures.
+            </p>
+
+            <table class="specs-table">
+              <tr>
+                <td class="label-cell">All-Up Weight</td>
+                <td class="value-cell">350-450 <span>grams</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Flight Endurance</td>
+                <td class="value-cell">18-22 <span>minutes</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Operational Radius</td>
+                <td class="value-cell">3-5 <span>km Line-of-Sight</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Dash Speed</td>
+                <td class="value-cell">45 <span>km/h max</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Sensor Suite</td>
+                <td class="value-cell">HD Daylight + <span>Micro LWIR Thermal</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Acoustic Signature</td>
+                <td class="value-cell">&lt;38 <span>dB @ 25 meters</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Deployment Mode</td>
+                <td class="value-cell">Hand / Pocket Launch <span>(&lt;15s)</span></td>
+              </tr>
+            </table>
+          </div>
+        </article>
+
+        <!-- PLATFORM 2: TACTICAL OVERWATCH RELAY -->
+        <article class="platform-card">
+          <div class="platform-header">
+            <div class="platform-name">OVERWATCH VTOL RELAY</div>
+            <div class="platform-tier-badge" style="background: rgba(14, 116, 144, 0.25); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">TIER 02 • AIRBORNE RELAY</div>
+          </div>
+
+          <div class="platform-photo-box">
+            <img src="../assets/overwatch_uav.jpg" alt="Overwatch Tactical UAV in Flight" class="platform-img">
+            <div class="platform-photo-overlay"></div>
+            <div class="platform-tagline-bar">
+              <span>~20KG CLASS HYBRID VTOL</span>
+              <span>8,000+ FT SERVICE CEILING</span>
+            </div>
+          </div>
+
+          <div class="platform-card-body">
+            <div class="platform-role-tag">High-Altitude Airborne Relay & Persistent ISTAR Mothership</div>
+            <p class="platform-summary">
+              Vertical takeoff and landing (VTOL) aircraft operating without runways. Relays scout drone telemetry and video to base stations while conducting long-range optical and thermal surveillance.
+            </p>
+
+            <table class="specs-table">
+              <tr>
+                <td class="label-cell">Max Takeoff Weight</td>
+                <td class="value-cell">~20 <span>kg Class</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Mission Endurance</td>
+                <td class="value-cell">120-180 <span>minutes</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Operational Radius</td>
+                <td class="value-cell">100+ <span>km BVLOS</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Service Ceiling</td>
+                <td class="value-cell">8,000+ <span>ft AMSL</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Gimbal Optronics</td>
+                <td class="value-cell">30x Optical Zoom + <span>Radiometric FLIR</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Laser Rangefinder</td>
+                <td class="value-cell">Class 1 Eye-Safe <span>(±1m @ 3km)</span></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Avionics Architecture</td>
+                <td class="value-cell">Dual-Band Anti-Jam <span>NAVIC + Mesh</span></td>
+              </tr>
+            </table>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- MIDDLE SECTION: OPTRONICS & MULTI-SPECTRAL ISTAR SUITE -->
+      <section class="sensors-spread-card">
+        <div class="sensors-left">
+          <div class="sensors-sub-heading">INTEGRATED OPTRONICS & TARGETING PAYLOADS</div>
+          <div class="sensors-main-title">MULTI-SPECTRAL EO/IR & LASER TELEMETRY</div>
+          <p class="sensors-desc">
+            Equipped with gyro-stabilized multi-sensor gimbals engineered for 24/7 all-weather surveillance across contested borders. Seamlessly switches between high-magnification visible spectrum optics and thermal thermography to defeat optical camouflage, mist, and night darkness.
+          </p>
+
+          <div class="optronics-tri-grid">
+            <div class="optronic-box">
+              <div class="optronic-title">Daylight 30x Zoom</div>
+              <div class="optronic-sub">Sony Low-Light Sensor</div>
+              <div class="optronic-detail">High-definition target identification at 3,500m stand-off with automated motion tracking.</div>
+            </div>
+
+            <div class="optronic-box">
+              <div class="optronic-title">640×512 LWIR Thermal</div>
+              <div class="optronic-sub">Uncooled Microbolometer</div>
+              <div class="optronic-detail">12 µm pixel pitch detects personnel heat signatures through smoke, foliage, and dense mist.</div>
+            </div>
+
+            <div class="optronic-box">
+              <div class="optronic-title">Laser Rangefinder</div>
+              <div class="optronic-sub">MGRS Target Geolocation</div>
+              <div class="optronic-detail">Computes instant target GPS/NAVIC grid coordinates for artillery and air defence handoff.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sensors-thermal-preview">
+          <img src="../assets/warground_thermal_terrain.jpg" alt="Thermal Optronics View of Terrain" class="sensors-thermal-img">
+          <div class="thermal-reticle-overlay"></div>
+          <div class="thermal-meta-tag">FLIR LWIR 640×512 • 28.6139°N / 77.2090°E</div>
+        </div>
+      </section>
+
+      <!-- LOWER SECTION: HIMALAYAN ENVIRONMENTAL ENVELOPE -->
+      <section class="himalayan-envelope-bar">
+        <div class="h-tile">
+          <div class="h-val">-20°C <span>to</span> +55°C</div>
+          <div class="h-title">Thermal Operating Range</div>
+          <div class="h-sub">Sub-zero active battery conditioning and high-desert cooling radiators.</div>
+        </div>
+
+        <div class="h-tile">
+          <div class="h-val">45 <span>km/h</span></div>
+          <div class="h-title">Mountain Gust Handling</div>
+          <div class="h-sub">Tested against severe Himalayan wind shear and ridge downdrafts.</div>
+        </div>
+
+        <div class="h-tile">
+          <div class="h-val">IP54 <span>Enclosure</span></div>
+          <div class="h-title">Environmental Protection</div>
+          <div class="h-sub">Sealed avionics bays resistant to driven rain, desert sand, and mountain dust.</div>
+        </div>
+
+        <div class="h-tile">
+          <div class="h-val">MIL-STD-810H</div>
+          <div class="h-title">Structural Ruggedization</div>
+          <div class="h-sub">Carbon-composite monocoque construction built for rough tactical field handling.</div>
+        </div>
+      </section>
+
+      <!-- FOOTER STRIP -->
+      <footer class="footer-strip">
+        <div class="footer-left">
+          <div class="footer-corp">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+          <div class="footer-reg">CIN: U33121PN2026PTC259836 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
+        </div>
+
+        <div class="footer-center">
+          <span>Web: <a href="https://shivnetra47.tech" target="_blank">shivnetra47.tech</a></span>
+          <span>•</span>
+          <span>Contact: <a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
+        </div>
+
+        <div class="footer-right">
+          <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
+          <div class="page-num-badge">PAGE 05</div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    let currentMode = 'fit';
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById('btnFit').classList.toggle('active', mode === 'fit');
+      document.getElementById('btnActual').classList.toggle('active', mode === 'actual');
+      updateA4Scale();
+    }
+
+    function updateA4Scale() {
+      const page = document.getElementById('a4Page');
+      const stage = document.getElementById('pageStage');
+      if (!page) return;
+
+      if (window.innerWidth >= 2400 && window.innerHeight >= 3400) {
+        page.style.transform = 'none';
+        page.style.margin = '0 auto';
+        stage.style.height = 'auto';
+        return;
+      }
+
+      if (currentMode === 'fit') {
+        const availW = window.innerWidth - 60;
+        const availH = window.innerHeight - 60;
+        const scale = Math.min(availW / 2480, availH / 3508);
+        page.style.transform = `scale(${scale})`;
+        page.style.transformOrigin = 'top center';
+        stage.style.height = `${3508 * scale + 60}px`;
+      } else {
+        page.style.transform = 'none';
+        page.style.margin = '30px auto';
+        stage.style.height = 'auto';
+      }
+    }
+
+    window.addEventListener('resize', updateA4Scale);
+    window.addEventListener('DOMContentLoaded', updateA4Scale);
+    setTimeout(updateA4Scale, 100);
+  </script>
+</body>
+</html>

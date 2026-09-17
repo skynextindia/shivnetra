@@ -9,14 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #050906;
-      --panel-bg: rgba(9, 15, 11, 0.88);
-      --card-bg: rgba(14, 22, 16, 0.85);
-      --card-border: rgba(122, 151, 129, 0.4);
-      --camo-dark: #141e17;
+      --bg-dark: #060b08;
+      --bg-gradient-1: #0a130e;
+      --bg-gradient-2: #050a07;
+      --panel-bg: rgba(12, 20, 15, 0.72);
+      --card-bg: rgba(14, 23, 17, 0.78);
+      --card-border: rgba(122, 151, 129, 0.28);
+      --camo-dark: #162319;
       --camo-olive: #344738;
       --camo-sage: #7a9781;
-      --camo-accent: #a3c4ab;
+      --camo-accent: #9cbca4;
       --saffron: #d97706;
       --saffron-bright: #ff9933;
       --india-green: #138808;
@@ -36,7 +38,7 @@
     body, html {
       width: 100%;
       height: 100%;
-      background-color: #020403;
+      background-color: #030604;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--slate-100);
       overflow-x: hidden;
@@ -51,7 +53,7 @@
       z-index: 9999;
       display: flex;
       gap: 10px;
-      background: rgba(10, 16, 12, 0.92);
+      background: rgba(10, 16, 12, 0.94);
       border: 1px solid rgba(122, 151, 129, 0.4);
       padding: 6px 14px;
       border-radius: 8px;
@@ -82,7 +84,7 @@
       font-weight: 700;
     }
 
-    /* Outer stage for browser view */
+    /* Outer Stage */
     .page-stage {
       width: 100%;
       min-height: 100vh;
@@ -102,78 +104,81 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 100px 120px 90px 120px;
+      padding: 135px 140px;
       box-shadow: 0 0 120px rgba(0, 0, 0, 0.98);
       margin: 0 auto;
       transform-origin: top center;
-      background-color: #050906;
+      background: radial-gradient(circle at 50% 25%, #0c1710 0%, #060b08 55%, #030604 100%);
     }
 
-    /* Full-Bleed High-Res Tactical Background Image */
-    .full-bleed-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      z-index: 0;
-      filter: contrast(1.08) brightness(0.92);
-    }
-
-    /* Cinematic Tactical Vignette & Gradient Overlays */
-    .bg-scrim {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: linear-gradient(
-        180deg,
-        rgba(3, 7, 4, 0.92) 0%,
-        rgba(5, 10, 6, 0.72) 18%,
-        rgba(4, 8, 5, 0.45) 42%,
-        rgba(3, 7, 4, 0.72) 68%,
-        rgba(2, 5, 3, 0.96) 90%,
-        #020403 100%
-      );
-      pointer-events: none;
-    }
-
-    .bg-radial-glow {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: radial-gradient(circle at 50% 28%, rgba(255, 153, 51, 0.12) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    /* Technical Grid Overlay */
-    .grid-overlay {
+    /* Technical Coordinate Grid Background */
+    .tech-grid-overlay {
       position: absolute;
       inset: 0;
       background-image: 
-        linear-gradient(to right, rgba(122, 151, 129, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(122, 151, 129, 0.05) 1px, transparent 1px);
-      background-size: 80px 80px;
+        linear-gradient(to right, rgba(122, 151, 129, 0.055) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(122, 151, 129, 0.055) 1px, transparent 1px);
+      background-size: 70px 70px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Soft Tactical Vignette */
+    .tech-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, transparent 40%, rgba(3, 6, 4, 0.85) 100%);
       pointer-events: none;
       z-index: 2;
     }
 
-    /* Tactical HUD Corner Brackets */
+    /* Vector Matrix Earth Curvature in Bottom Half */
+    .earth-curvature-container {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1750px; /* Covers the bottom ~50% of the 3508px page */
+      width: 2480px;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .earth-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Precision Engineering Perimeter Frame */
+    .engineering-frame {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      right: 60px;
+      bottom: 60px;
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* Tactical HUD Corner Brackets - Seamlessly capping Engineering Frame */
     .corner-bracket {
       position: absolute;
-      width: 70px;
-      height: 70px;
-      border-color: rgba(255, 153, 51, 0.7);
+      width: 50px;
+      height: 50px;
+      border-color: rgba(122, 151, 129, 0.7);
       border-style: solid;
       pointer-events: none;
-      z-index: 3;
+      z-index: 4;
     }
-    .corner-tl { top: 55px; left: 65px; border-width: 4px 0 0 4px; }
-    .corner-tr { top: 55px; right: 65px; border-width: 4px 4px 0 0; }
-    .corner-bl { bottom: 55px; left: 65px; border-width: 0 0 4px 4px; }
-    .corner-br { bottom: 55px; right: 65px; border-width: 0 4px 4px 0; }
+    .corner-tl { top: 60px; left: 60px; border-width: 3.5px 0 0 3.5px; }
+    .corner-tr { top: 60px; right: 60px; border-width: 3.5px 3.5px 0 0; }
+    .corner-bl { bottom: 60px; left: 60px; border-width: 0 0 3.5px 3.5px; }
+    .corner-br { bottom: 60px; right: 60px; border-width: 0 3.5px 3.5px 0; }
 
-    /* Crosshair Metadata Coordinates */
+    /* Crosshair Telemetry Coordinates */
     .crosshair {
       position: absolute;
       font-family: 'JetBrains Mono', monospace;
@@ -182,81 +187,75 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       pointer-events: none;
-      z-index: 3;
+      z-index: 4;
     }
-    .crosshair-tl { top: 68px; left: 150px; }
-    .crosshair-tr { top: 68px; right: 150px; }
-    .crosshair-bl { bottom: 68px; left: 150px; }
-    .crosshair-br { bottom: 68px; right: 150px; }
+    .crosshair-tl { top: 72px; left: 130px; }
+    .crosshair-tr { top: 72px; right: 130px; }
+    .crosshair-bl { bottom: 72px; left: 130px; }
+    .crosshair-br { bottom: 72px; right: 130px; }
 
-    /* Foreground Content Wrapper */
+    /* Foreground Content Layout Layer */
     .content-layer {
       position: relative;
-      z-index: 4;
+      z-index: 5;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       height: 100%;
     }
 
-    /* TOP HEADER STRIP */
+    /* TOP HEADER */
     .top-header {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
     }
 
     .classification-strip {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(8, 14, 10, 0.9);
-      border: 1.5px solid rgba(122, 151, 129, 0.45);
-      padding: 12px 30px;
+      background: rgba(10, 18, 13, 0.85);
+      border: 1.5px solid rgba(122, 151, 129, 0.4);
+      padding: 14px 32px;
       border-radius: 6px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 16.5px;
       letter-spacing: 2px;
       color: var(--slate-300);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(8px);
     }
 
-    .class-tag-pill {
+    .status-badge {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255, 153, 51, 0.18);
-      border: 1px solid var(--saffron-bright);
-      padding: 5px 16px;
-      border-radius: 4px;
       font-weight: 700;
       color: var(--saffron-bright);
     }
-    .class-tag-pill::before {
+    .status-badge::before {
       content: '';
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--saffron-bright);
-      box-shadow: 0 0 10px var(--saffron-bright);
     }
 
-    .top-national-badge-row {
+    .brand-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 6px;
+      padding: 4px 6px;
     }
 
-    .sovereign-national-tag {
+    .sovereign-tag {
       display: inline-flex;
       align-items: center;
-      gap: 18px;
-      background: rgba(12, 20, 14, 0.85);
-      border: 1.5px solid rgba(122, 151, 129, 0.4);
+      gap: 16px;
+      background: rgba(12, 20, 14, 0.7);
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
       padding: 10px 24px;
-      border-radius: 30px;
-      backdrop-filter: blur(10px);
+      border-radius: 4px;
     }
 
     .tricolor-flag {
@@ -264,243 +263,272 @@
       flex-direction: column;
       width: 32px;
       height: 22px;
-      border-radius: 3px;
+      border-radius: 2px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
     .flag-saffron { flex: 1; background: #ff9933; }
     .flag-white { flex: 1; background: #ffffff; }
     .flag-green { flex: 1; background: #138808; }
 
-    .sovereign-text {
+    .sovereign-tag-text {
       font-family: 'JetBrains Mono', monospace;
       font-size: 16px;
       font-weight: 700;
       color: #ffffff;
-      letter-spacing: 2.2px;
+      letter-spacing: 2px;
     }
 
-    .dossier-id-code {
+    .soft-tech-partner {
       font-family: 'JetBrains Mono', monospace;
       font-size: 16px;
-      color: var(--camo-accent);
-      letter-spacing: 2px;
-      background: rgba(8, 14, 10, 0.85);
-      border: 1px solid rgba(122, 151, 129, 0.3);
-      padding: 8px 20px;
-      border-radius: 6px;
+      color: var(--slate-400);
+      letter-spacing: 1.5px;
+    }
+    .soft-tech-partner span {
+      color: #ffffff;
+      font-weight: 600;
     }
 
-    /* CENTER HERO SHOWCASE WITH PROMINENT LOGO */
-    .center-hero-container {
+    /* CENTER SECTION: CORPORATE LOGO & BROCHURE SCOPE */
+    .center-body {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       margin: auto 0;
-      padding: 40px 0;
+      width: 100%;
     }
 
-    /* Medallion / Center Logo Frame */
-    .logo-emblem-box {
+    /* Original White SHIVNETRA Logo Matching Content Pages */
+    .center-logo-block {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
-      margin-bottom: 45px;
+      margin-bottom: 40px;
     }
 
-    .logo-glow-ring {
-      position: absolute;
-      width: 440px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255, 153, 51, 0.28) 0%, rgba(122, 151, 129, 0.12) 50%, transparent 80%);
-      filter: blur(35px);
-      z-index: -1;
+    .original-logo-img {
+      height: 125px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.8));
     }
 
-    .logo-frame {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(8, 14, 10, 0.94);
-      border: 2.5px solid rgba(255, 153, 51, 0.6);
-      border-radius: 20px;
-      padding: 24px 60px;
-      box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.9),
-        inset 0 0 30px rgba(255, 153, 51, 0.12);
-      backdrop-filter: blur(15px);
-    }
-
-    .logo-svg-main {
-      width: 520px;
-      height: auto;
-      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.8));
-    }
-
-    .legal-name-strip {
+    .corporate-legal-strip {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 25px;
+      font-size: 26px;
       font-weight: 700;
-      letter-spacing: 3.5px;
-      color: #e2e8f0;
+      letter-spacing: 4px;
+      color: #cbd5e1;
       text-transform: uppercase;
       margin-top: 18px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
     }
-    .legal-name-strip::before,
-    .legal-name-strip::after {
+    .corporate-legal-strip::before,
+    .corporate-legal-strip::after {
       content: '';
-      width: 40px;
-      height: 2px;
-      background: var(--saffron-bright);
+      width: 45px;
+      height: 1.5px;
+      background: var(--camo-sage);
+      opacity: 0.7;
     }
 
-    /* BROCHURE PURPOSE & MAIN HEADLINE */
+    .corporate-subtitle-strip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16.5px;
+      color: var(--camo-sage);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* WHAT THE BROCHURE IS ABOUT: HEADLINE & EXECUTIVE SUMMARY */
     .purpose-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 700;
       color: var(--saffron-bright);
       letter-spacing: 3px;
       text-transform: uppercase;
-      background: rgba(255, 153, 51, 0.12);
-      border: 1.5px solid rgba(255, 153, 51, 0.35);
-      padding: 8px 28px;
-      border-radius: 6px;
-      margin-bottom: 24px;
+      background: rgba(255, 153, 51, 0.08);
+      border: 1px solid rgba(255, 153, 51, 0.28);
+      padding: 8px 24px;
+      border-radius: 4px;
+      margin-bottom: 20px;
     }
 
     .cover-main-title {
       font-family: 'Barlow', sans-serif;
-      font-size: 88px;
+      font-size: 86px;
       font-weight: 800;
-      line-height: 1.04;
+      line-height: 1.06;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       color: #ffffff;
-      margin-bottom: 24px;
-      text-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
+      margin-bottom: 20px;
     }
 
-    .gradient-gold {
-      background: linear-gradient(135deg, #ffffff 0%, #ffc078 40%, #ff9933 80%, #d97706 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 4px 15px rgba(255, 153, 51, 0.35));
+    .cover-main-title .saffron-accent {
+      color: var(--saffron-bright);
     }
 
-    .cover-scope-summary {
-      font-family: 'Inter', sans-serif;
-      font-size: 26px;
-      line-height: 1.55;
-      font-weight: 400;
-      color: #cbd5e1;
-      max-width: 1950px;
-      margin: 0 auto 40px auto;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.85);
-    }
-
-    /* 4-PILLAR CAPABILITY MATRIX (Glassmorphism Cards) */
-    .capability-matrix-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 28px;
+    .cover-abstract-box {
+      background: rgba(10, 18, 13, 0.85);
+      border: 2px solid rgba(122, 151, 129, 0.4);
+      border-radius: 8px;
+      padding: 28px 46px;
       width: 100%;
-      margin-top: 10px;
+      margin: 0 0 28px 0;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     }
 
-    .cap-card {
-      background: var(--card-bg);
-      border: 2px solid var(--card-border);
-      border-radius: 12px;
-      padding: 32px 30px;
+    .cover-abstract-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 24.5px;
+      line-height: 1.58;
+      font-weight: 400;
+      color: #e2e8f0;
+    }
+    .cover-abstract-text strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* 3-PILLAR CAPABILITY ARCHITECTURE PANELS (Engineered Serious Defence Layout) */
+    .pillars-flat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .pillar-flat-card {
+      background: rgba(12, 22, 16, 0.92);
+      border: 2px solid rgba(122, 151, 129, 0.4);
+      border-radius: 8px;
+      padding: 36px 32px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      text-align: left;
-      backdrop-filter: blur(14px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+      gap: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
       position: relative;
-      overflow: hidden;
     }
-    .cap-card::before {
+    .pillar-flat-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
+      height: 3.5px;
       background: var(--card-border);
     }
-    .cap-card:nth-child(1)::before { background: var(--saffron-bright); }
-    .cap-card:nth-child(2)::before { background: var(--camo-sage); }
-    .cap-card:nth-child(3)::before { background: #38bdf8; }
-    .cap-card:nth-child(4)::before { background: var(--india-green); }
+    .pillar-flat-card:nth-child(1)::before { background: var(--saffron-bright); }
+    .pillar-flat-card:nth-child(2)::before { background: var(--camo-sage); }
+    .pillar-flat-card:nth-child(3)::before { background: #38bdf8; }
 
-    .cap-index-num {
+    .pillar-card-badge {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       color: var(--saffron-bright);
-      letter-spacing: 2px;
+    }
+    .pillar-flat-card:nth-child(2) .pillar-card-badge { color: var(--camo-sage); }
+    .pillar-flat-card:nth-child(3) .pillar-card-badge { color: #38bdf8; }
+
+    .pillar-section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--slate-400);
+      background: rgba(8, 14, 10, 0.9);
+      border: 1px solid rgba(122, 151, 129, 0.35);
+      padding: 4px 12px;
+      border-radius: 4px;
     }
 
-    .cap-card-title {
+    .pillar-card-title {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 1px;
       line-height: 1.15;
     }
 
-    .cap-card-desc {
+    .pillar-card-summary {
       font-family: 'Inter', sans-serif;
-      font-size: 18px;
-      line-height: 1.48;
-      color: #b8ccbf;
+      font-size: 20px;
+      line-height: 1.52;
+      color: #cbd8cf;
     }
 
-    .cap-metric-tag {
+    .pillar-specs-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1.5px solid rgba(122, 151, 129, 0.25);
+    }
+
+    .pillar-spec-chip {
       font-family: 'JetBrains Mono', monospace;
       font-size: 15px;
-      color: var(--saffron-bright);
-      background: rgba(10, 16, 12, 0.9);
-      border: 1px solid rgba(122, 151, 129, 0.35);
-      padding: 5px 12px;
+      font-weight: 700;
+      color: #f1f5f9;
+      background: rgba(10, 18, 13, 0.85);
+      border: 1.5px solid rgba(122, 151, 129, 0.35);
+      padding: 6px 12px;
       border-radius: 4px;
-      margin-top: auto;
-      width: fit-content;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
     }
 
-    /* BOTTOM FOOTER SECTION */
-    .bottom-footer {
-      border-top: 2.5px solid rgba(122, 151, 129, 0.4);
-      padding-top: 28px;
+    /* Standardized Engineered Page Number Badge at Bottom */
+    .page-num-badge {
+      font-family: 'Rajdhani', 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--saffron-bright);
+      background: rgba(255, 153, 51, 0.12);
+      border: 1.5px solid rgba(255, 153, 51, 0.5);
+      padding: 6px 20px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    /* BOTTOM FOOTER STRIP */
+    .footer-strip {
+      position: relative;
+      z-index: 5;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
-      z-index: 5;
+      border-top: 2.5px solid rgba(122, 151, 129, 0.35);
+      padding-top: 30px;
     }
 
-    .footer-left-col {
+    .footer-left {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
 
-    .footer-corp-title {
+    .footer-corp {
       font-family: 'Rajdhani', sans-serif;
       font-size: 25px;
       font-weight: 700;
@@ -509,14 +537,14 @@
       text-transform: uppercase;
     }
 
-    .footer-corp-reg {
+    .footer-reg {
       font-family: 'JetBrains Mono', monospace;
       font-size: 16px;
       color: #9cb5a6;
       letter-spacing: 1px;
     }
 
-    .footer-center-links {
+    .footer-center {
       display: flex;
       align-items: center;
       gap: 32px;
@@ -524,17 +552,17 @@
       font-size: 19.5px;
       color: #c7d8ce;
     }
-    .footer-center-links a {
+    .footer-center a {
       color: #ffffff;
       text-decoration: none;
       font-weight: 600;
       letter-spacing: 1px;
     }
-    .footer-center-links a:hover {
+    .footer-center a:hover {
       color: var(--saffron-bright);
     }
 
-    .footer-right-col {
+    .footer-right {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -551,7 +579,6 @@
       color: #ffffff;
       font-weight: 600;
     }
-
     .page-num-pill {
       font-family: 'JetBrains Mono', monospace;
       font-size: 18px;
@@ -591,137 +618,248 @@
     
     <div class="a4-page" id="a4Page">
       
-      <!-- Full-Bleed Tactical Background Image -->
-      <img src="../assets/defence_uav_cover_hero.jpg" alt="Autonomous UAV Swarm over Himalayas" class="full-bleed-bg">
-      <div class="bg-scrim"></div>
-      <div class="bg-radial-glow"></div>
-      <div class="grid-overlay"></div>
+      <!-- Technical Grid Overlay across the page -->
+      <div class="tech-grid-overlay"></div>
+      <div class="tech-vignette"></div>
 
-      <!-- Tactical Corner Brackets -->
+      <!-- Faint Earth Curvature in Bottom Half (Matrix Style, Technically Correct Vector Geometry) -->
+      <div class="earth-curvature-container">
+        <svg class="earth-svg" viewBox="0 0 2480 1750" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Atmospheric Limb Gradient -->
+            <linearGradient id="limbGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(122, 151, 129, 0.1)" />
+              <stop offset="30%" stop-color="rgba(122, 151, 129, 0.45)" />
+              <stop offset="50%" stop-color="rgba(163, 196, 171, 0.65)" />
+              <stop offset="70%" stop-color="rgba(122, 151, 129, 0.45)" />
+              <stop offset="100%" stop-color="rgba(122, 151, 129, 0.1)" />
+            </linearGradient>
+
+            <!-- Subtle Fill below the Limb -->
+            <radialGradient id="earthBodyGrad" cx="50%" cy="130%" r="90%">
+              <stop offset="0%" stop-color="rgba(18, 32, 23, 0.35)" />
+              <stop offset="60%" stop-color="rgba(9, 16, 12, 0.2)" />
+              <stop offset="100%" stop-color="transparent" />
+            </radialGradient>
+          </defs>
+
+          <!-- Earth Shading Body below Horizon Curve -->
+          <path d="M -100 850 Q 1240 280 2580 850 L 2580 1750 L -100 1750 Z" fill="url(#earthBodyGrad)" />
+
+          <!-- Primary Earth Horizon Limb (Curvature Arc) -->
+          <path d="M -100 850 Q 1240 280 2580 850" stroke="url(#limbGrad)" stroke-width="2.5" />
+          <!-- Soft Atmospheric Halo -->
+          <path d="M -100 848 Q 1240 277 2580 848" stroke="rgba(163, 196, 171, 0.15)" stroke-width="8" />
+
+          <!-- Concentric Latitudinal Curves in Matrix Style -->
+          <path d="M -80 1020 Q 1240 460 2560 1020" stroke="rgba(122, 151, 129, 0.16)" stroke-width="1.5" stroke-dasharray="4, 6" />
+          <path d="M -60 1190 Q 1240 640 2540 1190" stroke="rgba(122, 151, 129, 0.13)" stroke-width="1.5" />
+          <path d="M -40 1370 Q 1240 830 2520 1370" stroke="rgba(122, 151, 129, 0.11)" stroke-width="1.5" stroke-dasharray="4, 6" />
+          <path d="M -20 1560 Q 1240 1030 2500 1560" stroke="rgba(122, 151, 129, 0.09)" stroke-width="1.5" />
+
+          <!-- Longitudinal Meridian Curves Converging towards Northern Apex -->
+          <!-- Central Meridian -->
+          <path d="M 1240 280 L 1240 1750" stroke="rgba(122, 151, 129, 0.22)" stroke-width="1.5" />
+          
+          <!-- West Meridians -->
+          <path d="M 1240 280 Q 1060 950 820 1750" stroke="rgba(122, 151, 129, 0.15)" stroke-width="1.5" />
+          <path d="M 1240 280 Q 860 950 420 1750" stroke="rgba(122, 151, 129, 0.12)" stroke-width="1.5" stroke-dasharray="6, 8" />
+          <path d="M 1240 280 Q 640 950 20 1750" stroke="rgba(122, 151, 129, 0.09)" stroke-width="1.5" />
+          <path d="M 1240 280 Q 420 950 -360 1750" stroke="rgba(122, 151, 129, 0.06)" stroke-width="1.5" />
+
+          <!-- East Meridians -->
+          <path d="M 1240 280 Q 1420 950 1660 1750" stroke="rgba(122, 151, 129, 0.15)" stroke-width="1.5" />
+          <path d="M 1240 280 Q 1620 950 2060 1750" stroke="rgba(122, 151, 129, 0.12)" stroke-width="1.5" stroke-dasharray="6, 8" />
+          <path d="M 1240 280 Q 1840 950 2460 1750" stroke="rgba(122, 151, 129, 0.09)" stroke-width="1.5" />
+          <path d="M 1240 280 Q 2060 950 2840 1750" stroke="rgba(122, 151, 129, 0.06)" stroke-width="1.5" />
+
+          <!-- Tactical Telemetry & Orbital Elevation Arcs -->
+          <!-- Sovereign NAVIC Geostationary Orbit Arc -->
+          <path d="M 150 560 Q 1240 100 2330 560" stroke="rgba(255, 153, 51, 0.35)" stroke-width="1.5" stroke-dasharray="8, 12" />
+          <text x="1240" y="80" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" fill="rgba(255, 153, 51, 0.75)" letter-spacing="3">
+            NAVIC L5/S CONSTELLATION FOOTPRINT • 55°E / 111.75°E GEO-SYNCHRONOUS
+          </text>
+
+          <!-- BVLOS Swarm Operational Coverage Arc -->
+          <path d="M 380 720 Q 1240 210 2100 720" stroke="rgba(122, 151, 129, 0.28)" stroke-width="1" stroke-dasharray="4, 8" />
+          <text x="1240" y="240" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" fill="rgba(163, 196, 171, 0.6)" letter-spacing="2.5">
+            BVLOS ENCRYPTED MESH OPERATIONAL RADIUS (100-150 KM)
+          </text>
+
+          <!-- Matrix Coordinate Nodes (Crosses & Dots at Intersections) -->
+          <!-- Center line points -->
+          <circle cx="1240" cy="460" r="3.5" fill="rgba(255, 153, 51, 0.7)" />
+          <circle cx="1240" cy="640" r="3.5" fill="rgba(122, 151, 129, 0.8)" />
+          <circle cx="1240" cy="830" r="3.5" fill="rgba(122, 151, 129, 0.8)" />
+          <circle cx="1240" cy="1030" r="3.5" fill="rgba(122, 151, 129, 0.8)" />
+
+          <!-- Coordinate Crosshairs (+) on Key Grid Intersections -->
+          <g stroke="rgba(122, 151, 129, 0.45)" stroke-width="1.2">
+            <!-- Central Node -->
+            <line x1="1232" y1="460" x2="1248" y2="460" /><line x1="1240" y1="452" x2="1240" y2="468" />
+            <!-- West Nodes -->
+            <line x1="1090" y1="500" x2="1106" y2="500" /><line x1="1098" y1="492" x2="1098" y2="508" />
+            <line x1="930" y1="565" x2="946" y2="565" /><line x1="938" y1="557" x2="938" y2="573" />
+            <line x1="1035" y1="710" x2="1051" y2="710" /><line x1="1043" y1="702" x2="1043" y2="718" />
+            <line x1="840" y1="800" x2="856" y2="800" /><line x1="848" y1="792" x2="848" y2="808" />
+            <!-- East Nodes -->
+            <line x1="1374" y1="500" x2="1390" y2="500" /><line x1="1382" y1="492" x2="1382" y2="508" />
+            <line x1="1534" y1="565" x2="1550" y2="565" /><line x1="1542" y1="557" x2="1542" y2="573" />
+            <line x1="1429" y1="710" x2="1445" y2="710" /><line x1="1437" y1="702" x2="1437" y2="718" />
+            <line x1="1624" y1="800" x2="1640" y2="800" /><line x1="1632" y1="792" x2="1632" y2="808" />
+          </g>
+
+          <!-- Technical Grid Telemetry Callouts -->
+          <text x="830" y="830" font-family="'JetBrains Mono', monospace" font-size="12" fill="rgba(122, 151, 129, 0.5)" letter-spacing="1.5">
+            GRID: W-77°12'E
+          </text>
+          <text x="1620" y="830" font-family="'JetBrains Mono', monospace" font-size="12" fill="rgba(122, 151, 129, 0.5)" letter-spacing="1.5">
+            GRID: E-78°45'E
+          </text>
+          <text x="1255" y="455" font-family="'JetBrains Mono', monospace" font-size="12" fill="rgba(255, 153, 51, 0.65)" letter-spacing="1.5">
+            LAT 28°36'N • REF BASE
+          </text>
+        </svg>
+      </div>
+
+      <!-- Precision Engineering Frame & Corner Brackets -->
+      <div class="engineering-frame"></div>
       <div class="corner-bracket corner-tl"></div>
       <div class="corner-bracket corner-tr"></div>
       <div class="corner-bracket corner-bl"></div>
       <div class="corner-bracket corner-br"></div>
 
-      <!-- Technical Crosshairs -->
-      <div class="crosshair crosshair-tl">DOC REF: SN47-UAS-BR-DOSSIER</div>
-      <div class="crosshair crosshair-tr">2480x3508 [210x297mm] • 300 DPI</div>
-      <div class="crosshair crosshair-bl">LAT 28°36'N • LONG 77°12'E</div>
-      <div class="crosshair crosshair-br">IND-DEF-2026 • OFFICIAL BRIEF</div>
-
-      <!-- FOREGROUND CONTENT -->
+      <!-- FOREGROUND CONTENT LAYER -->
       <div class="content-layer">
 
-        <!-- TOP HEADER -->
+        <!-- TOP HEADER BAR -->
         <header class="top-header">
           <div class="classification-strip">
-            <div class="class-tag-pill">SOVEREIGN AIR DEFENCE PUBLICATION • 2026–2027</div>
-            <div>RESTRICTED CIRCULATION • INDIAN DEFENCE & STRATEGIC FORCES</div>
+            <div class="status-badge">SOVEREIGN AIR DEFENCE PUBLICATION • 2026-2027</div>
+            <div>CONFIDENTIAL FOR DEFENCE USERS</div>
           </div>
 
-          <div class="top-national-badge-row">
-            <div class="sovereign-national-tag">
+          <div class="brand-row">
+            <div class="sovereign-tag">
               <div class="tricolor-flag">
                 <div class="flag-saffron"></div>
                 <div class="flag-white"></div>
                 <div class="flag-green"></div>
               </div>
-              <div class="sovereign-text">MAKE IN INDIA • ATMANIRBHAR BHARAT • iDEX REGISTERED</div>
+              <div class="sovereign-tag-text">MAKE IN INDIA • ATMANIRBHAR BHARAT • iDEX REGISTERED</div>
             </div>
 
-            <div class="dossier-id-code">
-              TACTICAL AIR DEFENCE DOSSIER • RELEASE 4.7
+            <div class="soft-tech-partner">
+              Engineering Collaboration: <span>BCN In-House Technology Team</span>
             </div>
           </div>
         </header>
 
-        <!-- CENTER HERO WITH PROMINENT EMBLEM & BROCHURE SCOPE -->
-        <main class="center-hero-container">
+        <!-- CENTER BODY: ORIGINAL CONTENT LOGO + PURPOSE + HEADLINE + 3-PILLAR FLAT ARCHITECTURE -->
+        <main class="center-body">
 
-          <!-- Centered Glowing Insignia / Logo Box -->
-          <div class="logo-emblem-box">
-            <div class="logo-glow-ring"></div>
-            <div class="logo-frame">
-              <img src="../assets/logo.svg" alt="SHIVNETRA 47 Logo" class="logo-svg-main">
-            </div>
-            <div class="legal-name-strip">
+          <!-- Original White SHIVNETRA Logo Matching Content Pages -->
+          <div class="center-logo-block">
+            <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="original-logo-img">
+            <div class="corporate-legal-strip">
               SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED
+            </div>
+            <div class="corporate-subtitle-strip">
+              Autonomous Air Systems • Swarm Intelligence • Tactical Air Defence
             </div>
           </div>
 
-          <!-- What the Brochure is About: Eyebrow + Master Title + Scope -->
+          <!-- What the Brochure is About: Eyebrow + Master Title -->
           <div class="purpose-eyebrow">
-            SOVEREIGN DEFENCE & AUTONOMOUS SWARM UAS ARCHITECTURE
+            OFFICIAL DEFENCE CAPABILITY DOSSIER • 2026-2027
           </div>
 
           <h1 class="cover-main-title">
             SOVEREIGN AUTONOMOUS SWARM<br>
-            <span class="gradient-gold">& AIR DEFENCE UAV CAPABILITY</span>
+            <span class="saffron-accent">& AIR DEFENCE UAS ARCHITECTURE</span>
           </h1>
 
-          <p class="cover-scope-summary">
-            A comprehensive sovereign defence publication detailing India’s dedicated autonomous unmanned aerial warfare architecture—engineered to Indian Armed Forces requirements to deliver multi-tier border overwatch, heterogeneous swarm mesh dynamics, sub-zero Himalayan operational endurance, and hardened battlespace command & control.
-          </p>
+          <!-- Executive Abstract: Clear Statement of What this Brochure Encompasses -->
+          <div class="cover-abstract-box">
+            <p class="cover-abstract-text">
+              Technical capability document for tactical unmanned aerial systems engineered to <strong>Indian Armed Forces operational requirements</strong>. Details squad-level border reconnaissance, encrypted peer-to-peer mesh communications, sub-zero Himalayan flight performance, and command control in GPS-denied environments.
+            </p>
+          </div>
 
-          <!-- 4-Pillar Capability Glassmorphism Matrix -->
-          <section class="capability-matrix-grid">
+          <!-- 3-Pillar Capability Architecture Panels (Reverted to Previous Version) -->
+          <section class="pillars-flat-grid">
             
-            <article class="cap-card">
-              <span class="cap-index-num">PILLAR 01 • SWARM C2</span>
-              <h2 class="cap-card-title">Heterogeneous Swarm Intelligence</h2>
-              <p class="cap-card-desc">
-                Decentralized peer-to-peer RF mesh routing coordinating 6-unit squad patrols up to 24+ node border saturation screens with dynamic target handoff.
+            <!-- Pillar 1 -->
+            <article class="pillar-flat-card">
+              <div class="pillar-card-badge">
+                <span>PILLAR 01 • SWARM C2</span>
+                <span class="pillar-section-tag">SEC 01-04</span>
+              </div>
+              <h2 class="pillar-card-title">Swarm Intelligence & Mesh Dynamics</h2>
+              <p class="pillar-card-summary">
+                Self-healing RF mesh radio network coordinating 6 to 24+ drone nodes. Provides real-time reconnaissance, automated patrol routes, and continuous target tracking across forward border sectors.
               </p>
-              <div class="cap-metric-tag">BVLOS 100+ KM RANGE</div>
+              <div class="pillar-specs-row">
+                <span class="pillar-spec-chip">BVLOS 100+ KM</span>
+                <span class="pillar-spec-chip">&lt;250 MS ROUTING</span>
+                <span class="pillar-spec-chip">ATTRITION TOLERANT</span>
+              </div>
             </article>
 
-            <article class="cap-card">
-              <span class="cap-index-num">PILLAR 02 • TACTICAL PLATFORMS</span>
-              <h2 class="cap-card-title">Dual-Tier Air Platforms</h2>
-              <p class="cap-card-desc">
-                Sub-500g Nano-Scout micro UAVs paired with 20kg high-altitude Overwatch VTOL mothership relays carrying stabilized daylight EO & FLIR thermal imagers.
+            <!-- Pillar 2 -->
+            <article class="pillar-flat-card">
+              <div class="pillar-card-badge">
+                <span>PILLAR 02 • AIR PLATFORMS</span>
+                <span class="pillar-section-tag">SEC 05-08</span>
+              </div>
+              <h2 class="pillar-card-title">Heterogeneous Tactical Fleet</h2>
+              <p class="pillar-card-summary">
+                Two-tier tactical fleet: 350g soldier-carried Nano-Scouts for quiet short-range reconnaissance, and 20kg VTOL aircraft with daylight optical zoom and thermal night vision for persistent border surveillance.
               </p>
-              <div class="cap-metric-tag">350g TO 20kg PAYLOADS</div>
+              <div class="pillar-specs-row">
+                <span class="pillar-spec-chip">350g TO 20kg</span>
+                <span class="pillar-spec-chip">EO / LWIR FLIR</span>
+                <span class="pillar-spec-chip">-30°C COLD-SOAK</span>
+              </div>
             </article>
 
-            <article class="cap-card">
-              <span class="cap-index-num">PILLAR 03 • ELECTRONIC WARFARE</span>
-              <h2 class="cap-card-title">Contested EW Hardening</h2>
-              <p class="cap-card-desc">
-                Frequency-hopping spread spectrum with 32 dB anti-jam processing gain, sovereign NAVIC L5/S synchronization, and optical dead reckoning.
+            <!-- Pillar 3 -->
+            <article class="pillar-flat-card">
+              <div class="pillar-card-badge">
+                <span>PILLAR 03 • BATTLESPACE C2</span>
+                <span class="pillar-section-tag">SEC 09-12</span>
+              </div>
+              <h2 class="pillar-card-title">Hardened GCS & Defence Roadmap</h2>
+              <p class="pillar-card-summary">
+                Field-ready dual-screen ground control stations, frequency-hopping encrypted radio links, NAVIC satellite navigation, and domestic composite airframe manufacturing adhering to MIL-STD-810H defence standards.
               </p>
-              <div class="cap-metric-tag">FHSS ANTI-JAM & NAVIC</div>
-            </article>
-
-            <article class="cap-card">
-              <span class="cap-index-num">PILLAR 04 • MAKE IN INDIA</span>
-              <h2 class="cap-card-title">Sovereign Defence Production</h2>
-              <p class="cap-card-desc">
-                100% indigenous Indian carbon-composite monocoque manufacturing, DGCA SORA SAIL II/III compliance, and Ministry of Defence procurement roadmap.
-              </p>
-              <div class="cap-metric-tag">AUTOCLAVE COMPOSITES</div>
+              <div class="pillar-specs-row">
+                <span class="pillar-spec-chip">DUAL 15.6" GCS</span>
+                <span class="pillar-spec-chip">NAVIC L5/S SYNC</span>
+                <span class="pillar-spec-chip">MAKE IN INDIA</span>
+              </div>
             </article>
 
           </section>
 
         </main>
 
-        <!-- BOTTOM FOOTER -->
-        <footer class="bottom-footer">
-          <div class="footer-left-col">
-            <div class="footer-corp-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
-            <div class="footer-corp-reg">CIN: U30309MH2024PTC428120 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
+        <!-- BOTTOM FOOTER STRIP -->
+        <footer class="footer-strip">
+          <div class="footer-left">
+            <div class="footer-corp">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+            <div class="footer-reg">CIN: U33121PN2026PTC259836 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
           </div>
 
-          <div class="footer-center-links">
+          <div class="footer-center">
             <span>Web: <a href="https://shivnetra47.tech" target="_blank">shivnetra47.tech</a></span>
             <span>•</span>
             <span>Contact: <a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
           </div>
 
-          <div class="footer-right-col">
+          <div class="footer-right">
             <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
-            <div class="page-num-pill">A4 BROCHURE • COVER PAGE</div>
+            <div class="page-num-badge">COVER</div>
           </div>
         </footer>
 
