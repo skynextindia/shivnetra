@@ -12,7 +12,7 @@ pages_dir = os.path.join(current_dir, "pages")
 export_dir = os.path.join(current_dir, "exports")
 os.makedirs(export_dir, exist_ok=True)
 
-brain_dir = r"C:\Users\rohan\.gemini\antigravity-ide\brain\43c910f9-41cf-4a5d-824c-f65c851dcbde"
+brain_dir = r"C:\Users\rohan\.gemini\antigravity-ide\brain\acd8dede-c6fc-4b02-8d8c-5b2626ee9709"
 
 pages = [
     ("brochure_page_01.html", "brochure_page_01.png"),
@@ -62,6 +62,16 @@ for idx, (html_name, png_name) in enumerate(pages, start=1):
     rect = fitz.Rect(0, 0, width_pt, height_pt)
     page.insert_image(rect, filename=out_png)
 
+    # Also build individual page PDF
+    single_pdf_path = os.path.join(export_dir, f"SHIVNETRA47_Brochure_Page_{idx:02d}.pdf")
+    single_pdf_root = os.path.join(current_dir, f"SHIVNETRA47_Brochure_Page_{idx:02d}.pdf")
+    single_doc = fitz.open()
+    s_page = single_doc.new_page(width=width_pt, height=height_pt)
+    s_page.insert_image(rect, filename=out_png)
+    single_doc.save(single_pdf_path)
+    single_doc.save(single_pdf_root)
+    single_doc.close()
+
     # Copy to brain artifact directory
     if os.path.exists(brain_dir):
         brain_png = os.path.join(brain_dir, png_name)
@@ -72,6 +82,12 @@ for idx, (html_name, png_name) in enumerate(pages, start=1):
 
 master_doc.save(master_pdf_path, deflate=True, garbage=4)
 master_doc.close()
+
+if os.path.exists(brain_dir):
+    try:
+        shutil.copyfile(master_pdf_path, os.path.join(brain_dir, "SHIVNETRA47_Defence_and_Swarm_UAS_Brochure_A4.pdf"))
+    except Exception:
+        pass
 
 print("\n" + "="*70)
 print("DEFENCE & SWARM UAS BROCHURE EXPORT COMPLETE")

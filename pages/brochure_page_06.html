@@ -662,51 +662,78 @@
 
     /* Footer Strip */
     .footer-strip {
-      border-top: 2px solid var(--camo-border);
-      padding-top: 28px;
+      position: relative;
+      z-index: 5;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 19px;
-      color: var(--slate-400);
-      position: relative;
-      z-index: 2;
+      border-top: 2.5px solid rgba(122, 151, 129, 0.35);
+      padding-top: 30px;
     }
+
     .footer-left {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
+
     .footer-corp {
-      color: #ffffff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 25px;
       font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--slate-100);
+      text-transform: uppercase;
+    }
+
+    .footer-reg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: #9cb5a6;
       letter-spacing: 1px;
     }
-    .footer-reg {
-      color: var(--camo-sage);
-    }
+
     .footer-center {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19.5px;
+      color: #c7d8ce;
     }
     .footer-center a {
-      color: var(--saffron-bright);
+      color: #ffffff;
       text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
     .footer-center a:hover {
-      text-decoration: underline;
+      color: var(--saffron-bright);
     }
-    .footer-doc-code {
-      background: rgba(18, 28, 21, 0.9);
-      border: 1.5px solid rgba(122, 151, 129, 0.4);
-      padding: 6px 16px;
-      border-radius: 4px;
-      font-weight: 700;
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .tech-collab-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16.5px;
+      color: #9cb5a6;
+      letter-spacing: 1px;
+    }
+    .tech-collab-badge span {
       color: #ffffff;
-      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+    .page-num-pill {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 18px;
+      font-weight: 700;
+      color: var(--saffron-bright);
+      letter-spacing: 2px;
     }
   </style>
 </head>
@@ -930,8 +957,9 @@
           <span>Contact: <a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
         </div>
 
-        <div class="footer-doc-code">
-          PAGE 06 / SN47-UAS-BR-06 • CLOSING
+        <div class="footer-right">
+          <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
+          <div class="page-num-pill">A4 BROCHURE • PAGE 06 / 06</div>
         </div>
       </footer>
 
