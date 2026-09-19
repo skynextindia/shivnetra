@@ -3,28 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHIVNETRA47 - Official Defence Capability Brochure | Page 01 - Blue Variant (A4 Portrait)</title>
+  <title>SHIV-NETRA47 AIR DEFENCE SYSTEM PVT LTD | Statutory Mandate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #030712;
-      --panel-bg: #070e1e;
-      --card-bg: rgba(10, 19, 38, 0.96);
-      --card-border: rgba(56, 189, 248, 0.32);
-      --camo-dark: #0c172b;
-      --camo-olive: #1a335e;
-      --camo-sage: #38bdf8;
-      --camo-accent: #7dd3fc;
-      --saffron: #d97706;
-      --saffron-bright: #f59e0b;
-      --india-green: #15803d;
-      --slate-100: #f8fafc;
-      --slate-200: #e2e8f0;
-      --slate-300: #cbd5e1;
-      --slate-400: #94a3b8;
-      --slate-500: #64748b;
+      --bg-dark: #020612;
+      --navy-card: rgba(8, 20, 44, 0.92);
+      --navy-surface: #071530;
+      --cyan-glow: #38bdf8;
+      --cyan-dim: rgba(56, 189, 248, 0.28);
+      --saffron: #ff9933;
+      --saffron-dim: rgba(255, 153, 51, 0.22);
+      --india-green: #10b981;
+      --text-main: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #94a3b8;
     }
 
     * {
@@ -35,1009 +30,731 @@
 
     body, html {
       width: 100%;
-      height: 100%;
-      background-color: #02050e;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--slate-100);
+      background-color: #01040a;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Floating View Controls for browser tab */
-    .view-controls {
-      position: fixed;
-      top: 18px;
-      right: 24px;
-      z-index: 9999;
-      display: flex;
-      gap: 10px;
-      background: rgba(8, 16, 32, 0.9);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      padding: 6px 12px;
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-    }
-    .view-btn {
-      background: #1a271f;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: #ffffff;
-      padding: 6px 14px;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .view-btn:hover {
-      background: var(--saffron);
-      border-color: var(--saffron-bright);
-    }
-    .view-btn.active {
-      background: var(--saffron);
-      color: #ffffff;
-    }
-
-    /* Outer stage for auto-fitting in browser tabs */
-    .page-stage {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 30px 0;
-      overflow-y: auto;
-    }
-
-    /* A4 Portrait: 210mm × 297mm (2480px × 3508px @ 300 DPI, exact 1 : 1.4142 ratio) */
+    /* Fixed Standard A4 Document Canvas */
     .a4-page {
-      width: 2480px;
-      height: 3508px;
-      background: radial-gradient(circle at 80% 12%, #0e2752 0%, #030712 50%, #02050e 100%);
+      width: 1200px;
+      height: 1697px;
+      min-height: 1697px;
+      max-height: 1697px;
+      background: radial-gradient(circle at 80% 12%, #0a214d 0%, #030816 55%, #01040a 100%);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 135px 140px;
-      box-shadow: 0 0 100px rgba(0, 0, 0, 0.95);
-      margin: 0 auto;
-      transform-origin: top center;
+      padding: 48px 56px 40px 56px;
+      margin: 30px auto;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 4px;
     }
 
-    /* Print and Export Capture settings */
-    @media print, screen and (min-width: 2400px) {
-      .view-controls { display: none !important; }
-      .page-stage { padding: 0 !important; }
-      body, html {
-        background: #000000 !important;
-      }
-      @page {
-        size: 210mm 297mm;
-        margin: 0;
-      }
-      .a4-page {
-        transform: none !important;
-        margin: 0 !important;
-        box-shadow: none !important;
-      }
-    }
-
-    /* Technical grid overlay */
-    .grid-overlay {
+    .tech-grid {
       position: absolute;
       inset: 0;
       background-image: 
-        linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
-      background-size: 70px 70px;
+        linear-gradient(to right, rgba(56, 189, 248, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.035) 1px, transparent 1px);
+      background-size: 50px 50px;
       pointer-events: none;
-      z-index: 1;
     }
 
-    /* Precision Engineering Perimeter Frame */
-    .engineering-frame {
+    .hud-corner {
       position: absolute;
-      top: 60px;
-      left: 60px;
-      right: 60px;
-      bottom: 60px;
-      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      width: 36px;
+      height: 36px;
+      border-color: rgba(56, 189, 248, 0.5);
+      border-style: solid;
       pointer-events: none;
-      z-index: 10;
     }
+    .hud-tl { top: 20px; left: 20px; border-width: 3px 0 0 3px; }
+    .hud-tr { top: 20px; right: 20px; border-width: 3px 3px 0 0; }
+    .hud-bl { bottom: 20px; left: 20px; border-width: 0 0 3px 3px; }
+    .hud-br { bottom: 20px; right: 20px; border-width: 0 3px 3px 0; }
 
-    /* Outer tactical corner brackets - Seamlessly capping Engineering Frame */
-    .corner-bracket {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      border: 3.5px solid var(--camo-sage);
-      pointer-events: none;
-      z-index: 10;
-    }
-    .corner-tl { top: 60px; left: 60px; border-right: none; border-bottom: none; }
-    .corner-tr { top: 60px; right: 60px; border-left: none; border-bottom: none; }
-    .corner-bl { bottom: 60px; left: 60px; border-right: none; border-top: none; }
-    .corner-br { bottom: 60px; right: 60px; border-left: none; border-top: none; }
-
-    .crosshair {
-      position: absolute;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
-      color: var(--camo-sage);
-      opacity: 0.85;
-      pointer-events: none;
-      z-index: 10;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .crosshair-tl { top: 72px; left: 115px; }
-    .crosshair-tr { top: 72px; right: 115px; }
-    .crosshair-bl { bottom: 72px; left: 115px; }
-    .crosshair-br { bottom: 72px; right: 115px; }
-
-    /* Top Header Bar - Decompressed & Prominent */
-    .header-bar {
+    .content-layer {
       position: relative;
       z-index: 5;
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      border-bottom: 2.5px solid rgba(56, 189, 248, 0.35);
-      padding-bottom: 42px;
-    }
-
-    .classification-strip {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 22px;
-      letter-spacing: 3.5px;
-      color: #b0c4b8;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    .status-badge {
-      background: rgba(217, 119, 6, 0.16);
-      border: 1.5px solid var(--saffron-bright);
-      color: var(--saffron-bright);
-      padding: 11px 26px;
-      border-radius: 4px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 18px;
-    }
-
-    .status-badge::before {
-      content: '';
-      width: 12px;
-      height: 12px;
-      background: var(--saffron-bright);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--saffron-bright);
-    }
-
-    .brand-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .main-logo-box {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .logo-img {
-      height: 112px;
-      width: auto;
-      filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.7));
-    }
-
-    .brand-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      border-left: 3px solid rgba(56, 189, 248, 0.45);
-      padding-left: 28px;
-    }
-
-    .company-legal-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 34px;
-      font-weight: 800;
-      letter-spacing: 2.2px;
-      color: var(--slate-100);
-      text-transform: uppercase;
-    }
-
-    .company-subtitle {
-      font-family: 'Barlow', sans-serif;
-      font-size: 21px;
-      font-weight: 600;
-      color: var(--camo-sage);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .badges-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 14px;
-    }
-
-    .sovereign-tag {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: rgba(17, 30, 21, 0.95);
-      border: 1.5px solid rgba(56, 189, 248, 0.5);
-      padding: 12px 28px;
-      border-radius: 6px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-    }
-
-    .tricolor-flag {
-      display: flex;
-      flex-direction: column;
-      width: 28px;
-      height: 20px;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .flag-saffron { flex: 1; background: #FF9933; }
-    .flag-white { flex: 1; background: #FFFFFF; }
-    .flag-green { flex: 1; background: #138808; }
-
-    .sovereign-tag-text {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 21px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #ffffff;
-      text-transform: uppercase;
-    }
-
-    .soft-tech-partner {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 17px;
-      color: #a6bcb0;
-      letter-spacing: 1px;
-    }
-    .soft-tech-partner span {
-      color: #ffffff;
-      font-weight: 600;
-    }
-
-    /* Hero Headline Section - Decompressed & Majestic */
-    .hero-section {
-      position: relative;
-      z-index: 5;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      margin: 15px 0 10px 0;
-    }
-
-    .eyebrow-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 23px;
-      font-weight: 700;
-      color: var(--saffron-bright);
-      letter-spacing: 4.5px;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .eyebrow-tag::before {
-      content: '';
-      width: 48px;
-      height: 4px;
-      background: var(--saffron-bright);
-    }
-
-    .main-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 92px;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: #ffffff;
-    }
-
-    .main-title .gradient-text {
-      background: linear-gradient(135deg, #ffffff 20%, var(--saffron-bright) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .title-description {
-      font-family: 'Barlow', sans-serif;
-      font-size: 31px;
-      line-height: 1.55;
-      color: #d6e2db;
-      width: 100%;
-      font-weight: 400;
-    }
-
-    /* Dual Capability Visual Stage (Balanced Uncropped Media) */
-    .dual-pillar-grid {
-      position: relative;
-      z-index: 5;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      margin: 10px 0;
-    }
-
-    .pillar-card {
-      background: var(--panel-bg);
-      border: 2px solid var(--card-border);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
-      position: relative;
-    }
-
-    .pillar-tag-strip {
-      position: absolute;
-      top: 24px;
-      left: 24px;
-      z-index: 10;
-      display: flex;
-      gap: 12px;
-    }
-
-    .badge-pillar {
-      background: rgba(8, 12, 9, 0.92);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(56, 189, 248, 0.6);
-      padding: 10px 22px;
-      border-radius: 5px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      color: #ffffff;
-      text-transform: uppercase;
-    }
-    .badge-pillar.highlight {
-      border-color: var(--saffron-bright);
-      color: var(--saffron-bright);
-    }
-
-    /* Refined Proportional container ensuring uncropped drone display */
-    .pillar-media-box {
-      width: 100%;
-      height: 560px;
-      background: #000000;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pillar-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 35%;
-      transition: transform 0.4s ease;
-    }
-
-    .pillar-overlay-gradient {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(10, 20, 42, 1) 0%, rgba(10, 20, 42, 0.15) 50%, rgba(0, 0, 0, 0.25) 100%);
-    }
-
-    .pillar-content {
-      padding: 38px 42px 42px 42px;
-      display: flex;
-      flex-direction: column;
       gap: 20px;
-      flex: 1;
-      justify-content: space-between;
-      background: var(--panel-bg);
-      border-top: 1.5px solid rgba(56, 189, 248, 0.25);
+      height: 100%;
     }
 
-    .pillar-header-row {
+    /* TOP HEADER STRIP */
+    .top-header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
+      border-bottom: 1.5px solid rgba(56, 189, 248, 0.25);
+      padding-bottom: 14px;
     }
 
-    .pillar-number {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--saffron-bright);
-      letter-spacing: 2px;
+    .header-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
-
-    .pillar-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 45px;
+    .header-logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 290px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.8));
+    }
+    .header-company-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border-left: 2px solid rgba(56, 189, 248, 0.35);
+      padding-left: 14px;
+    }
+    .header-company-name {
+      font-family: 'Barlow', sans-serif;
+      font-size: 19px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      line-height: 1.1;
     }
-
-    .pillar-role {
-      font-family: 'Barlow', sans-serif;
-      font-size: 23px;
-      font-weight: 600;
-      color: var(--camo-sage);
+    .header-company-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      color: var(--saffron);
       letter-spacing: 1px;
-      text-transform: uppercase;
     }
 
-    .pillar-summary {
-      font-family: 'Inter', sans-serif;
-      font-size: 22px;
-      line-height: 1.55;
-      color: #d1ded6;
-      min-height: 60px;
-    }
-
-    .pillar-feature-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .pillar-feature-list li {
-      font-family: 'Inter', sans-serif;
-      font-size: 19.5px;
-      color: #dce7e0;
+    .header-right-badges {
       display: flex;
       align-items: center;
       gap: 12px;
-      line-height: 1.4;
     }
-    .pillar-feature-list li::before {
-      content: '■';
-      color: var(--camo-sage);
-      font-size: 12px;
+    .gov-badge {
+      background: rgba(10, 24, 52, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+    .page-indicator-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--saffron);
+      background: rgba(255, 153, 51, 0.12);
+      border: 1px solid rgba(255, 153, 51, 0.4);
+      padding: 6px 16px;
+      border-radius: 4px;
+      letter-spacing: 1px;
     }
 
-    .pillar-spec-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      background: rgba(6, 13, 27, 0.75);
-      border: 1.5px solid rgba(56, 189, 248, 0.25);
-      border-radius: 9px;
-      padding: 22px 24px;
-    }
-
-    .spec-item {
+    /* SECTION TITLE BLOCK */
+    .title-block {
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
-
-    .spec-label {
+    .section-eyebrow {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 16px;
-      font-weight: 600;
-      color: #a4bab0;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .spec-val {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 32px;
+      font-size: 14px;
       font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 1px;
+      color: var(--saffron);
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
-    .spec-val span {
-      color: var(--saffron-bright);
-      font-size: 23px;
-    }
-
-    /* Tactical Architecture Callout Box (Anchoring the center width) */
-    .tactical-arch-banner {
-      position: relative;
-      z-index: 5;
-      background: rgba(13, 22, 16, 0.95);
-      border: 1.5px solid rgba(56, 189, 248, 0.35);
-      border-radius: 10px;
-      padding: 34px 44px;
-      display: grid;
-      grid-template-columns: 1.2fr 2.8fr;
-      gap: 40px;
-      align-items: center;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-      margin: 8px 0;
-    }
-
-    .arch-banner-title {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      border-right: 2px solid rgba(56, 189, 248, 0.35);
-      padding-right: 32px;
-    }
-
-    .arch-banner-title h3 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 33px;
+    .main-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 38px;
       font-weight: 800;
-      letter-spacing: 1.5px;
       color: #ffffff;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
+      line-height: 1.15;
     }
-
-    .arch-banner-title span {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 17px;
-      color: var(--saffron-bright);
-      letter-spacing: 1.5px;
-      font-weight: 600;
-      text-transform: uppercase;
+    .main-title span {
+      background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-
-    .arch-banner-points {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px 32px;
-      list-style: none;
-    }
-
-    .arch-banner-points li {
-      font-family: 'Inter', sans-serif;
-      font-size: 19.5px;
-      color: #dbe6e0;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .section-subtitle {
+      font-size: 15.5px;
+      color: var(--text-muted);
       line-height: 1.4;
     }
 
-    .arch-banner-points li::before {
-      content: '▸';
-      color: var(--saffron-bright);
-      font-size: 23px;
-      font-weight: 700;
-    }
-
-    /* Core Performance Metrics Strip */
-    .metrics-bar {
-      position: relative;
-      z-index: 5;
+    /* CHARTER & RED DRONE SPLIT */
+    .charter-hero-split {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      background: rgba(10, 20, 42, 0.96);
-      border: 2px solid rgba(56, 189, 248, 0.4);
-      border-radius: 12px;
-      padding: 36px 44px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
-      margin: 8px 0;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 22px;
+      align-items: stretch;
     }
 
-    .metric-tile {
+    /* Structured Corporate Charter Cards */
+    .charter-card {
+      background: rgba(7, 18, 44, 0.9);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      border-left: 5px solid var(--saffron);
+      border-radius: 8px;
+      padding: 24px 26px;
       display: flex;
       flex-direction: column;
-      gap: 9px;
-      border-left: 4px solid var(--saffron-bright);
-      padding-left: 24px;
+      gap: 14px;
     }
-    .metric-tile:first-child {
-      border-left-color: var(--camo-sage);
+    .charter-statement {
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: #ffffff;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      padding-bottom: 12px;
+    }
+    .charter-statement strong {
+      color: var(--cyan-glow);
     }
 
-    .metric-num {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 54px;
+    .mandate-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .mandate-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .m-dot {
+      color: var(--saffron);
+      font-size: 14px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .m-text {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+    .m-text strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* Red Drone Showcase Card */
+    .hero-image-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid rgba(56, 189, 248, 0.4);
+      background: #020714;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+    }
+    .hero-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .image-gradient-overlay {
+      display: none;
+    }
+    .img-top-tag {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(4, 15, 35, 0.88);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan-glow);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      z-index: 10;
+    }
+    .img-bottom-caption {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+      background: rgba(4, 15, 38, 0.92);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      padding: 14px 18px;
+      border-radius: 6px;
+      backdrop-filter: blur(6px);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .caption-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 18px;
       font-weight: 800;
       color: #ffffff;
-      line-height: 1;
       letter-spacing: 1px;
-    }
-    .metric-num span {
-      font-size: 30px;
-      color: var(--saffron-bright);
-      font-weight: 700;
-    }
-
-    .metric-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 17.5px;
-      font-weight: 700;
-      color: var(--camo-sage);
-      letter-spacing: 1.6px;
       text-transform: uppercase;
     }
-
-    .metric-desc {
-      font-family: 'Inter', sans-serif;
-      font-size: 18px;
-      line-height: 1.45;
-      color: #cad8cf;
+    .caption-desc {
+      font-size: 13.5px;
+      line-height: 1.4;
+      color: #cbd5e1;
     }
 
-    /* Footer Strip */
-    .footer-strip {
-      position: relative;
-      z-index: 5;
+    /* 5-STAGE CORPORATE LIFECYCLE PROGRESSION */
+    .lifecycle-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .lifecycle-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 2.5px solid rgba(56, 189, 248, 0.35);
-      padding-top: 32px;
+    }
+    .lifecycle-heading {
+      font-family: 'Barlow', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .lifecycle-heading span {
+      color: var(--cyan-glow);
+    }
+    .lifecycle-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      color: var(--saffron);
+      letter-spacing: 1px;
     }
 
-    .footer-left {
+    .lifecycle-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .lifecycle-step {
+      background: rgba(8, 22, 48, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 6px;
+      padding: 16px 14px;
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
-
-    .footer-corp {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 25px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: var(--slate-100);
+    .lifecycle-step.accent {
+      border-color: rgba(255, 153, 51, 0.6);
+      background: rgba(18, 30, 52, 0.9);
+    }
+    .step-num-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--saffron);
+    }
+    .step-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan-glow);
       text-transform: uppercase;
     }
-
-    .footer-reg {
-      font-family: 'JetBrains Mono', monospace;
+    .step-title {
+      font-family: 'Barlow', sans-serif;
       font-size: 16px;
-      color: #9cb5a6;
-      letter-spacing: 1px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+    .step-desc {
+      font-size: 13px;
+      line-height: 1.45;
+      color: #cbd5e1;
     }
 
+    /* 4 BOTTOM STRATEGIC CAPABILITIES */
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .capability-card {
+      background: rgba(6, 16, 38, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.28);
+      border-radius: 6px;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cap-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cyan-glow);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .cap-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+    .cap-desc {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+
+    /* STANDARDIZED FIXED FOOTER STRIP ACROSS ALL PAGES */
+    .footer-bar {
+      display: grid;
+      grid-template-columns: 460px 1fr 270px;
+      align-items: center;
+      border-top: 1.5px solid rgba(56, 189, 248, 0.25);
+      padding-top: 14px;
+      height: 52px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      width: 100%;
+    }
+    .footer-col-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .footer-corp-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: #ffffff;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+    .footer-corp-reg {
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.3;
+      margin-top: 3px;
+    }
     .footer-center {
       display: flex;
-      align-items: center;
-      gap: 32px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 19.5px;
-      color: #c7d8ce;
-    }
-    .footer-center a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    .footer-center a:hover {
-      color: var(--saffron-bright);
-    }
-
-    .footer-right {
-      display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-    }
-
-    .tech-collab-badge {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 16.5px;
-      color: #9cb5a6;
-      letter-spacing: 1px;
+      font-size: 11.5px;
+      line-height: 1.4;
+      color: #94a3b8;
+      white-space: nowrap;
     }
-    .tech-collab-badge span {
-      color: #ffffff;
+    .footer-center .footer-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .footer-center strong {
+      color: var(--cyan-glow);
       font-weight: 600;
     }
-    .page-num-pill {
+    .footer-center .corridor-highlight {
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+    .footer-col-right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .footer-page-num {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--saffron-bright);
-      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--saffron);
+      letter-spacing: 1px;
+      background: rgba(255, 153, 51, 0.10);
+      border: 1px solid rgba(255, 153, 51, 0.40);
+      padding: 6px 14px;
+      border-radius: 4px;
+      white-space: nowrap;
+      display: inline-block;
+      text-align: right;
     }
 
-    .page-num-badge {
-      font-family: 'Rajdhani', 'JetBrains Mono', monospace;
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--saffron-bright);
-      background: rgba(255, 153, 51, 0.12);
-      border: 1.5px solid rgba(255, 153, 51, 0.5);
-      padding: 6px 20px;
-      border-radius: 4px;
-      text-transform: uppercase;
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      html, body {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #01040a !important;
+        overflow: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+      .a4-page {
+        width: 1200px !important;
+        height: 1697px !important;
+        max-height: 1697px !important;
+        transform: scale(0.6614173);
+        transform-origin: top left;
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        page-break-inside: avoid !important;
+        page-break-after: avoid !important;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- In-Tab View Controls -->
-  <div class="view-controls">
-    <button class="view-btn active" id="btnFitScreen" onclick="setMode('fit')">⤢ Fit Screen</button>
-    <button class="view-btn" id="btnActualSize" onclick="setMode('actual')">100% Actual Size</button>
-    <button class="view-btn" onclick="window.print()">🖨️ Print / PDF</button>
-  </div>
-
-  <div class="page-stage" id="pageStage">
+  <div class="a4-page">
+    <div class="tech-grid"></div>
     
-    <div class="a4-page" id="a4Page">
-      <!-- Background grid -->
-      <div class="grid-overlay"></div>
+    <div class="hud-corner hud-tl"></div>
+    <div class="hud-corner hud-tr"></div>
+    <div class="hud-corner hud-bl"></div>
+    <div class="hud-corner hud-br"></div>
 
-      <!-- Precision Engineering Frame & Corner Brackets -->
-      <div class="engineering-frame"></div>
-      <div class="corner-bracket corner-tl"></div>
-      <div class="corner-bracket corner-tr"></div>
-      <div class="corner-bracket corner-bl"></div>
-      <div class="corner-bracket corner-br"></div>
+    <div class="content-layer">
 
-      <!-- TOP HEADER BAR -->
-      <header class="header-bar">
-        <div class="classification-strip">
-          <div class="status-badge">SOVEREIGN AIR DEFENCE CAPABILITY BRIEF • 2026-2027</div>
-          <div>CONFIDENTIAL FOR DEFENCE USERS</div>
+      <!-- TOP HEADER STRIP -->
+      <header class="top-header">
+        <div class="header-logo-group">
+          <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="header-logo-img">
+          <div class="header-company-info">
+            <div class="header-company-name">SHIV-NETRA47 AIR DEFENCE SYSTEM PVT LTD</div>
+            <div class="header-company-sub">CIN: U30302UP2024PTC202547 • DEFENCE INDUSTRIAL CORRIDOR</div>
+          </div>
         </div>
 
-        <div class="brand-row">
-          <div class="main-logo-box">
-            <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="logo-img">
-            <div class="brand-meta">
-              <div class="company-legal-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
-              <div class="company-subtitle">Autonomous Air Systems • Swarm Intelligence • Tactical Air Defence</div>
-            </div>
-          </div>
-
-          <div class="badges-right">
-            <div class="sovereign-tag">
-              <div class="tricolor-flag">
-                <div class="flag-saffron"></div>
-                <div class="flag-white"></div>
-                <div class="flag-green"></div>
-              </div>
-              <div class="sovereign-tag-text">MAKE IN INDIA • ATMANIRBHAR BHARAT</div>
-            </div>
-            <div class="soft-tech-partner">
-              Engineering Collaboration: <span>BCN In-House Technology Team</span>
-            </div>
-          </div>
+        <div class="header-right-badges">
+          <div class="page-indicator-badge">PAGE 02 • STATUTORY MANDATE</div>
         </div>
       </header>
 
-      <!-- HERO HEADLINE SECTION -->
-      <section class="hero-section">
-        <div class="eyebrow-tag">SOVEREIGN UNMANNED AERIAL SYSTEMS PROGRAM</div>
+      <!-- SECTION TITLE BLOCK -->
+      <div class="title-block">
+        <div class="section-eyebrow">OFFICIAL CORPORATE CHARTER &bull; STATUTORY OBJECT CLAUSE</div>
         <h1 class="main-title">
-          SOVEREIGN AUTONOMOUS SWARM<br>
-          <span class="gradient-text">& AIR DEFENCE UAV CAPABILITY</span>
+          MAIN OBJECT OF THE PROPOSED COMPANY &bull; <span>SHIV-NETRA47</span>
         </h1>
-        <p class="title-description">
-          Tactical unmanned aerial systems developed for the Indian Armed Forces. Delivers coordinated swarm reconnaissance, encrypted mesh radio command and control, and high-altitude border surveillance.
+        <p class="section-subtitle">
+          Registered corporate objects established under the Companies Act, 2013 and aligned with the Ministry of Defence (MoD) Make in India framework.
         </p>
-      </section>
+      </div>
 
-      <!-- DUAL PILLAR CAPABILITY STAGE (16:9 Wide Uncropped Photos) -->
-      <section class="dual-pillar-grid">
-        
-        <!-- PILLAR 1: TACTICAL SWARM & OVERWATCH -->
-        <article class="pillar-card">
-          <div class="pillar-tag-strip">
-            <span class="badge-pillar highlight">PILLAR 01</span>
-            <span class="badge-pillar">TACTICAL SWARM & ISR</span>
+      <!-- CHARTER & HERO IMAGE SPLIT -->
+      <div class="charter-hero-split">
+
+        <!-- Structured Corporate Charter Breakdown (Not a raw paragraph!) -->
+        <div class="charter-card">
+          <div class="charter-statement">
+            Incorporated to carry on the business of <strong>researching, designing, developing, engineering, manufacturing, assembling, integrating, testing, commissioning, supplying, installing, operating, maintaining, repairing, upgrading, and servicing</strong> sovereign defence platforms:
           </div>
 
-          <div class="pillar-media-box">
-            <img src="../assets/hero_vtol_cityscape.png" alt="Swarm & Overwatch Air Vehicle" class="pillar-img">
-            <div class="pillar-overlay-gradient"></div>
-          </div>
-
-          <div class="pillar-content">
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-              <div class="pillar-header-row">
-                <div class="pillar-title">SWARM & OVERWATCH ISTAR</div>
-                <div class="pillar-number">[ SECT 01 ]</div>
+          <div class="mandate-items-list">
+            <div class="mandate-item">
+              <span class="m-dot">■</span>
+              <div class="m-text">
+                <strong>Air Defence &amp; Radar Systems:</strong> Advanced air defence architectures, defence electronics, early warning radar, surveillance, detection, and tracking systems.
               </div>
-              <div class="pillar-role">Multi-Layer Distributed Surveillance & Mesh C2</div>
-              <p class="pillar-summary">
-                Tactical swarm linking lightweight Nano-scouts (350-450g) with long-endurance Overwatch UAVs (~20kg) through a self-healing radio mesh network.
-              </p>
-              <ul class="pillar-feature-list">
-                <li>Autonomous flight path routing and collision avoidance</li>
-                <li>Daylight optical and infrared thermal video streaming to field operators</li>
-                <li>Continuous swarm operation if individual drones are lost or jammed</li>
-              </ul>
             </div>
 
-            <div class="pillar-spec-list">
-              <div class="spec-item">
-                <span class="spec-label">Swarm Node Size</span>
-                <span class="spec-val">6 to 24+ <span>Units</span></span>
+            <div class="mandate-item">
+              <span class="m-dot">■</span>
+              <div class="m-text">
+                <strong>Unmanned Aerial Vehicles (UAVs) &amp; Drones:</strong> Complete manufacture, assembly, and integration of drones, flight control systems, and mission payloads.
               </div>
-              <div class="spec-item">
-                <span class="spec-label">Overwatch MTOW</span>
-                <span class="spec-val">~20 <span>kg Class</span></span>
+            </div>
+
+            <div class="mandate-item">
+              <span class="m-dot">■</span>
+              <div class="m-text">
+                <strong>C2, Comms &amp; Electronic Warfare:</strong> Command and control (C2) systems, jam-resistant communication links, and electronic countermeasure (ECM) suites.
               </div>
-              <div class="spec-item">
-                <span class="spec-label">Operating Ceiling</span>
-                <span class="spec-val">8,000+ <span>ft AMSL</span></span>
+            </div>
+
+            <div class="mandate-item">
+              <span class="m-dot">■</span>
+              <div class="m-text">
+                <strong>Defence R&amp;D, AI &amp; Cybersecurity:</strong> Applied artificial intelligence, machine learning autonomy, autonomous systems, and sovereign cyber-resilience.
               </div>
-              <div class="spec-item">
-                <span class="spec-label">C2 Data-Link</span>
-                <span class="spec-val">Secure Mesh <span>RF</span></span>
+            </div>
+
+            <div class="mandate-item">
+              <span class="m-dot">■</span>
+              <div class="m-text">
+                <strong>Pilot Academy &amp; Depot MRO:</strong> Professional drone pilot training, simulation programs, depot-level repair, calibration, modification, and total lifecycle support.
               </div>
             </div>
           </div>
-        </article>
+        </div>
 
-        <!-- PILLAR 2: BATTLESPACE C2 & AIR DEFENCE HARDENING -->
-        <article class="pillar-card">
-          <div class="pillar-tag-strip">
-            <span class="badge-pillar highlight">PILLAR 02</span>
-            <span class="badge-pillar">CONTESTED C2 & EW HARDENING</span>
+        <!-- Hero Image: Branded Red Drone in Flight -->
+        <div class="hero-image-card">
+          <img src="../assets/real_red_vtol_shivnetra.jpg" alt="SHIVNETRA Sovereign Aerospace Platform in Flight">
+          <div class="image-gradient-overlay"></div>
+          <div class="img-top-tag">SOVEREIGN AEROSPACE PLATFORM</div>
+          <div class="img-bottom-caption">
+            <div class="caption-title">FLIGHT EVALUATION &amp; TRIALS</div>
+            <p class="caption-desc">
+              High-endurance aerospace flight trials validating airborne sensor integration, encrypted command links, and zero-runway multi-theatre operational capability.
+            </p>
           </div>
+        </div>
 
-          <div class="pillar-media-box">
-            <img src="../assets/military_tarmac_uav.png" alt="Tactical Air Vehicle Staging" class="pillar-img" style="object-position: center 30%;">
-            <div class="pillar-overlay-gradient"></div>
-          </div>
+      </div>
 
-          <div class="pillar-content">
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-              <div class="pillar-header-row">
-                <div class="pillar-title">TACTICAL GCS & RESILIENT C2</div>
-                <div class="pillar-number">[ SECT 02 ]</div>
-              </div>
-              <div class="pillar-role">Anti-Jam Mesh Telemetry & Sovereign NAVIC Sync</div>
-              <p class="pillar-summary">
-                Rugged tactical ground control station and anti-jam radio datalink designed for electronic warfare conditions and GPS-denied border sectors.
-              </p>
-              <ul class="pillar-feature-list">
-                <li>Single operator station controlling multiple drones simultaneously</li>
-                <li>Frequency-hopping anti-jam radio with inertial and optical navigation fallback</li>
-                <li>SORA SAIL II/III safety standard compliance with secure flight termination switch</li>
-              </ul>
+      <!-- 5-STAGE CORPORATE LIFECYCLE PROGRESSION -->
+      <div class="lifecycle-section">
+        <div class="lifecycle-header">
+          <h2 class="lifecycle-heading">Comprehensive Defence Engineering <span>Lifecycle Spectrum</span></h2>
+          <div class="lifecycle-tag">FULL LIFECYCLE SUSTAINMENT</div>
+        </div>
+
+        <div class="lifecycle-grid">
+
+          <div class="lifecycle-step">
+            <div class="step-num-strip">
+              <span class="step-num">STAGE 01</span>
+              <span class="step-badge">R&amp;D</span>
             </div>
-
-            <div class="pillar-spec-list">
-              <div class="spec-item">
-                <span class="spec-label">C2 Datalink</span>
-                <span class="spec-val">P2P Encrypted <span>Mesh</span></span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Anti-Jam Margin</span>
-                <span class="spec-val">32 <span>dB FHSS</span></span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">GNSS Satellite</span>
-                <span class="spec-val">NAVIC <span>L5/S-Band</span></span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">GCS Standards</span>
-                <span class="spec-val">MIL-STD <span>810H</span></span>
-              </div>
-            </div>
+            <h3 class="step-title">Research &amp; Design</h3>
+            <p class="step-desc">Aerodynamic simulation, radar cross-section optimization, sensor architectures, and autonomous AI engineering.</p>
           </div>
-        </article>
 
-      </section>
+          <div class="lifecycle-step accent">
+            <div class="step-num-strip">
+              <span class="step-num">STAGE 02</span>
+              <span class="step-badge">MANUFACTURING</span>
+            </div>
+            <h3 class="step-title">Precision Assembly</h3>
+            <p class="step-desc">Airframe composite fabrication, defence electronics assembly, payload modular integration, and military avionics.</p>
+          </div>
 
-      <!-- FULL-WIDTH STRATEGIC CAPABILITY CALLOUT STRIP -->
-      <section class="arch-banner">
-        <div class="arch-banner-title">TRI-SERVICES DEFENCE CAPABILITY FRAMEWORK</div>
-        <ul class="arch-banner-points">
-          <li>Autonomous Swarm Intelligence: Decentralized bounding overwatch and collaborative targeting</li>
-          <li>Contested Spectrum Hardening: NAVIC satellite sync + frequency-hopping RF data-links</li>
-          <li>High-Altitude Border Envelope: Sub-zero temperature and Himalayan wind gradient rated</li>
-          <li>100% Sovereign IPR: Indigenous carbon-composite fabrication and iDEX / MoD alignment</li>
-        </ul>
-      </section>
+          <div class="lifecycle-step">
+            <div class="step-num-strip">
+              <span class="step-num">STAGE 03</span>
+              <span class="step-badge">TESTING</span>
+            </div>
+            <h3 class="step-title">Testing &amp; Trials</h3>
+            <p class="step-desc">Environmental qualification, electronic warfare countermeasure verification, and range trial validation.</p>
+          </div>
 
-      <!-- CORE PERFORMANCE METRICS STRIP -->
-      <section class="metrics-bar">
-        <div class="metric-tile">
-          <div class="metric-num">8,000+ <span>ft AMSL</span></div>
-          <div class="metric-label">High-Altitude Operational Envelope</div>
-          <div class="metric-desc">Engineered for forward Himalayan posts, steep valley patrols, and sub-zero border warfare.</div>
+          <div class="lifecycle-step">
+            <div class="step-num-strip">
+              <span class="step-num">STAGE 04</span>
+              <span class="step-badge">DEPLOYMENT</span>
+            </div>
+            <h3 class="step-title">Operational Supply</h3>
+            <p class="step-desc">Delivering mission-ready defence platforms, ground tactical systems, and armed forces operational handover.</p>
+          </div>
+
+          <div class="lifecycle-step">
+            <div class="step-num-strip">
+              <span class="step-num">STAGE 05</span>
+              <span class="step-badge">MRO</span>
+            </div>
+            <h3 class="step-title">Depot MRO</h3>
+            <p class="step-desc">Depot-level servicing, continuous calibration, structural modification, and technological enhancement.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 4 STRATEGIC CORE CAPABILITIES -->
+      <div class="capabilities-grid">
+
+        <div class="capability-card">
+          <span class="cap-tag">DOMAIN 01</span>
+          <h3 class="cap-title">Air Defence &amp; Radar</h3>
+          <p class="cap-desc">Next-generation radar systems, multi-spectral sensor fusion, early warning detection, and active countermeasure suites.</p>
         </div>
 
-        <div class="metric-tile">
-          <div class="metric-num">50-150 <span>km</span></div>
-          <div class="metric-label">Encrypted Swarm Mesh Radius</div>
-          <div class="metric-desc">BVLOS frequency-hopping RF telemetry with peer-to-peer relay for EW-contested environments.</div>
+        <div class="capability-card">
+          <span class="cap-tag">DOMAIN 02</span>
+          <h3 class="cap-title">Tactical UAV Platforms</h3>
+          <p class="cap-desc">Indigenous manufacturing of unmanned aerial systems, precision flight controllers, mission payloads, and allied defence systems.</p>
         </div>
 
-        <div class="metric-tile">
-          <div class="metric-num">6-24+ <span>Nodes</span></div>
-          <div class="metric-label">Heterogeneous Swarm Fleet</div>
-          <div class="metric-desc">Decentralized teaming of sub-500g nano-scouts and 20kg high-altitude overwatch mothership relays.</div>
+        <div class="capability-card">
+          <span class="cap-tag">DOMAIN 03</span>
+          <h3 class="cap-title">Pilot Training Academy</h3>
+          <p class="cap-desc">Directorate-aligned drone pilot certification, tactical mission simulation programs, technical crew training, and skill academies.</p>
         </div>
 
-        <div class="metric-tile">
-          <div class="metric-num">Make in India</div>
-          <div class="metric-label">Sovereign IPR & Assembly</div>
-          <div class="metric-desc">Complete indigenous production roadmap aligned with iDEX and Ministry of Defence procurement guidelines.</div>
+        <div class="capability-card">
+          <span class="cap-tag">DOMAIN 04</span>
+          <h3 class="cap-title">Alliances &amp; Licensing</h3>
+          <p class="cap-desc">Bilateral joint ventures, European testing corridors, technology transfer, and international export compliance.</p>
         </div>
-      </section>
+
+      </div>
 
       <!-- FOOTER STRIP -->
-      <footer class="footer-strip">
-        <div class="footer-left">
-          <div class="footer-corp">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
-          <div class="footer-reg">CIN: U33121PN2026PTC259836 • Indigenous Swarm UAV & Air Defence Manufacturer</div>
+      <footer class="footer-bar">
+        <div class="footer-col-left">
+          <div class="footer-corp-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+          <div class="footer-corp-reg">CIN: U30302UP2024PTC202547 &bull; Corporate Charter &amp; Statutory Mandate</div>
         </div>
 
         <div class="footer-center">
-          <span>Web: <a href="https://shivnetra47.tech" target="_blank">shivnetra47.tech</a></span>
-          <span>•</span>
-          <span>Contact: <a href="mailto:uav@shivnetra47.tech">uav@shivnetra47.tech</a></span>
+          <div class="footer-meta-line"><span>Corporate Portal:</span> <strong>www.shivnetra47.tech</strong></div>
+          <div class="footer-meta-line"><span>Defence Corridor:</span> <span class="corridor-highlight">Uttar Pradesh, India</span></div>
         </div>
 
-        <div class="footer-right">
-          <div class="tech-collab-badge">Technology Collaboration: <span>BCN Engineering</span></div>
-          <div class="page-num-badge">PAGE 01</div>
+        <div class="footer-col-right">
+          <div class="footer-page-num">PAGE 02 &bull; STATUTORY MANDATE</div>
         </div>
       </footer>
 
     </div>
 
   </div>
-
-  <script>
-    let currentMode = 'fit';
-
-    function setMode(mode) {
-      currentMode = mode;
-      document.getElementById('btnFitScreen').classList.toggle('active', mode === 'fit');
-      document.getElementById('btnActualSize').classList.toggle('active', mode === 'actual');
-      updateA4Scale();
-    }
-
-    function updateA4Scale() {
-      const page = document.getElementById('a4Page');
-      const stage = document.getElementById('pageStage');
-      if (!page) return;
-
-      // In print or headless full-size capture
-      if (window.innerWidth >= 2400 && window.innerHeight >= 3400) {
-        page.style.transform = 'none';
-        page.style.margin = '0 auto';
-        stage.style.height = 'auto';
-        return;
-      }
-
-      if (currentMode === 'fit') {
-        const availW = window.innerWidth - 60;
-        const availH = window.innerHeight - 60;
-        const scale = Math.min(availW / 2480, availH / 3508);
-        page.style.transform = `scale(${scale})`;
-        page.style.transformOrigin = 'top center';
-        stage.style.height = `${3508 * scale + 60}px`;
-      } else {
-        page.style.transform = 'none';
-        page.style.margin = '30px auto';
-        stage.style.height = 'auto';
-      }
-    }
-
-    window.addEventListener('resize', updateA4Scale);
-    window.addEventListener('DOMContentLoaded', updateA4Scale);
-    setTimeout(updateA4Scale, 100);
-  </script>
 
 </body>
 </html>

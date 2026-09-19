@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHIV-NETRA47 AIR DEFENCE SYSTEM PVT LTD | Corporate Brochure Viewer</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+  <style>
+    :root {
+      --bg-dark: #020612;
+      --panel-bg: #071328;
+      --card-bg: #0c1f40;
+      --card-hover: #122b59;
+      --border-color: rgba(56, 189, 248, 0.28);
+      --cyan-glow: #38bdf8;
+      --saffron: #ff9933;
+      --slate-100: #f8fafc;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--slate-100);
+      font-family: 'Inter', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Control Bar */
+    .top-bar {
+      height: 72px;
+      background-color: var(--panel-bg);
+      border-bottom: 1.5px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand-logo {
+      height: 42px;
+      width: auto;
+      max-width: 250px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+    }
+
+    .brand-badge {
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-left: 2px solid var(--border-color);
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .brand-badge span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--saffron);
+      letter-spacing: 1px;
+    }
+
+    .page-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-tab-btn {
+      background: var(--card-bg);
+      color: var(--slate-300);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .page-tab-btn:hover {
+      background: var(--card-hover);
+      border-color: var(--cyan-glow);
+      color: #ffffff;
+    }
+    .page-tab-btn.active {
+      background: var(--saffron);
+      border-color: var(--saffron);
+      color: #000000;
+      font-weight: 700;
+    }
+
+    .controls-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mode-toggle-group {
+      display: flex;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .mode-btn {
+      background: transparent;
+      border: none;
+      color: var(--slate-300);
+      padding: 7px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .mode-btn:hover {
+      color: #ffffff;
+    }
+    .mode-btn.active {
+      background: var(--cyan-glow);
+      color: #000000;
+      font-weight: 700;
+    }
+
+    .btn {
+      background: var(--card-bg);
+      color: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: var(--card-hover);
+      border-color: var(--saffron);
+    }
+    .btn-accent {
+      background: rgba(255, 153, 51, 0.2);
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    .counter-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--saffron);
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--border-color);
+      padding: 7px 16px;
+      border-radius: 4px;
+    }
+
+    /* Main Workspace Stage */
+    .workspace {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      background-color: #01040a;
+    }
+
+    .iframe-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Floating Arrow Controls on Sides */
+    .stage-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      background: rgba(5, 15, 34, 0.88);
+      border: 1.5px solid var(--border-color);
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s;
+      z-index: 50;
+      user-select: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+    }
+    .stage-nav-arrow:hover {
+      background: var(--saffron);
+      color: #000;
+      border-color: var(--saffron);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .arrow-prev { left: 24px; }
+    .arrow-next { right: 24px; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header class="top-bar">
+    <div class="brand-section">
+      <img src="assets/logo_white.png" alt="SHIVNETRA 47" class="brand-logo">
+      <div class="brand-badge">
+        SHIV-NETRA47 AIR DEFENCE SYSTEM PVT LTD
+        <span>OFFICIAL CORPORATE BROCHURE (5 PAGES)</span>
+      </div>
+    </div>
+
+    <!-- Direct Page Tabs -->
+    <nav class="page-tabs" id="pageTabs">
+      <button class="page-tab-btn active" onclick="loadPage(0)">Page 01 • Cover</button>
+      <button class="page-tab-btn" onclick="loadPage(1)">Page 02 • Mandate</button>
+      <button class="page-tab-btn" onclick="loadPage(2)">Page 03 • Verticals</button>
+      <button class="page-tab-btn" onclick="loadPage(3)">Page 04 • Alliances &amp; MRO</button>
+      <button class="page-tab-btn" onclick="loadPage(4)">Page 05 • Directory</button>
+    </nav>
+
+    <!-- Presentation & View Mode Controls -->
+    <div class="controls-group">
+      <!-- Reading vs Single View Toggle -->
+      <div class="mode-toggle-group">
+        <button class="mode-btn active" id="btnModeRead" onclick="setViewMode('read')" title="Large fonts with natural scroll">📖 Reading</button>
+        <button class="mode-btn" id="btnModeFit" onclick="setViewMode('fit')" title="Full page in single screen">📄 Single View</button>
+      </div>
+
+      <button class="btn" onclick="prevPage()">◄ Prev</button>
+      <div class="counter-pill" id="pageCounter">PAGE 01 / 05</div>
+      <button class="btn" onclick="nextPage()">Next ►</button>
+      <a href="pages_blue/brochure_cover.html" id="openTabBtn" target="_blank" class="btn btn-accent">⤢ Open Standalone Tab</a>
+    </div>
+  </header>
+
+  <!-- Stage Workspace -->
+  <div class="workspace">
+    <div class="stage-nav-arrow arrow-prev" onclick="prevPage()">◄</div>
+    <div class="iframe-container">
+      <iframe id="brochureFrame" src="pages_blue/brochure_cover.html?mode=read" title="Brochure Page Viewer"></iframe>
+    </div>
+    <div class="stage-nav-arrow arrow-next" onclick="nextPage()">►</div>
+  </div>
+
+  <script>
+    const pages = [
+      { id: 1, title: 'Page 01 • Corporate Cover', file: 'pages_blue/brochure_cover.html' },
+      { id: 2, title: 'Page 02 • Corporate Charter & Mandate', file: 'pages_blue/brochure_page_01.html' },
+      { id: 3, title: 'Page 03 • Core Business Verticals', file: 'pages_blue/brochure_page_02.html' },
+      { id: 4, title: 'Page 04 • Global Alliances, Academy & MRO', file: 'pages_blue/brochure_page_03.html' },
+      { id: 5, title: 'Page 05 • Directory & Corporate Governance', file: 'pages_blue/brochure_back.html' }
+    ];
+
+    let currentIndex = 0;
+    let currentMode = 'read'; // Default is reading mode for large comfortable text
+    const iframe = document.getElementById('brochureFrame');
+    const counter = document.getElementById('pageCounter');
+    const openTabBtn = document.getElementById('openTabBtn');
+    const tabButtons = document.querySelectorAll('.page-tab-btn');
+    const btnModeRead = document.getElementById('btnModeRead');
+    const btnModeFit = document.getElementById('btnModeFit');
+
+    function setViewMode(mode) {
+      currentMode = mode;
+      btnModeRead.classList.toggle('active', mode === 'read');
+      btnModeFit.classList.toggle('active', mode === 'fit');
+      
+      try {
+        iframe.contentWindow.postMessage({ action: 'setMode', mode: currentMode }, '*');
+      } catch (e) {
+        loadPage(currentIndex);
+      }
+    }
+
+    function loadPage(index) {
+      if (index < 0) index = 0;
+      if (index >= pages.length) index = pages.length - 1;
+      currentIndex = index;
+
+      const page = pages[currentIndex];
+      iframe.src = `${page.file}?mode=${currentMode}`;
+      counter.textContent = `PAGE 0${currentIndex + 1} / 0${pages.length}`;
+      openTabBtn.href = page.file;
+
+      tabButtons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function prevPage() {
+      if (currentIndex > 0) {
+        loadPage(currentIndex - 1);
+      }
+    }
+
+    function nextPage() {
+      if (currentIndex < pages.length - 1) {
+        loadPage(currentIndex + 1);
+      }
+    }
+
+    // Keyboard Arrow Navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevPage();
+      if (e.key === 'ArrowRight') nextPage();
+    });
+  </script>
+</body>
+</html>

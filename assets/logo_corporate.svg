@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 70" width="420" height="70" fill="none">
+  <!-- Stealth Delta Arrowhead Insignia in Deep Corporate Navy -->
+  <path d="M 12 35 L 76 8 L 52 35 L 76 62 Z" fill="#0A192F" />
+  <path d="M 76 8 L 52 35 L 76 62 L 92 35 Z" fill="#3B82F6" opacity="0.4" />
+
+  <!-- Typography: SHIVNETRA 47 -->
+  <text x="105" y="44" font-family="'Barlow', 'Inter', 'Segoe UI', sans-serif" font-weight="700" font-size="34" fill="#0A192F" letter-spacing="3.5">
+    SHIVNETRA <tspan font-weight="800" fill="#0A192F">47</tspan>
+  </text>
+
+  <!-- Tricolor Accent Bar under 47 -->
+  <!-- Saffron -->
+  <rect x="330" y="52" width="22" height="4" rx="1" fill="#FF7700" />
+  <!-- Corporate Slate -->
+  <rect x="355" y="52" width="22" height="4" rx="1" fill="#64748B" />
+  <!-- India Green -->
+  <rect x="380" y="52" width="22" height="4" rx="1" fill="#138808" />
+</svg>
