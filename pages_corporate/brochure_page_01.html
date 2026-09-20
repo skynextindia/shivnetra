@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SHIV-NETRA47 — Serious Corporate Page 01: Forward Resupply</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #ffffff;
+      --bg-subtle: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-tint: #f1f5f9;
+      --navy-dark: #0a192f;
+      --navy-deep: #0f223d;
+      --navy-card: #142847;
+      --blue-accent: #1d4ed8;
+      --blue-subtle: #eff6ff;
+      --blue-border: #bfdbfe;
+      --saffron: #d97706;
+      --saffron-subtle: #fffbeb;
+      --saffron-border: #fde68a;
+      --green-flag: #15803d;
+      --border-light: #e2e8f0;
+      --border-medium: #cbd5e1;
+      --border-dark: #94a3b8;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      background-color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Floating View Controls */
+    .view-controls {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border-medium);
+      padding: 6px 14px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .view-btn {
+      background: #f8fafc;
+      border: 1px solid var(--border-medium);
+      color: var(--navy-dark);
+      padding: 7px 16px;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .view-btn:hover, .view-btn.active {
+      background: var(--navy-dark);
+      color: #ffffff;
+      border-color: var(--navy-dark);
+    }
+
+    /* Outer Stage */
+    .page-stage {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 0;
+    }
+
+    /* A4 Portrait: 2480px × 3508px @ 300 DPI */
+    .a4-page {
+      width: 2480px;
+      height: 3508px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 90px 120px 80px 120px;
+      margin: 0 auto;
+      background: var(--bg-page);
+      box-shadow: 0 10px 60px rgba(0, 0, 0, 0.15);
+      border: 1px solid #e2e8f0;
+    }
+
+    .top-accent-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #d97706 0%, #d97706 25%, #0a192f 25%, #0a192f 90%, #15803d 90%, #15803d 100%);
+    }
+
+    .content-layer {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      gap: 28px;
+    }
+
+    /* HEADER */
+    .page-header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .classification-ribbon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-medium);
+      border-left: 5px solid var(--navy-dark);
+      border-radius: 4px;
+      padding: 12px 28px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .header-main-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 4px;
+    }
+
+    .header-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-eyebrow {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--saffron);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 0.5px;
+      color: var(--navy-dark);
+      text-transform: uppercase;
+    }
+
+    .page-subtitle {
+      font-size: 20px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .header-partner-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .header-logo-img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .tech-partner-tag {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+    .tech-partner-tag strong {
+      color: var(--navy-dark);
+    }
+
+    /* HERO FIELD ACTION IMAGE CARD (1140px Height) */
+    .hero-field-card {
+      position: relative;
+      height: 1140px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-medium);
+      background: #0f172a;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .field-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+      filter: contrast(1.05) brightness(1.02);
+    }
+
+    .field-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, 
+        rgba(10, 25, 47, 0.75) 0%, 
+        transparent 25%, 
+        transparent 65%, 
+        rgba(10, 25, 47, 0.9) 100%);
+      pointer-events: none;
+    }
+
+    .field-top-bar {
+      position: relative;
+      z-index: 2;
+      padding: 30px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .field-tag {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      background: rgba(10, 25, 47, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 16px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    .field-caption-tag {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e2e8f0;
+      background: rgba(10, 25, 47, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 6px 18px;
+      border-radius: 4px;
+      backdrop-filter: blur(8px);
+    }
+
+    .field-bottom-bar {
+      position: relative;
+      z-index: 2;
+      padding: 28px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      background: linear-gradient(0deg, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.7) 70%, transparent 100%);
+    }
+    .field-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+    .field-desc {
+      font-size: 18px;
+      color: #cbd5e1;
+      max-width: 1400px;
+      line-height: 1.45;
+    }
+    .field-spec-chip {
+      background: rgba(15, 34, 61, 0.9);
+      border: 1px solid rgba(191, 219, 254, 0.35);
+      border-left: 4px solid var(--saffron);
+      border-radius: 4px;
+      padding: 14px 24px;
+      text-align: right;
+      backdrop-filter: blur(8px);
+    }
+    .field-chip-val {
+      font-family: 'Barlow', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .field-chip-lbl {
+      font-size: 12px;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* 5-STAGE LOGISTICS PROCESS VECTOR */
+    .process-section {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-medium);
+      border-radius: 6px;
+      padding: 26px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .process-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 10px;
+    }
+    .process-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .process-badge {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--navy-dark);
+      background: var(--blue-subtle);
+      border: 1px solid var(--blue-border);
+      padding: 4px 12px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .process-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      position: relative;
+    }
+    .step-card {
+      background: #ffffff;
+      border: 1px solid var(--border-medium);
+      border-top: 4px solid var(--navy-dark);
+      border-radius: 4px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .step-num {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--saffron);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .step-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+    .step-text {
+      font-size: 14.5px;
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+
+    /* 4 TACTICAL RESUPPLY PARAMETERS */
+    .params-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .param-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-medium);
+      border-top: 4px solid var(--navy-dark);
+      border-radius: 6px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+    .param-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 8px;
+    }
+    .param-code {
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--saffron);
+      text-transform: uppercase;
+    }
+    .param-spec {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .param-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+    .param-desc {
+      font-size: 15.5px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .param-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+    .param-tag {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--navy-dark);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-medium);
+      padding: 3px 8px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    /* FOOTER */
+    .footer-bar {
+      border-top: 2px solid var(--navy-dark);
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15.5px;
+      color: var(--text-dim);
+    }
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .footer-co {
+      font-weight: 800;
+      font-size: 17px;
+      color: var(--navy-dark);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .footer-cin {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.8px;
+    }
+    .footer-center {
+      text-align: center;
+      font-size: 14.5px;
+      font-weight: 500;
+    }
+    .footer-center strong {
+      color: var(--navy-dark);
+      font-weight: 700;
+    }
+    .footer-page-num {
+      font-family: 'Barlow', sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--navy-dark);
+      border: 1px solid var(--border-medium);
+      background: var(--bg-subtle);
+      padding: 6px 18px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Navigation Controls -->
+  <div class="view-controls">
+    <a href="brochure_cover.html" class="view-btn">Cover</a>
+    <a href="brochure_page_01.html" class="view-btn active">01 Resupply</a>
+    <a href="brochure_page_02.html" class="view-btn">02 Architecture</a>
+    <a href="brochure_page_03.html" class="view-btn">03 Swarm</a>
+    <a href="brochure_back.html" class="view-btn">Back Cover</a>
+  </div>
+
+  <div class="page-stage">
+    <div class="a4-page">
+      <div class="top-accent-line"></div>
+
+      <div class="content-layer">
+
+        <!-- HEADER STRIP -->
+        <div class="page-header">
+          <div class="classification-ribbon">
+            <div>INDIGENOUS DEFENCE PLATFORM // FORWARD LOGISTICS DOCTRINE</div>
+            <div>OPERATIONAL EVALUATION: HIGH-ALTITUDE MOUNTAIN OUTPOST RESUPPLY</div>
+          </div>
+
+          <div class="header-main-row">
+            <div class="header-titles">
+              <div class="section-eyebrow">PILLAR 01 // OPERATIONAL ADVANTAGE</div>
+              <h1 class="page-title">HIGH-ALTITUDE FORWARD RESUPPLY &amp; TACTICAL LOGISTICS</h1>
+              <div class="page-subtitle">Runway-Independent Autonomous Heavy-Lift Airlift for Forward Himalayan Posts (LAC / LoC)</div>
+            </div>
+
+            <div class="header-partner-badge">
+              <img src="../assets/shivnetra_logo_original_light.png" alt="SHIVNETRA 47" class="header-logo-img">
+              <div class="tech-partner-tag">Ecosystem Partner: <strong>BCN Drone Center (Spain)</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO FIELD ACTION IMAGE CARD -->
+        <div class="hero-field-card">
+          <img src="../assets/real_delivery_shivnetra.jpg" alt="Himalayan Outpost Resupply Action" class="field-img">
+          <div class="field-overlay"></div>
+
+          <div class="field-top-bar">
+            <span class="field-tag">TACTICAL FIELD INTEGRATION TRIAL</span>
+            <span class="field-caption-tag">FIGURE 1.0: FORWARD OPERATING BASE (FOB) RESUPPLY TRIAL — 4,800M AMSL</span>
+          </div>
+
+          <div class="field-bottom-bar">
+            <div class="field-title-block">
+              <div class="field-title">RAPID MODULAR CARGO POD INTEGRATION AT HIGH ALTITUDE</div>
+              <div class="field-desc">
+                Field technicians and forward personnel conducting rapid pod exchange in sub-zero alpine conditions. The hermetically sealed bay accommodates emergency blood bags, tactical communications batteries, and precision resupply payloads.
+              </div>
+            </div>
+
+            <div class="field-spec-chip">
+              <div class="field-chip-val">&lt; 90 SEC</div>
+              <div class="field-chip-lbl">POD SWAP TIME</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5-STAGE LOGISTICS PROCESS VECTOR -->
+        <div class="process-section">
+          <div class="process-header">
+            <div class="process-title">5-STAGE AUTONOMOUS LOGISTICS WORKFLOW</div>
+            <div class="process-badge">END-TO-END AUTOMATED MISSION CYCLE</div>
+          </div>
+
+          <div class="process-steps-grid">
+            <div class="step-card">
+              <div class="step-num">STAGE 01</div>
+              <div class="step-title">PRE-FLIGHT LOAD</div>
+              <p class="step-text">Quick-lock mounting of insulated medical containers, ammunition canisters, or dual tactical batteries without specialized tooling.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">STAGE 02</div>
+              <div class="step-title">ZERO-RUNWAY VTOL</div>
+              <p class="step-text">Four high-torque carbon rotors execute vertical liftoff from unprepared mountain clearings, transitioning to fixed-wing flight at 50 kts.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">STAGE 03</div>
+              <div class="step-title">ALPINE CRUISE</div>
+              <p class="step-text">High-efficiency rear pusher motor cruises along pre-programmed mountain valley corridors at 110 km/h with active terrain avoidance.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">STAGE 04</div>
+              <div class="step-title">AUTONOMOUS DELIVERY</div>
+              <p class="step-text">Precision hover descent or autonomous pod release at isolated forward posts with sub-meter GPS/NAVIC coordinates.</p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">STAGE 05</div>
+              <div class="step-title">SECURE BVLOS RTB</div>
+              <p class="step-text">Automated return-to-base along alternate terrain-masked tracks with low thermal and acoustic signature throughout.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 TACTICAL RESUPPLY PARAMETERS -->
+        <div class="params-grid">
+          
+          <div class="param-card">
+            <div class="param-meta">
+              <span class="param-code">SPEC 01 • ENVIRONMENT</span>
+              <span class="param-spec">-20°C TO +50°C</span>
+            </div>
+            <div class="param-title">HIGH-ALTITUDE CEILING</div>
+            <p class="param-desc">
+              Engineered for density altitudes exceeding 5,500m AMSL. Carbon-structure heating prevents icing on leading edges and pitot tubes during severe Himalayan winter blizzard operations.
+            </p>
+            <div class="param-tags">
+              <span class="param-tag">5,500M CEILING</span>
+              <span class="param-tag">ANTI-ICING</span>
+              <span class="param-tag">HIMALAYAN FIT</span>
+            </div>
+          </div>
+
+          <div class="param-card">
+            <div class="param-meta">
+              <span class="param-code">SPEC 02 • MOBILITY</span>
+              <span class="param-spec">ZERO FOOTPRINT</span>
+            </div>
+            <div class="param-title">RUNWAY-FREE LAUNCH</div>
+            <p class="param-desc">
+              Requires no catapults, runways, or recovery nets. Can deploy directly from forward outpost helipads, ridge trenches, or tactical 4x4 flatbed mobile support units.
+            </p>
+            <div class="param-tags">
+              <span class="param-tag">ZERO RUNWAY</span>
+              <span class="param-tag">RIDGE DEPLOYMENT</span>
+              <span class="param-tag">4X4 COMPATIBLE</span>
+            </div>
+          </div>
+
+          <div class="param-card">
+            <div class="param-meta">
+              <span class="param-code">SPEC 03 • PAYLOAD</span>
+              <span class="param-spec">MODULAR POD</span>
+            </div>
+            <div class="param-title">HERMETIC CARGO BAY</div>
+            <p class="param-desc">
+              Aerodynamic composite fuselage accommodates swappable cargo modules: active temperature-regulated medical pods, tactical supplies, or EO/IR surveillance gimbals.
+            </p>
+            <div class="param-tags">
+              <span class="param-tag">RAPID SWAP</span>
+              <span class="param-tag">COLD-CHAIN FIT</span>
+              <span class="param-tag">TACTICAL PAYLOAD</span>
+            </div>
+          </div>
+
+          <div class="param-card">
+            <div class="param-meta">
+              <span class="param-code">SPEC 04 • AVIONICS</span>
+              <span class="param-spec">MANET MESH</span>
+            </div>
+            <div class="param-title">SECURE BVLOS LINK</div>
+            <p class="param-desc">
+              Frequency-hopping spread spectrum (FHSS) telemetry with AES-256 military-grade encryption. Seamless failover between NAVIC satellite navigation and optical inertial dead-reckoning.
+            </p>
+            <div class="param-tags">
+              <span class="param-tag">AES-256</span>
+              <span class="param-tag">NAVIC DUAL-BAND</span>
+              <span class="param-tag">ANTI-JAM MESH</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-bar">
+          <div class="footer-left">
+            <div class="footer-co">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+            <div class="footer-cin">CIN: U30302UP2024PTC202547 • Make in India Defence UAS &amp; Aerial Systems</div>
+          </div>
+          <div class="footer-center">
+            Technology Support: <strong>BCN Drone Center (Moià, Spain)</strong> &nbsp;•&nbsp; Web: <strong>www.shivnetra47.tech</strong>
+          </div>
+          <div class="footer-page-num">
+            PAGE 02 / 05
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

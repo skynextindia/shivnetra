@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SHIV-NETRA47 — Serious Corporate Page 03: Swarm Architecture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #ffffff;
+      --bg-subtle: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-tint: #f1f5f9;
+      --navy-dark: #0a192f;
+      --navy-deep: #0f223d;
+      --navy-card: #142847;
+      --blue-accent: #1d4ed8;
+      --blue-subtle: #eff6ff;
+      --blue-border: #bfdbfe;
+      --saffron: #d97706;
+      --saffron-subtle: #fffbeb;
+      --saffron-border: #fde68a;
+      --green-flag: #15803d;
+      --border-light: #e2e8f0;
+      --border-medium: #cbd5e1;
+      --border-dark: #94a3b8;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      background-color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Floating View Controls */
+    .view-controls {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border-medium);
+      padding: 6px 14px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .view-btn {
+      background: #f8fafc;
+      border: 1px solid var(--border-medium);
+      color: var(--navy-dark);
+      padding: 7px 16px;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .view-btn:hover, .view-btn.active {
+      background: var(--navy-dark);
+      color: #ffffff;
+      border-color: var(--navy-dark);
+    }
+
+    /* Outer Stage */
+    .page-stage {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 0;
+    }
+
+    /* A4 Portrait: 2480px × 3508px @ 300 DPI */
+    .a4-page {
+      width: 2480px;
+      height: 3508px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 90px 120px 80px 120px;
+      margin: 0 auto;
+      background: var(--bg-page);
+      box-shadow: 0 10px 60px rgba(0, 0, 0, 0.15);
+      border: 1px solid #e2e8f0;
+    }
+
+    .top-accent-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #d97706 0%, #d97706 25%, #0a192f 25%, #0a192f 90%, #15803d 90%, #15803d 100%);
+    }
+
+    .content-layer {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      gap: 26px;
+    }
+
+    /* HEADER */
+    .page-header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .classification-ribbon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-medium);
+      border-left: 5px solid var(--navy-dark);
+      border-radius: 4px;
+      padding: 12px 28px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .header-main-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 4px;
+    }
+
+    .header-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-eyebrow {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--saffron);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 0.5px;
+      color: var(--navy-dark);
+      text-transform: uppercase;
+    }
+
+    .page-subtitle {
+      font-size: 20px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .header-partner-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .header-logo-img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .tech-partner-tag {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+    .tech-partner-tag strong {
+      color: var(--navy-dark);
+    }
+
+    /* MACHINE INFOGRAPHIC HERO CARD (1200px Height) */
+    .infographic-card {
+      position: relative;
+      height: 1200px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-medium);
+      background: #020617;
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .infographic-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      background: #070d19;
+    }
+
+    .info-top-strip {
+      position: relative;
+      z-index: 2;
+      padding: 24px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(7, 13, 25, 0.95) 0%, rgba(7, 13, 25, 0.7) 70%, transparent 100%);
+    }
+    .info-badge-tag {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      background: rgba(10, 25, 47, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 16px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .info-fig-caption {
+      font-size: 15px;
+      font-weight: 600;
+      color: #cbd5e1;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .info-bottom-strip {
+      position: relative;
+      z-index: 2;
+      padding: 24px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(0deg, rgba(7, 13, 25, 0.95) 0%, rgba(7, 13, 25, 0.7) 70%, transparent 100%);
+    }
+    .info-legend {
+      display: flex;
+      gap: 20px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-vtol { background: #38bdf8; }
+    .dot-multi { background: #d97706; }
+    .dot-mesh { background: #22c55e; }
+
+    .info-metric-badges {
+      display: flex;
+      gap: 14px;
+    }
+    .info-chip {
+      background: rgba(15, 34, 61, 0.9);
+      border: 1px solid rgba(191, 219, 254, 0.3);
+      border-radius: 4px;
+      padding: 10px 18px;
+      text-align: right;
+    }
+    .info-chip-val {
+      font-family: 'Barlow', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .info-chip-lbl {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* 3 STRATEGIC DOCTRINE CARDS */
+    .doctrine-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .doctrine-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-medium);
+      border-top: 4px solid var(--navy-dark);
+      border-radius: 6px;
+      padding: 24px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+    }
+    .doctrine-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 8px;
+    }
+    .doctrine-num {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--saffron);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .doctrine-tag {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .doctrine-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+    .doctrine-desc {
+      font-size: 15.5px;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+    .doctrine-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .doc-pill {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: var(--navy-dark);
+      background: #ffffff;
+      border: 1px solid var(--border-medium);
+      padding: 3px 8px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    /* 4 TACTICAL SWARM CAPABILITIES */
+    .swarm-caps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .swarm-cap-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-medium);
+      border-radius: 6px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+    }
+    .swarm-cap-code {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--blue-accent);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .swarm-cap-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+    .swarm-cap-desc {
+      font-size: 14.5px;
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    .footer-bar {
+      border-top: 2px solid var(--navy-dark);
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15.5px;
+      color: var(--text-dim);
+    }
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .footer-co {
+      font-weight: 800;
+      font-size: 17px;
+      color: var(--navy-dark);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .footer-cin {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.8px;
+    }
+    .footer-center {
+      text-align: center;
+      font-size: 14.5px;
+      font-weight: 500;
+    }
+    .footer-center strong {
+      color: var(--navy-dark);
+      font-weight: 700;
+    }
+    .footer-page-num {
+      font-family: 'Barlow', sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--navy-dark);
+      border: 1px solid var(--border-medium);
+      background: var(--bg-subtle);
+      padding: 6px 18px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Navigation Controls -->
+  <div class="view-controls">
+    <a href="brochure_cover.html" class="view-btn">Cover</a>
+    <a href="brochure_page_01.html" class="view-btn">01 Resupply</a>
+    <a href="brochure_page_02.html" class="view-btn">02 Architecture</a>
+    <a href="brochure_page_03.html" class="view-btn active">03 Swarm</a>
+    <a href="brochure_back.html" class="view-btn">Back Cover</a>
+  </div>
+
+  <div class="page-stage">
+    <div class="a4-page">
+      <div class="top-accent-line"></div>
+
+      <div class="content-layer">
+
+        <!-- HEADER STRIP -->
+        <div class="page-header">
+          <div class="classification-ribbon">
+            <div>INDIGENOUS DEFENCE PLATFORM // SWARM AUTONOMY &amp; NETWORK-CENTRIC WARFARE</div>
+            <div>OPERATIONAL DOCTRINE: AUTONOMOUS MULTI-AGENT SWARM SYNCHRONIZATION</div>
+          </div>
+
+          <div class="header-main-row">
+            <div class="header-titles">
+              <div class="section-eyebrow">CAPABILITY 03 // TACTICAL SWARM INTEGRATION</div>
+              <h1 class="page-title">MULTI-SWARM UAS ARCHITECTURE &amp; TACTICAL INTEGRATION</h1>
+              <div class="page-subtitle">Distributed Autonomous Mission Control, Self-Healing MANET Mesh Relay, and Alpine ISR</div>
+            </div>
+
+            <div class="header-partner-badge">
+              <img src="../assets/shivnetra_logo_original_light.png" alt="SHIVNETRA 47" class="header-logo-img">
+              <div class="tech-partner-tag">Ecosystem Partner: <strong>BCN Drone Center (Spain)</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MACHINE INFOGRAPHIC HERO CARD -->
+        <div class="infographic-card">
+          <img src="../assets/swarm_architecture_master.png" alt="Swarm Machine Infographic" class="infographic-img">
+
+          <div class="info-top-strip">
+            <span class="info-badge-tag">SWARM ARCHITECTURE DIAGRAM</span>
+            <span class="info-fig-caption">FIGURE 2.0: COOPERATIVE MULTI-PLATFORM SWARM NETWORKING &amp; MESH RELAYS</span>
+          </div>
+
+          <div class="info-bottom-strip">
+            <div class="info-legend">
+              <div class="legend-item">
+                <div class="legend-dot dot-vtol"></div>
+                <span>Long-Range VTOL Hybrid Nodes</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot dot-multi"></div>
+                <span>Tactical Heavy Multirotors</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot dot-mesh"></div>
+                <span>Encrypted MANET Mesh Relays</span>
+              </div>
+            </div>
+
+            <div class="info-metric-badges">
+              <div class="info-chip">
+                <div class="info-chip-val">UP TO 32</div>
+                <div class="info-chip-lbl">SWARM DENSITY</div>
+              </div>
+              <div class="info-chip">
+                <div class="info-chip-val">&lt; 15 MS</div>
+                <div class="info-chip-lbl">MESH LATENCY</div>
+              </div>
+              <div class="info-chip">
+                <div class="info-chip-val">AES-256</div>
+                <div class="info-chip-lbl">ENCRYPTION</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 STRATEGIC DOCTRINE CARDS -->
+        <div class="doctrine-grid">
+          
+          <div class="doctrine-card">
+            <div class="doctrine-header">
+              <span class="doctrine-num">DOCTRINE 01</span>
+              <span class="doctrine-tag">MESH RELAYS</span>
+            </div>
+            <div class="doctrine-title">SELF-HEALING MANET NETWORKING</div>
+            <p class="doctrine-desc">
+              Every airborne platform acts as an active relay transceiver. If mountainous topography blocks direct line-of-sight to the ground station, the swarm dynamically re-routes command and video packets through neighboring airborne nodes without mission interruption.
+            </p>
+            <div class="doctrine-pills">
+              <span class="doc-pill">DYNAMIC RE-ROUTING</span>
+              <span class="doc-pill">MOUNTAIN BYPASS</span>
+              <span class="doc-pill">NO SINGLE POINT OF FAILURE</span>
+            </div>
+          </div>
+
+          <div class="doctrine-card">
+            <div class="doctrine-header">
+              <span class="doctrine-num">DOCTRINE 02</span>
+              <span class="doctrine-tag">SENSOR FUSION</span>
+            </div>
+            <div class="doctrine-title">DISTRIBUTED TACTICAL ISR FUSION</div>
+            <p class="doctrine-desc">
+              Multiple VTOL and multirotor airframes observe designated forward target zones from complementary orbital angles. EO/IR video and radar tracks are correlated on-board to synthesize an integrated common operational picture (COP) for command staff.
+            </p>
+            <div class="doctrine-pills">
+              <span class="doc-pill">MULTI-ANGLE TRACKING</span>
+              <span class="doc-pill">AI TARGET IDENTIFICATION</span>
+              <span class="doc-pill">INTEGRATED RADAR/EO</span>
+            </div>
+          </div>
+
+          <div class="doctrine-card">
+            <div class="doctrine-header">
+              <span class="doctrine-num">DOCTRINE 03</span>
+              <span class="doctrine-tag">ELECTRONIC WARFARE</span>
+            </div>
+            <div class="doctrine-title">FREQUENCY-HOPPING ECCM SUITE</div>
+            <p class="doctrine-desc">
+              Hardened against adversarial jamming and spoofing across contested LAC frontiers. Employs pseudorandom frequency hopping over 1,000 hops/sec with cognitive fallback to dual NAVIC satellite constellations and optical flow dead-reckoning.
+            </p>
+            <div class="doctrine-pills">
+              <span class="doc-pill">1,000+ HOPS/SEC</span>
+              <span class="doc-pill">ANTI-SPOOF NAVIC</span>
+              <span class="doc-pill">DEAD-RECKONING FAILSAFE</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4 TACTICAL SWARM CAPABILITIES -->
+        <div class="swarm-caps-grid">
+          
+          <div class="swarm-cap-card">
+            <div class="swarm-cap-code">CAPABILITY 01</div>
+            <div class="swarm-cap-title">BORDER RIDGE OVERWATCH</div>
+            <p class="swarm-cap-desc">Continuous persistent surveillance along high-altitude mountain ridgelines with seamless automated battery handoffs.</p>
+          </div>
+
+          <div class="swarm-cap-card">
+            <div class="swarm-cap-code">CAPABILITY 02</div>
+            <div class="swarm-cap-title">DEEP VALLEY RELAY</div>
+            <p class="swarm-cap-desc">Overcoming RF shadows in deep alpine ravines by positioning high-altitude VTOL hybrid nodes as overhead airborne repeaters.</p>
+          </div>
+
+          <div class="swarm-cap-card">
+            <div class="swarm-cap-code">CAPABILITY 03</div>
+            <div class="swarm-cap-title">SATURATION RESUPPLY</div>
+            <p class="swarm-cap-desc">Simultaneous synchronized multi-target delivery of emergency plasma, tactical batteries, and small arms munitions to forward squads.</p>
+          </div>
+
+          <div class="swarm-cap-card">
+            <div class="swarm-cap-code">CAPABILITY 04</div>
+            <div class="swarm-cap-title">ATTRITION SURVIVABILITY</div>
+            <p class="swarm-cap-desc">Decentralized algorithms ensure the mission continues seamlessly even if individual units are lost to terrain or electronic countermeasures.</p>
+          </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-bar">
+          <div class="footer-left">
+            <div class="footer-co">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+            <div class="footer-cin">CIN: U30302UP2024PTC202547 • Make in India Defence UAS &amp; Aerial Systems</div>
+          </div>
+          <div class="footer-center">
+            Technology Support: <strong>BCN Drone Center (Moià, Spain)</strong> &nbsp;•&nbsp; Web: <strong>www.shivnetra47.tech</strong>
+          </div>
+          <div class="footer-page-num">
+            PAGE 04 / 05
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
