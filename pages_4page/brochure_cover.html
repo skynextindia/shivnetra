@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHIV-NETRA47 AIR DEFENCE SYSTEM PVT LTD | Corporate Cover</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #020612;
+      --navy-deep: #050e24;
+      --navy-card: rgba(8, 20, 44, 0.88);
+      --cyan-glow: #38bdf8;
+      --cyan-dim: rgba(56, 189, 248, 0.35);
+      --saffron: #ff9933;
+      --saffron-glow: rgba(255, 153, 51, 0.25);
+      --india-green: #138808;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      background-color: #01040a;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Fixed Standard A4 Document Canvas */
+    .a4-page {
+      width: 1200px;
+      height: 1697px;
+      min-height: 1697px;
+      max-height: 1697px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 56px 40px 56px;
+      margin: 30px auto;
+      background: radial-gradient(circle at 50% 16%, #0a2456 0%, #030a1c 48%, #01040a 100%);
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 4px;
+    }
+
+    .tech-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(56, 189, 248, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.035) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hud-corner {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      border-color: rgba(56, 189, 248, 0.55);
+      border-style: solid;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .hud-tl { top: 20px; left: 20px; border-width: 3px 0 0 3px; }
+    .hud-tr { top: 20px; right: 20px; border-width: 3px 3px 0 0; }
+    .hud-bl { bottom: 20px; left: 20px; border-width: 0 0 3px 3px; }
+    .hud-br { bottom: 20px; right: 20px; border-width: 0 3px 3px 0; }
+
+    .content-layer {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+      height: 100%;
+    }
+
+    /* TOP HEADER STRIP */
+    .header-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .classification-ribbon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(7, 18, 40, 0.88);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      border-radius: 6px;
+      padding: 10px 22px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      letter-spacing: 1.5px;
+      color: #94a3b8;
+    }
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--saffron);
+      font-weight: 700;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--saffron);
+    }
+
+    .partner-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sovereign-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(10, 24, 52, 0.8);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      padding: 8px 18px;
+      border-radius: 4px;
+    }
+    .flag-group {
+      display: flex;
+      flex-direction: column;
+      width: 24px;
+      height: 16px;
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .f-saffron { flex: 1; background: #ff9933; }
+    .f-white { flex: 1; background: #ffffff; }
+    .f-green { flex: 1; background: #138808; }
+
+    .sovereign-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+    }
+
+    .ecosystem-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #cbd5e1;
+      letter-spacing: 1px;
+      background: rgba(10, 24, 52, 0.8);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      padding: 8px 18px;
+      border-radius: 4px;
+    }
+    .ecosystem-badge strong {
+      color: var(--cyan-glow);
+    }
+
+    /* HERO BRANDING & TITLE */
+    .title-showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+    .logo-hero-img {
+      height: auto;
+      max-height: 105px;
+      width: auto;
+      max-width: 540px;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.9));
+    }
+
+    .legal-entity-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #ffffff;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .legal-entity-title::before, .legal-entity-title::after {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background: var(--saffron);
+    }
+
+    .executive-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--saffron);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(255, 153, 51, 0.1);
+      border: 1px solid rgba(255, 153, 51, 0.35);
+      padding: 5px 16px;
+      border-radius: 4px;
+    }
+
+    .main-headline {
+      font-family: 'Barlow', sans-serif;
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .main-headline .highlight {
+      color: #38bdf8;
+    }
+
+    .tagline-pill-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 2px;
+    }
+    .tagline-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #cbd5e1;
+      background: rgba(15, 30, 60, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 16px;
+      border-radius: 4px;
+    }
+
+    /* HERO SHOWCASE IMAGE CARD */
+    .hero-cinematic-card {
+      position: relative;
+      width: 100%;
+      height: 610px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid rgba(56, 189, 248, 0.4);
+      background: #020714;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+    }
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .hud-overlay-gradient {
+      display: none;
+    }
+
+    .hud-top-left {
+      position: absolute;
+      top: 24px;
+      left: 26px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hud-callout-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan-glow);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: rgba(4, 15, 35, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 4px 12px;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+    }
+    .hud-platform-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+    }
+
+    .hud-top-right {
+      position: absolute;
+      top: 24px;
+      right: 26px;
+      z-index: 10;
+      background: rgba(4, 15, 35, 0.88);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+    }
+
+    .hero-bottom-statement {
+      position: absolute;
+      bottom: 22px;
+      left: 26px;
+      right: 26px;
+      z-index: 10;
+      background: rgba(4, 15, 38, 0.92);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      border-radius: 6px;
+      padding: 16px 24px;
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .statement-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .statement-headline {
+      font-family: 'Barlow', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .statement-headline span {
+      color: var(--cyan-glow);
+    }
+    .statement-desc {
+      font-size: 15px;
+      line-height: 1.45;
+      color: #cbd5e1;
+    }
+    .statement-badge {
+      flex-shrink: 0;
+      background: rgba(255, 153, 51, 0.15);
+      border: 1.5px solid var(--saffron);
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .statement-badge-val {
+      font-family: 'Barlow', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--saffron);
+    }
+    .statement-badge-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #cbd5e1;
+      letter-spacing: 1px;
+    }
+
+    /* 4 CORE CORPORATE CAPABILITY PILLARS */
+    .corporate-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      width: 100%;
+    }
+
+    .pillar-card {
+      background: rgba(7, 18, 42, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 6px;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      backdrop-filter: blur(6px);
+    }
+    .pillar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      padding-bottom: 8px;
+    }
+    .pillar-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--saffron);
+    }
+    .pillar-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--cyan-glow);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .pillar-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+    .pillar-desc {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+
+    /* STANDARDIZED FIXED FOOTER STRIP ACROSS ALL PAGES */
+    .footer-bar {
+      display: grid;
+      grid-template-columns: 460px 1fr 270px;
+      align-items: center;
+      border-top: 1.5px solid rgba(56, 189, 248, 0.25);
+      padding-top: 14px;
+      height: 52px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      width: 100%;
+    }
+    .footer-col-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .footer-corp-title {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: #ffffff;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+    .footer-corp-reg {
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.3;
+      margin-top: 3px;
+    }
+    .footer-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      line-height: 1.4;
+      color: #94a3b8;
+      white-space: nowrap;
+    }
+    .footer-center .footer-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .footer-center strong {
+      color: var(--cyan-glow);
+      font-weight: 600;
+    }
+    .footer-center .corridor-highlight {
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+    .footer-col-right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .footer-page-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--saffron);
+      letter-spacing: 1px;
+      background: rgba(255, 153, 51, 0.10);
+      border: 1px solid rgba(255, 153, 51, 0.40);
+      padding: 6px 14px;
+      border-radius: 4px;
+      white-space: nowrap;
+      display: inline-block;
+      text-align: right;
+    }
+
+    @media print {
+      @page {
+        size: 1200px 1697px;
+        margin: 0;
+      }
+      html, body {
+        width: 1200px !important;
+        height: 1697px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #01040a !important;
+        overflow: hidden !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+      .a4-page {
+        width: 1200px !important;
+        height: 1697px !important;
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        transform: none !important;
+        page-break-inside: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="a4-page">
+    <div class="tech-grid"></div>
+    
+    <div class="hud-corner hud-tl"></div>
+    <div class="hud-corner hud-tr"></div>
+    <div class="hud-corner hud-bl"></div>
+    <div class="hud-corner hud-br"></div>
+
+    <div class="content-layer">
+
+      <!-- TOP HEADER BAR -->
+      <header class="header-bar">
+        <div class="classification-ribbon">
+          <div class="security-badge">
+            <div class="pulse-dot"></div>
+            <span>SOVEREIGN DEFENCE PLATFORM &bull; CORPORATE DOSSIER</span>
+          </div>
+          <div>CIN: U33121PN2026PTC259836</div>
+        </div>
+      </header>
+
+      <!-- TITLE SHOWCASE -->
+      <div class="title-showcase">
+        <div class="logo-container">
+          <img src="../assets/logo_white.png" alt="SHIVNETRA 47" class="logo-hero-img">
+        </div>
+        
+        <div class="legal-entity-title">
+          SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED
+        </div>
+
+        <h1 class="main-headline">
+          SOVEREIGN AIR DEFENCE &amp;<br>
+          <span class="highlight">ADVANCED DEFENCE SYSTEMS</span>
+        </h1>
+
+        <div class="tagline-pill-row">
+          <div class="tagline-chip">AIR DEFENCE SYSTEMS</div>
+          <div class="tagline-chip">UNMANNED SYSTEMS &amp; DRONES</div>
+          <div class="tagline-chip">DEFENCE ELECTRONICS &amp; EW</div>
+          <div class="tagline-chip">PILOT ACADEMY &amp; DEPOT MRO</div>
+        </div>
+      </div>
+
+      <!-- HERO CINEMATIC CARD: REAL AEROSPACE IMAGE -->
+      <div class="hero-cinematic-card">
+        <img src="../assets/real_vtol_shivnetra.jpg" alt="SHIVNETRA 47 Sovereign Aerospace Platform" class="hero-photo">
+        <div class="hud-overlay-gradient"></div>
+
+        <div class="hud-top-left">
+          <span class="hud-callout-tag">AEROSPACE DEFENCE PLATFORM</span>
+          <div class="hud-platform-title">SHIV-NETRA47 SOVEREIGN AEROSPACE SYSTEM</div>
+        </div>
+
+        <div class="hud-top-right">
+          <span>SOVEREIGN AEROSPACE PLATFORM</span>
+        </div>
+
+        <div class="hero-bottom-statement">
+          <div class="statement-content">
+            <div class="statement-headline">RESEARCH, DESIGN, ENGINEERING &amp; <span>DEFENCE MANUFACTURING</span></div>
+            <p class="statement-desc">
+              Dedicated to pioneering sovereign air defence systems, advanced radar and sensor networks, tactical UAV systems, and high-readiness lifecycle sustainment for India's national security forces.
+            </p>
+          </div>
+          <div class="statement-badge">
+            <div class="statement-badge-val">100% SOVEREIGN</div>
+            <div class="statement-badge-lbl">INDIAN CUSTODY &amp; IP</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 CORE CORPORATE CAPABILITY PILLARS -->
+      <div class="corporate-pillars-grid">
+
+        <div class="pillar-card">
+          <div class="pillar-header">
+            <span class="pillar-num">PILLAR 01</span>
+            <span class="pillar-tag">DEFENCE SYSTEMS</span>
+          </div>
+          <h2 class="pillar-title">Air Defence &amp; Radar</h2>
+          <p class="pillar-desc">
+            Researching, designing, and manufacturing advanced air defence architectures, early warning radar, sensor-based surveillance, and electronic countermeasure systems.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-header">
+            <span class="pillar-num">PILLAR 02</span>
+            <span class="pillar-tag">AEROSPACE</span>
+          </div>
+          <h2 class="pillar-title">UAVs &amp; Drone Systems</h2>
+          <p class="pillar-desc">
+            End-to-end engineering, precision assembly, payload integration, and deployment of tactical unmanned aerial systems and multi-theatre drone architectures.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-header">
+            <span class="pillar-num">PILLAR 03</span>
+            <span class="pillar-tag">AI &amp; EW</span>
+          </div>
+          <h2 class="pillar-title">C2, Comms &amp; Cyber</h2>
+          <p class="pillar-desc">
+            Command and control (C2) systems, encrypted communications, electronic warfare (EW), machine learning autonomy, and cyber-hardened defence software.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-header">
+            <span class="pillar-num">PILLAR 04</span>
+            <span class="pillar-tag">SUSTAINMENT</span>
+          </div>
+          <h2 class="pillar-title">Pilot Academy &amp; MRO</h2>
+          <p class="pillar-desc">
+            Comprehensive drone pilot simulation, technical skill development, alongside depot-level repair, calibration, modification, and total lifecycle support.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- FOOTER STRIP -->
+      <footer class="footer-bar">
+        <div class="footer-col-left">
+          <div class="footer-corp-title">SHIV-NETRA47 AIR DEFENCE SYSTEM PRIVATE LIMITED</div>
+          <div class="footer-corp-reg">Defence Aerospace Systems &bull; Registered under Companies Act, 2013</div>
+        </div>
+
+        <div class="footer-center">
+          <div class="footer-meta-line"><span>Corporate Portal:</span> <strong>www.shivnetra47.tech</strong></div>
+          <div class="footer-meta-line"><span>CIN:</span> <strong>U33121PN2026PTC259836</strong></div>
+        </div>
+
+        <div class="footer-col-right">
+          <div class="footer-page-num">PAGE 01 &bull; CORPORATE PROFILE</div>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

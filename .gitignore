@@ -32,3 +32,6 @@ Thumbs.db
 scratch/
 temp/
 *.tmp
+
+# Vector SVG exports (contains base64 images that trigger false positive secret scans)
+*.svg
